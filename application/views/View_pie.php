@@ -2,7 +2,7 @@
       </div><!-- FIN CUERPO -->
 
       <!-- PIE -->
-      <footer class="page-footer card-panel red" style="margin-top: -7px;">
+      <footer class="page-footer card-panel orange darken-4" style="margin-top: -7px;">
 
           <div class="container"><!-- PRIMERA PARTE -->
             <div class="row">
@@ -16,7 +16,7 @@
             </div>
           </div>
           <div class="divider"></div>
-          <div class="footer-copyright red"><!-- SEGUNDA PARTE -->
+          <div class="footer-copyright orange darken-4"><!-- SEGUNDA PARTE -->
             <div class="container">
             © 2016 Isabel María Calvo Mateos - Todos los derechos reservados
             </div>

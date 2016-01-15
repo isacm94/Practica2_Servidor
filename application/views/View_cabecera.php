@@ -30,7 +30,7 @@
     <body>
       <!--CABECERA -->
       <div class="navbar-fixed">    
-        <nav class="red" style="height: 100px;">
+        <nav class="orange darken-4" style="height: 100px;">
           <div class="nav-wrapper">
               <a href="" class="brand-logo white-text text-white" style="margin-left: 20px">
                   <img class="responsive-img" src="././assets/logo.jpg" style="width: 150px; margin-top:10px;">

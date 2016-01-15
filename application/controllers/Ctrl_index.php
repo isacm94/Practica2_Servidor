@@ -9,9 +9,6 @@ class Ctrl_index extends CI_Controller {
         $this->load->helper('form');       
         
         //Carga vista cabecera
-        $this->load->view('View_cabecera', Array('datos' => ''));
-        
-        //Carga vista cabecera
-        $this->load->view('View_pie', Array('datos' => ''));       
+        $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol', 'cuerpo' => ''));
     }
 }
