@@ -135,3 +135,18 @@ INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam
 	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
 	(21, 1, 'CAM_ESP', 'Camiseta Real Club Deportivo Español', '23.00', '2.00', 
 	'cat_1/21.jpg', '21.00', 'Camiseta RCD Espanyol Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 7);
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(22, 1, 'CAM_VAL', 'Camiseta Valencia Club de Fútbol', '23.00', '0.00', 
+	'cat_1/22.jpg', '21.00', 'Camiseta Valencia CF Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 20);
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(23, 1, 'CAM_RSO', 'Camiseta Real Sociedad de Fútbol', '23.00', '0.00', 
+	'cat_1/23.jpg', '21.00', 'Camiseta Real Sociedad de Fútbol Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 24);
+
+	INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(24, 1, 'CAM_GET', 'Camiseta Getafe Club de Fútbol', '23.00', '45.00', 
+	'cat_1/24.jpg', '21.00', 'Camiseta Getafe CF Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 22);
