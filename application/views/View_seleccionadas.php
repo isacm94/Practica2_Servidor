@@ -3,7 +3,7 @@
 //print_r($seleccionadas);
 //echo '</pre>';
 ?>
-
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -13,9 +13,9 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
                         <div class="product-upper">
-                            <img src="<?= base_url() . 'assets/images/' . $camiseta['imagen'] ?>" alt="" style="heigth: 243; width: 208px;">
+                            <img src="<?= base_url().'assets/images/'.$camiseta['imagen'] ?>" alt="" style="heigth: 243; width: 208px;">
                         </div>
-                        <h2><a href=""><?= $camiseta['descripcion'] ?></a></h2>
+                        <h2> <?php echo anchor('Ctrl_camiseta', $camiseta['descripcion'])?></h2>
                         <div class="product-carousel-price">
                             <?php if($camiseta['descuento'] != '0.00') :?>
                                 <ins><?= $camiseta['precio']*(1 - ($camiseta['descuento']/100)) ?> €</ins> 

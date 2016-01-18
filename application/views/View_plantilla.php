@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="././assets/template/css/owl.carousel.css">
-    <link rel="stylesheet" href="././assets/template/style.css">
-    <link rel="stylesheet" href="././assets/template/css/responsive.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/template/css/owl.carousel.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/template/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/template/css/responsive.css">
     
-    <link rel="shortcut icon" type="image/x-icon" href="././assets/faviconn.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/faviconn.jpg" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,14 +80,10 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="<?php if(isset($homeactive)){
+                                            echo $homeactive;}?>"><?= anchor('', 'Home')?></li>
+                        <li class="<?php if(isset($categoriaactive)){
+                                            echo $categoriaactive;}?>"><?= anchor('Ctrl_categorias', 'Categoría')?></li>
                     </ul>
                 </div>  
             </div>
@@ -148,13 +144,13 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="././assets/template/js/owl.carousel.min.js"></script>
-    <script src="././assets/template/js/jquery.sticky.js"></script>
+    <script src="<?=base_url()?>assets/template/js/owl.carousel.min.js"></script>
+    <script src="<?=base_url()?>assets/template/js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script src="././assets/template/js/jquery.easing.1.3.min.js"></script>
+    <script src="<?=base_url()?>assets/template/js/jquery.easing.1.3.min.js"></script>
     
     <!-- Main Script -->
-    <script src="././assets/template/js/main.js"></script>
+    <script src="<?=base_url()?>assets/template/js/main.js"></script>
   </body>
 </html>
