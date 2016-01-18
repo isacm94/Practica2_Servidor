@@ -6,6 +6,7 @@ class Ctrl_index extends CI_Controller {
 
     public function index() {
         $this->load->helper('url');  
+        $this->load->helper('Descuentos'); 
         
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo 
         $seleccionadas = $this->Mdl_seleccionadas->getSeleccionadas(); //Conseguimos los artículos seleccionados

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2016 a las 12:59:49
+-- Tiempo de generación: 18-01-2016 a las 17:28:11
 -- Versión del servidor: 5.6.26
--- Versión de PHP: 5.5.28
+-- Versión de PHP: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `camiseta` (
   `fecha_inicio` date DEFAULT NULL,
   `fecha_fin` date DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `camiseta`
@@ -53,8 +53,8 @@ INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam
 (2, 1, 'CAM_FCB', 'Camiseta FC Barcelona', '23.00', '0.00', 'cat_1/2.jpg', '21.00', 'Camiseta FC Barcelona Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 20),
 (3, 1, 'CAM_ATL', 'Camiseta Atlético de Madrid', '23.00', '10.00', 'cat_1/3.jpg', '21.00', 'Camiseta Atlético de Madrid Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 30),
 (4, 2, 'CAM_OPO', 'Camiseta Oporto', '18.00', '0.00', 'cat_2/4.jpg', '21.00', 'Camiseta Oporto Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 20),
-(5, 2, 'CAM_BEN', 'Camiseta Benfica', '18.00', '50.00', 'cat_2/5.jpg', '21.00', 'Camiseta Benfica Home 2015/2016', '', 1, 1, '2016-01-25', '2016-12-31', 27),
-(6, 2, 'CAM_SPO', 'Camiseta Sporting Portugal', '18.00', '20.00', 'cat_2/6.jpg', '21.00', 'Camiseta Sporting Portugal Home 2015/2016', '', 1, 0, '2016-01-01', '2016-12-31', 23),
+(5, 2, 'CAM_BEN', 'Camiseta Benfica', '18.00', '50.00', 'cat_2/5.jpg', '21.00', 'Camiseta Benfica Home 2015/2016', '', 1, 1, '2016-01-10', '2016-12-31', 27),
+(6, 2, 'CAM_SPO', 'Camiseta Sporting Portugal', '18.00', '20.00', 'cat_2/6.jpg', '21.00', 'Camiseta Sporting Portugal Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 23),
 (7, 3, 'CAM_PSG', 'Camiseta Paris Saint Germain', '19.00', '0.00', 'cat_3/7.jpg', '21.00', 'Camiseta Paris Saint Germain Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 16),
 (8, 3, 'CAM_LYO', 'Camiseta Olympique de Lyon', '19.00', '0.00', 'cat_3/8.jpg', '21.00', 'Camiseta Olympique de Lyon Home 2015/2016', '', 1, 1, '2016-01-16', '2016-01-16', 15),
 (9, 3, 'CAM_MAR', 'Camiseta Olympique de Marsella', '19.00', '25.00', 'cat_3/9.jpg', '21.00', 'Camiseta Olympique de Marsella Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 34),
@@ -66,7 +66,10 @@ INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam
 (15, 5, 'CAM_LV', 'Camiseta Liverpool', '24.00', '10.00', 'cat_5/15.jpg', '21.00', 'Camiseta Liverpool Home 2015/2016', '', 1, 0, '2016-01-01', '2016-12-31', 9),
 (16, 6, 'CAM_JUV', 'Camiseta Juventus de Turín', '23.00', '0.00', 'cat_6/16.jpg', '21.00', 'Camiseta Juventus de Turín Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 23),
 (17, 6, 'CAM_MIL', 'Camiseta AC Milán', '23.00', '0.00', 'cat_6/17.jpg', '21.00', 'Camiseta AC Milán Home 2015/2016', '', 1, 0, '2016-01-01', '2016-12-31', 43),
-(18, 6, 'CAM_INT', 'Camiseta Inter de Milán', '23.00', '5.00', 'cat_6/18.jpg', '21.00', 'Camiseta Inter de Milán Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 39);
+(18, 6, 'CAM_INT', 'Camiseta Inter de Milán', '23.00', '5.00', 'cat_6/18.jpg', '21.00', 'Camiseta Inter de Milán Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 39),
+(19, 1, 'CAM_ATB', 'Camiseta Athletic Club', '23.00', '3.00', 'cat_1/19.jpg', '21.00', 'Camiseta Athletic Club Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 5),
+(20, 1, 'CAM_SEV', 'Camiseta Sevilla FC', '23.00', '0.00', 'cat_1/20.jpg', '21.00', 'Camiseta Sevilla FC Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 7),
+(21, 1, 'CAM_ESP', 'Camiseta Real Club Deportivo Español', '23.00', '2.00', 'cat_1/21.jpg', '21.00', 'Camiseta RCD Espanyol Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 7);
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,7 @@ INSERT INTO `categoria` (`idCategoria`, `cod_categoria`, `nombre_cat`, `descripc
 (3, 'CAT_LIGUE1', 'Ligue 1', 'Liga de primera división de Francia', NULL, 1),
 (4, 'CAT_BUNDELISGA', 'Bundesliga', 'Liga de primera división de Alemania', NULL, 1),
 (5, 'CAT_PREMIER', 'Premier League', 'Liga de primera división de Inglaterra', NULL, 1),
-(6, 'CAT_SERIEA', 'Seria A', 'Liga de primera división de Italia', NULL, 0);
+(6, 'CAT_SERIEA', 'Seria A', 'Liga de primera división de Italia', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `camiseta`
 --
 ALTER TABLE `camiseta`
-  MODIFY `idCamiseta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `idCamiseta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --

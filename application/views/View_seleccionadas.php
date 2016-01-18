@@ -15,16 +15,9 @@
                         <div class="product-upper">
                             <img src="<?= base_url().'assets/images/'.$camiseta['imagen'] ?>" alt="" style="heigth: 243; width: 208px;">
                         </div>
-                        <h2> <?php echo anchor('Ctrl_camiseta', $camiseta['descripcion'])?></h2>
-                        <div class="product-carousel-price">
-                            <?php if($camiseta['descuento'] != '0.00') :?>
-                                <ins><?= $camiseta['precio']*(1 - ($camiseta['descuento']/100)) ?> €</ins> 
-                                <del><?= $camiseta['precio'] ?> €</del>
-                            <?php endif; ?>
-                            
-                            <?php if($camiseta['descuento'] == '0.00') :?>
-                                <ins><?= $camiseta['precio'] ?> €</ins>
-                            <?php endif; ?>
+                        <h2> <?php echo anchor('Ctrl_camiseta/Ver/'.$camiseta['idCamiseta'], $camiseta['descripcion'])?></h2>
+                        <div class="product-carousel-price">                            
+                            <?php MostrarDescuento($camiseta['precio'], $camiseta['descuento'])?>
                         </div>  
 
                         <div class="product-option-shop">

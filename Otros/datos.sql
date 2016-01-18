@@ -117,3 +117,21 @@ INSERT INTO `provincias` (`cod`, `nombre`, `comunidad_id`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(19, 1, 'CAM_ATB', 'Camiseta Athletic Club', '23.00', '3.00', 
+	'cat_1/19.jpg', '21.00', 'Camiseta Athletic Club Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 5);
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(20, 1, 'CAM_SEV', 'Camiseta Sevilla FC', '23.00', '0.00', 
+	'cat_1/20.jpg', '21.00', 'Camiseta Sevilla FC Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 7);
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(21, 1, 'CAM_ESP', 'Camiseta Real Club Deportivo Español', '23.00', '2.00', 
+	'cat_1/21.jpg', '21.00', 'Camiseta RCD Espanyol Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 7);

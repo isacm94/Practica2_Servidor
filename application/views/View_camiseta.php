@@ -1,7 +1,7 @@
 <?php
-echo '<pre>';
-print_r($camiseta);
-echo '</pre>'; 
+//echo '<pre>';
+//print_r($camiseta);
+//echo '</pre>'; 
 //
 //echo '<pre>';
 //print_r($categoria);
@@ -30,28 +30,26 @@ echo '</pre>';
                                 <div class="product-inner">
                                     <h2 class="product-name"><?=$camiseta[0]['nombre_cam'].' - '. $camiseta[0]['cod_camiseta']?></h2>
                                     <div class="product-inner-price">
-                                        <ins>$700.00</ins> <del>$800.00</del>
+                                        <?=MostrarDescuento($camiseta[0]['precio'], $camiseta[0]['descuento'])?>
                                     </div>    
                                     
                                     <form action="" class="cart">
                                         <div class="quantity">
                                             <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                         </div>
-                                        <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                        <button class="add_to_cart_button" type="submit"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar</button>
                                     </form>   
                                                                        
                                     
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Descripción</a></li>
                                             
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                <h2>Product Description</h2>  
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique, diam in consequat iaculis, est purus iaculis mauris, imperdiet facilisis ante ligula at nulla. Quisque volutpat nulla risus, id maximus ex aliquet ut. Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque magna arcu, blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula. Aliquam quis blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet. In varius lorem lorem, semper bibendum lectus lobortis ac.</p>
-
-                                                <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
+                                                <h2>Descripción: <?=$camiseta[0]['nombre_cam'] ?></h2>  
+                                                <p><?=$camiseta[0]['descripcion'] ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +58,7 @@ echo '</pre>';
                             </div>
                         </div>
                         
-                        
+                        <!--
                         <div class="related-products-wrapper">
                             <h2 class="related-products-title">Related Products</h2>
                             <div class="related-products-carousel">
@@ -154,7 +152,7 @@ echo '</pre>';
                                     </div>                            
                                 </div>                                    
                             </div>
-                        </div>
+                        </div>-->
                     </div>                    
                 </div>
             
