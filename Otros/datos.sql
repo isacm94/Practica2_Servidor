@@ -150,3 +150,54 @@ INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam
 	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
 	(24, 1, 'CAM_GET', 'Camiseta Getafe Club de Fútbol', '23.00', '45.00', 
 	'cat_1/24.jpg', '21.00', 'Camiseta Getafe CF Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 22);
+
+
+
+	INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(25, 1, 'CAM_VIL', 'Camiseta Villarreal Club de Fútbol', '23.00', '12.00', 
+	'cat_1/25.jpg', '21.00', 'Camiseta Villarreal CF Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 15);
+
+		INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(26, 1, 'CAM_CEL', 'Camiseta Real Club Celta de Vigo', '23.00', '10.00', 
+	'cat_1/26.jpg', '21.00', 'Camiseta RC Celta de Vigo Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 15);
+
+	INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(27, 1, 'CAM_LEV', 'Camiseta Levante Unión Deportiva', '23.00', '10.00', 
+	'cat_1/27.jpg', '21.00', 'Camiseta Levante UD Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 14);
+
+	INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(28, 1, 'CAM_DEP', 'Camiseta Real Club Deportivo de La Coruña', '23.00', '10.00', 
+	'cat_1/28.jpg', '21.00', 'Camiseta RC Deportivo de La Coruña Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 17);
+
+	INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(29, 1, 'CAM_RCD', 'Camiseta Real Club Deportivo de La Coruña', '23.00', '10.00', 
+	'cat_1/29.jpg', '21.00', 'Camiseta RC Deportivo de La Coruña Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 16);
+
+INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, 
+	`imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
+	(30, 1, 'CAM_SPG', 'Camiseta Sporting de Gijón', '23.00', '8.00', 
+	'cat_1/30.jpg', '21.00', 'Camiseta Real Sporting de Gijón Temporada Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 19);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

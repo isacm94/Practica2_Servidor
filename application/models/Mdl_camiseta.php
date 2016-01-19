@@ -19,7 +19,7 @@ class Mdl_camiseta extends CI_Model {
         return $query->result_array();
     }
 
-    public function getCategoriaFromCamiseta($idCategoria) {
+    public function getInfoCategoriaFromCamiseta($idCategoria) {
 
         $query = $this->db->query("SELECT idCategoria, cod_categoria, nombre_cat, descripcion "
                 . "FROM categoria "
@@ -42,6 +42,20 @@ class Mdl_camiseta extends CI_Model {
             return true;
         else
             return false;
+    }
+    
+    //Devuelve camisetas relacinadas de una camiseta 
+    public function getCamisetasRelacionadasFromCategoria($idCategoria, $idCamiseta) {
+
+        $query = $this->db->query("SELECT idCamiseta, descripcion, imagen, precio, descuento "
+                                    . "FROM camiseta "
+                                        . "WHERE mostrar = 1 "
+                                                . "AND curdate() >= fecha_inicio "
+                                                    . "AND curdate() <= fecha_fin "
+                                                        . "AND idCategoria = $idCategoria "
+                                                            . "AND idCamiseta != $idCamiseta; ");
+        
+        return $query->result_array();
     }
 
 }

@@ -27,10 +27,9 @@ class Mdl_categorias extends CI_Model {
     
     public function getCamisetasFromCategoria($idCategoria) {
 
-        $query = $this->db->query("SELECT descripcion, imagen, precio, descuento "
+        $query = $this->db->query("SELECT idCamiseta, descripcion, imagen, precio, descuento "
                                     . "FROM camiseta "
-                                        . "WHERE seleccionada = 1 "
-                                            . "AND mostrar = 1 "
+                                            . "WHERE mostrar = 1 "
                                                 . "AND curdate() >= fecha_inicio "
                                                     . "AND curdate() <= fecha_fin "
                                                         . "AND idCategoria = $idCategoria; ");

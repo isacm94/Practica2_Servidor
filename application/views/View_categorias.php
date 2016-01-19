@@ -5,9 +5,11 @@
 ?>
 <!--CUERPO-->
 <div class="single-product-area">
+    
+    <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">            
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
                     <div id="customer_details" class="col2-set">
