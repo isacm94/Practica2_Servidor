@@ -8,3 +8,7 @@ function MostrarDescuento($precio, $descuento) {
         echo "<ins>$precio €</ins>";
     }
 }
+
+function getPrecioFinal($precio, $descuento){
+    return $precio *(1 - ($descuento/100));
+}

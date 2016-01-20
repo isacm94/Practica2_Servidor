@@ -11,7 +11,7 @@ class Ctrl_index extends CI_Controller {
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo 
         $seleccionadas = $this->Mdl_seleccionadas->getSeleccionadas(); //Conseguimos los artículos seleccionados
                 
-        $cuerpo  = $this->load->view('View_seleccionadas', Array('seleccionadas' => $seleccionadas), true); //Generamos la vista       
+        $cuerpo = $this->load->view('View_seleccionadas', Array('seleccionadas' => $seleccionadas), true); //Generamos la vista       
         
         //Pasamos a la plantilla la vista generada
         $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol destacadas', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
