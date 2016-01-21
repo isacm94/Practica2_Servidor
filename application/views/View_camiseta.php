@@ -72,12 +72,12 @@
                                         <img src="<?= base_url().'assets/images/'.$cam['imagen']?>" alt="" >
                                         <div class="product-hover">
                                             <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <?=anchor('Ctrl_camiseta/Ver/'.$cam['idCamiseta'], '<i class="fa fa-link"></i>Ver detalles', 'class="view-details-link"')?>
+                                            <?=anchor('Camiseta/ver/'.$cam['idCamiseta'], '<i class="fa fa-link"></i>Ver detalles', 'class="view-details-link"')?>
                                             
                                         </div>
                                     </div>
 
-                                    <h2><?=anchor('Ctrl_camiseta/Ver/'.$cam['idCamiseta'], $cam['descripcion'])?></h2>
+                                    <h2><?=anchor('Camiseta/ver/'.$cam['idCamiseta'], $cam['descripcion'])?></h2>
 
                                     <div class="product-carousel-price">
                                         <?= MostrarDescuento($cam['precio'], $cam['descuento']) ?>

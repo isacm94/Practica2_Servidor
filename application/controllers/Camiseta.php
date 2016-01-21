@@ -2,14 +2,14 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ctrl_camiseta extends CI_Controller {
+class Camiseta extends CI_Controller {
 
     public function index() {
         
     }
 
     //Ver camiseta detallada
-    public function Ver($idCamiseta) {
+    public function ver($idCamiseta) {
         $this->load->helper('url');
         $this->load->helper('Descuentos');
         $this->load->model('Mdl_camiseta'); //Cargamos modelo de camiseta

@@ -21,15 +21,8 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/template/css/owl.carousel.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template/style.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template/css/responsive.css">
-    
+    <link rel="stylesheet" href="<?=base_url()?>assets/estilos.css">
     <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/faviconn.jpg" />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
    
@@ -83,7 +76,7 @@
                         <li class="<?php if(isset($homeactive)){
                                             echo $homeactive;}?>"><?= anchor('', 'Home')?></li>
                         <li class="<?php if(isset($categoriaactive)){
-                                            echo $categoriaactive;}?>"><?= anchor('Ctrl_categorias', 'Categoría')?></li>
+                                            echo $categoriaactive;}?>"><?= anchor('Categorias', 'Categoría')?></li>
                     </ul>
                 </div>  
             </div>
