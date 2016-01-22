@@ -14,8 +14,9 @@
                     <h3>Categorías</h3>
                     <?php foreach ($categorias as $key => $categoria): ?>
 
-                        <?= anchor('Categorias/ver/'.$categoria['idCategoria'], '<div class="shopping-item" style="float: none; margin-top: 0px;">'.$categoria['nombre_cat']).'</div>' ?>
-                        <br>
+                        <a href="<?= base_url() . 'index.php/Categorias/ver/' . $categoria['idCategoria'] ?>" class="linkcategorias"> 
+                            <div class="shopping-item" style="float: none; margin-top: 0px;"><?= $categoria['nombre_cat'] ?></div>
+                        </a><br>
                     <?php endforeach; ?>
                 </div>
             </div>

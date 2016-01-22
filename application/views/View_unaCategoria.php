@@ -43,7 +43,7 @@ if (count($camisetas) > 0):
                         </div>
 
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar</a>
+                            <?php echo anchor('Carrito/comprar/'.$camiseta['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
                         </div>
                     </div>
                 </div>

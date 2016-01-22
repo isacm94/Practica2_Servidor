@@ -29,7 +29,7 @@
                     <div class="user-menu">
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="<?= base_url().'index.php/Carrito'?>"><i class="fa fa-user"></i> Mi Carrito</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -49,7 +49,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="<?= base_url().'index.php/Carrito'?>">Carrito - <span class="cart-amunt"><?=$this->cart->total();?> €</span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?=$this->cart->total_items();?></span></a>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,9 @@
                         <li class="<?php if(isset($homeactive)){
                                             echo $homeactive;}?>"><?= anchor('', 'Home')?></li>
                         <li class="<?php if(isset($categoriaactive)){
-                                            echo $categoriaactive;}?>"><?= anchor('Categorias/ver', 'Categoría')?></li>
+                                            echo $categoriaactive;}?>"><?= anchor('Categorias/ver', 'Categoría')?></li>                        
+                        <li class="<?php if(isset($carritoactive)){
+                                            echo $carritoactive;}?>"><?= anchor('Carrito', 'Carrito')?></li>
                     </ul>
                 </div>  
             </div>

@@ -16,8 +16,7 @@
                         </div>  
 
                         <div class="product-option-shop">
-                            <?php echo anchor('Carrito/comprar/'.$camiseta['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
-                            
+                            <?php echo anchor('Carrito/comprar/'.$camiseta['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>                         
                              
                         </div>                       
                     </div>

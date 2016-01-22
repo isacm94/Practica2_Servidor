@@ -1,4 +1,17 @@
 .pag_activa{
-font-weight: bolder;
-background-color: red;
+    font-weight: bolder;
+    background-color: red;
+}
+
+.linkcategorias:focus { 
+    color: white;
+    text-decoration: none;   
+}
+.linkcategorias:hover   { 
+    color: white;
+    text-decoration: none;
+}
+.linkcategorias:active  { 
+    color: white;
+    text-decoration: none;
 }

@@ -8,8 +8,10 @@ class PaginaInicial extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('Descuentos');
+        $this->load->library('cart');
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
         $this->load->library('pagination');
+        $this->load->library('cart');
     }
     public function index($desde = 0) {        
         

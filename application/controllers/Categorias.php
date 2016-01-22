@@ -7,6 +7,7 @@ class Categorias extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->library('cart');
         $this->load->library('form_validation');
         $this->load->model('Mdl_categorias');
         $this->load->library('pagination');
@@ -21,7 +22,7 @@ class Categorias extends CI_Controller {
         $config['total_rows'] = $this->Mdl_categorias->getNumTotalCamisetasFromCategoria($idCat);
         //$config['num_links'] = 1;
         $config['per_page'] = 6;
-        $config['uri_segment'] = 3;
+        $config['uri_segment'] = 4;
 
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';
