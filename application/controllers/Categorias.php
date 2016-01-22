@@ -12,20 +12,13 @@ class Categorias extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index($desde = 0) {  
-        $categorias = $this->Mdl_categorias->getCategorias(); //Conseguimos las categorías
-        
-        if(! $_POST){//Si no existe post, mostramos primera categoría
-            $unaCategoria = $this->Mdl_categorias->getUnaCategoria($categorias[0]['idCategoria']); 
-        }
-        else{//Si no, se muestra la caategoría seleccionada
-            $unaCategoria = $this->Mdl_categorias->getUnaCategoria($_POST['categoriaselect']); 
-        }
+    public function index() {    }
+    
+    public function ver($idCat = 1, $desde = 0){
         
         //Configuración de Paginación
-        $config['base_url'] = site_url('/Categorias/index');
-        $config['total_rows'] = $this->Mdl_categorias->getNumTotalCamisetasFromCategoria($unaCategoria[0]['idCategoria']);
-        echo "<h1>".$config['total_rows']."</h1>";
+        $config['base_url'] = site_url('/Categorias/ver/'.$idCat.'/');   
+        $config['total_rows'] = $this->Mdl_categorias->getNumTotalCamisetasFromCategoria($idCat);
         //$config['num_links'] = 1;
         $config['per_page'] = 6;
         $config['uri_segment'] = 3;
@@ -48,17 +41,25 @@ class Categorias extends CI_Controller {
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li title="Final">';
         $config['last_tag_close'] = '</li>';
-
+        
+        
         $this->pagination->initialize($config);
         
+        $unaCategoria = $this->Mdl_categorias->getUnaCategoria($idCat); 
+        
+        
+        $categorias = $this->Mdl_categorias->getCategorias(); 
+        
         //Conseguimos las camisetas de la categoría seleccionada
-        $camisetas = $this->Mdl_categorias->getCamisetasFromCategoria($unaCategoria[0]['idCategoria'],  $config['per_page'], $desde);
+        $camisetas = $this->Mdl_categorias->getCamisetasFromCategoria($idCat,  $config['per_page'], $desde);
         
         //Cargamos vista de las camisetas de la categoría seleccionada
         $htmlUnaCategoria = $this->load->view('View_unaCategoria', Array('unaCategoria' =>  $unaCategoria, 'camisetas' => $camisetas), true);
         
-        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria[0]['nombre_cat']." - ".$unaCategoria[0]['descripcion'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
+        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria[0]['nombre_cat'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
         
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo));
+        
     }
 }
+

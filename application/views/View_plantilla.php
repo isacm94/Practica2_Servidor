@@ -6,23 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Camisetas de Fútbol</title>
     
-    <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/template/css/owl.carousel.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template/style.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/template/css/responsive.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/estilos.css">
-    <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/faviconn.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/favicon.png" />
   </head>
   <body>
    
@@ -40,14 +36,14 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End header area -->
-    
+    </div> 
+      
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="">Camisetas <span>de Fútbol</span></a></h1>
+                        <h1><a href="">Camisetas <span>de Fútbol</span> <img src="<?=base_url()?>assets/ball.png" style="height: 65px; width: 65px;"></a></h1>
                     </div>
                 </div>
                 
@@ -58,7 +54,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End site branding area -->
+    </div> 
     
     <div class="mainmenu-area">
         <div class="container">
@@ -76,12 +72,12 @@
                         <li class="<?php if(isset($homeactive)){
                                             echo $homeactive;}?>"><?= anchor('', 'Home')?></li>
                         <li class="<?php if(isset($categoriaactive)){
-                                            echo $categoriaactive;}?>"><?= anchor('Categorias', 'Categoría')?></li>
+                                            echo $categoriaactive;}?>"><?= anchor('Categorias/ver', 'Categoría')?></li>
                     </ul>
                 </div>  
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div> 
     
     <div class="product-big-title-area">
         <div class="container">
@@ -130,20 +126,11 @@
         </div>
     </div>
    
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
-    <!-- jQuery sticky menu -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>    
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>    
     <script src="<?=base_url()?>assets/template/js/owl.carousel.min.js"></script>
     <script src="<?=base_url()?>assets/template/js/jquery.sticky.js"></script>
-    
-    <!-- jQuery easing -->
     <script src="<?=base_url()?>assets/template/js/jquery.easing.1.3.min.js"></script>
-    
-    <!-- Main Script -->
     <script src="<?=base_url()?>assets/template/js/main.js"></script>
   </body>
 </html>
