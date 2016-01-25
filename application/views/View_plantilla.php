@@ -49,8 +49,10 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                         <a href="<?= base_url().'index.php/Carrito'?>">Carrito - <span class="cart-amunt"><?=$this->cart->total();?> €</span> <i class="fa fa-shopping-cart"></i> 
-                             <span class="product-count"><?=$this->cart->total_items();?></span></a>
+                         <a href="<?= base_url().'index.php/Carrito'?>">Carrito - 
+                             <span class="cart-amunt"><?= $this->myCarrito->precio_total()?> €</span> <i class="fa fa-shopping-cart"></i>
+                             <span class="product-count"><?= $this->myCarrito->articulos_total()?></span>
+                         </a>
                         
                     </div>
                 </div>

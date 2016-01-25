@@ -9,9 +9,9 @@ class PaginaInicial extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('Descuentos');
         $this->load->library('cart');
-        $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
+        $this->load->library('Carro', 0, 'myCarrito');        
         $this->load->library('pagination');
-        $this->load->library('cart');
+        $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
     }
     public function index($desde = 0) {        
         

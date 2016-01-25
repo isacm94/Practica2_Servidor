@@ -3,9 +3,13 @@
 if (!defined('BASEPATH'))
     exit('No se permite el acceso directo al script');
 
-session_start();
+//if (!defined('SESION_CARRITO')) {
+//    define('SESION_CARRITO', 1);
+//    session_start();    
+//}
 
-class Carrito {
+
+class Carro {
     //aquí guardamos el contenido del carrito
     private $carrito = array();
 

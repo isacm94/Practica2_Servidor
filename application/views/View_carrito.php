@@ -1,7 +1,8 @@
 <?php
-//echo '<pre>';
-//print_r($this->cart->contents());
-//echo '</pre>';
+echo '<pre>';
+        print_r($this->myCarrito->get_content());
+        echo '</pre>';
+
 ?>
 <!--CUERPO -->
 <div class="single-product-area">
@@ -25,22 +26,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($this->cart->contents() as $items): ?>
+                                    <?php foreach ($this->myCarrito->get_content() as $items): ?>
                                         <tr class="cart_item">
                                             <td class="product-remove">
                                                 <?= anchor('Carrito/eliminar/' . $items['id'], '<span class="glyphicon glyphicon-remove"></span>', 'title = "Eliminar esta camiseta"') ?>
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/images/' . $items['options']['imagen'] ?>"></a>
+                                                <a href="single-product.html"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/images/' . $items['opciones']['imagen'] ?>"></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html"><?= $items['name'] ?></a>
+                                                <a href="single-product.html"><?= $items['nombre'] ?></a>
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount"><?= $items['price'] ?> €</span>
+                                                <span class="amount"> <?=$items['precio'] ?> €</span>
                                             </td>
 
                                             <td class="product-quantity">
@@ -51,38 +52,38 @@
                                                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                                     </button>
 
-                                                    <input type="number" id="cantidad[<?= $items['id'] ?>]" name="cantidad[<?= $items['id'] ?>]" size="4" class="input-text qty text" value="<?= $items['qty'] ?>" min="0" step="1">
+                                                    <input type="number" id="cantidad[<?= $items['id'] ?>]" name="cantidad[<?= $items['id'] ?>]" size="4" class="input-text qty text" value="<?= $items['cantidad'] ?>" min="0" step="1">
 
                                                     <button type="button" class="add_to_cart_button"  onclick="mas(<?= $items['id'] ?>)">
                                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                                     </button>
 
 
-                                                    <?= $items['options']['error']; ?>
+                                                     <?=$items['opciones']['error']; ?>
 
                                                 </div>
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount"><?= $items['subtotal'] ?> €</span>
+                                                <span class="amount"><?= $items['total'] ?> €</span>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                     <tr class="product-name">
                                         <td class="actions" colspan="3">
-                                            <strong>Importe Total:</strong> <?= $this->cart->total() ?> €
+                                           <strong>Importe Total:</strong>  <?= $this->myCarrito->precio_total()?>  €
                                         </td>
 
                                         <td class="actions" colspan="3">
-                                            <strong>Cantidad Total:</strong> <?= $this->cart->total_items() ?> camisetas
+                                            <strong>Cantidad Total:</strong> <?= $this->myCarrito->articulos_total()?> camisetas
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="col-md-8">
                                 <?php
-                                if (isset($msg_error))
-                                    echo $msg_error;
+                                //if (isset($msg_error))
+                                  //  echo $msg_error;
                                 ?>
 
                             </div>
