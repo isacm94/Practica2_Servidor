@@ -49,7 +49,9 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="<?= base_url().'index.php/Carrito'?>">Carrito - <span class="cart-amunt"><?=$this->cart->total();?> €</span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?=$this->cart->total_items();?></span></a>
+                         <a href="<?= base_url().'index.php/Carrito'?>">Carrito - <span class="cart-amunt"><?=$this->cart->total();?> €</span> <i class="fa fa-shopping-cart"></i> 
+                             <span class="product-count"><?=$this->cart->total_items();?></span></a>
+                        
                     </div>
                 </div>
             </div>
@@ -134,5 +136,6 @@
     <script src="<?=base_url()?>assets/template/js/jquery.sticky.js"></script>
     <script src="<?=base_url()?>assets/template/js/jquery.easing.1.3.min.js"></script>
     <script src="<?=base_url()?>assets/template/js/main.js"></script>
+    <script src="<?=base_url()?>assets/script.js"></script>
   </body>
 </html>

@@ -44,10 +44,9 @@ class PaginaInicial extends CI_Controller {
         $this->pagination->initialize($config);
         
         $seleccionadas = $this->Mdl_seleccionadas->getSeleccionadas($config['per_page'], $desde); //Conseguimos los artículos seleccionados
-        	     
-
+        
         $cuerpo = $this->load->view('View_seleccionadas', Array('seleccionadas' => $seleccionadas), true); //Generamos la vista       
-        //Pasamos a la plantilla la vista generada
+        
         $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol destacadas', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
     }
     

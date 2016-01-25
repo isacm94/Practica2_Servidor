@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" action="#">
+                        <form method="post" action="">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
@@ -28,7 +28,7 @@
                                     <?php foreach ($this->cart->contents() as $items): ?>
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <?= anchor('', '<span class="glyphicon glyphicon-remove"></span>', 'title = "Eliminar esta camiseta"') ?> 
+                                                <?= anchor('Carrito/eliminar/' . $items['id'], '<span class="glyphicon glyphicon-remove"></span>', 'title = "Eliminar esta camiseta"') ?>
                                             </td>
 
                                             <td class="product-thumbnail">
@@ -36,46 +36,69 @@
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html"><?= $items['name'] ?></a> 
+                                                <a href="single-product.html"><?= $items['name'] ?></a>
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount"><?= $items['price'] ?> €</span> 
+                                                <span class="amount"><?= $items['price'] ?> €</span>
                                             </td>
 
                                             <td class="product-quantity">
+
                                                 <div class="quantity buttons_added">
-                                                    <?= anchor('', '<span class="glyphicon glyphicon-minus"></span>', Array('title' => 'Eliminar esta camiseta', 'class' => 'add_to_cart_button')) ?>
-                                                    <input type="number" name="cantidad[<?= $items['id'] ?>]"size="4" class="input-text qty text" value="<?= $items['qty'] ?>" min="0" step="1">
-                                                    <?= anchor('', '<span class="glyphicon glyphicon-plus"></span>', Array('title' => 'Eliminar esta camiseta', 'class' => 'add_to_cart_button')) ?>
+
+                                                    <button type="button" class="add_to_cart_button"  onclick="menos(<?= $items['id'] ?>)">
+                                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                                    </button>
+
+                                                    <input type="number" id="cantidad[<?= $items['id'] ?>]" name="cantidad[<?= $items['id'] ?>]" size="4" class="input-text qty text" value="<?= $items['qty'] ?>" min="0" step="1">
+
+                                                    <button type="button" class="add_to_cart_button"  onclick="mas(<?= $items['id'] ?>)">
+                                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                                    </button>
+
+
+                                                    <?= $items['options']['error']; ?>
+
                                                 </div>
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount"><?= $items['subtotal'] ?> €</span> 
+                                                <span class="amount"><?= $items['subtotal'] ?> €</span>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                     <tr class="product-name">
-                                        <td class="actions" colspan="6">
-                                            <strong>Importe Total:</strong> <?= getImporteTotal() ?> € 
+                                        <td class="actions" colspan="3">
+                                            <strong>Importe Total:</strong> <?= $this->cart->total() ?> €
+                                        </td>
+
+                                        <td class="actions" colspan="3">
+                                            <strong>Cantidad Total:</strong> <?= $this->cart->total_items() ?> camisetas
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
+                                <?php
+                                if (isset($msg_error))
+                                    echo $msg_error;
+                                ?>
 
-                                <a href="http://localhost/Practica2_Servidor/index.php" title="Actualizar" class="add_to_cart_button actions product-name">
-                                    <span class="glyphicon glyphicon-refresh"></span> Actualizar
-                                </a>                            
-                                <a href="http://localhost/Practica2_Servidor/index.php" title="Finalizar Compra" class="add_to_cart_button product-name">
-                                    <span class="glyphicon glyphicon-ok"></span> Finalizar Compra
+                            </div>
+                            <div class="col-md-4">
+
+                                <button type="submit" class="add_to_cart_button product-name" name="guardar">
+                                    <span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios
+                                </button>
+                                <a href="http://localhost/Practica2_Servidor/index.php" class="add_to_cart_button product-name">
+                                    <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
                                 </a>
 
                             </div>
-                    </div>                        
-                </div>                    
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

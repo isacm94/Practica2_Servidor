@@ -14,4 +14,13 @@ class Mdl_carrito extends CI_Model {
         
         return $query->result_array();
     }
+    
+    public function getStock($id){
+        $query = $this->db->query("SELECT stock "
+                                    . "FROM camiseta "
+                                        . "WHERE idCamiseta = $id; ");
+        
+        return $query->result_array();
+        
+    }
 }
