@@ -3,10 +3,10 @@
 if (!defined('BASEPATH'))
     exit('No se permite el acceso directo al script');
 
-//if (!defined('SESION_CARRITO')) {
-//    define('SESION_CARRITO', 1);
-//    session_start();    
-//}
+if (!defined('SESION_CARRITO')) {
+    define('SESION_CARRITO', 1);
+    @session_start();    
+}
 
 
 class Carro {
@@ -31,7 +31,6 @@ class Carro {
         if (!is_array($articulo) || empty($articulo)) {
             throw new Exception("Error, el articulo no es un array!", 1);
         }
-
         //nuestro carro necesita siempre un id producto, cantidad y precio articulo
         if (!$articulo["id"] || !$articulo["cantidad"] || !$articulo["precio"]) {
             throw new Exception("Error, el articulo debe tener un id, cantidad y precio!", 1);
@@ -56,7 +55,7 @@ class Carro {
                 //un nuevo producto
                 if ($row["unique_id"] === $unique_id) {
                     //si ya estaba sumamos la cantidad
-                    $articulo["cantidad"] = $row["cantidad"] + $articulo["cantidad"];
+                    $articulo["cantidad"] = /*$row["cantidad"] +*/ $articulo["cantidad"];
                 }
             }
         }
@@ -73,8 +72,8 @@ class Carro {
         $this->unset_producto($unique_id);
 
         ///ahora añadimos el producto al carrito
-        $_SESSION["carrito"][$unique_id] = $articulo;
-
+        $_SESSION["carrito"][$unique_id] = $articulo;        
+        
         //actualizamos el carrito
         $this->update_carrito();
 

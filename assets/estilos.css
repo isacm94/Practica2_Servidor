@@ -16,6 +16,7 @@
     text-decoration: none;
 }
 
+
 .iconoerror{
     margin-left: 270px;
     margin-top: -25px;
@@ -25,4 +26,17 @@
     background-color: red; 
     color: white;
     border-radius: 5px;
+}
+
+
+.msgerror{
+    background-color: red; 
+    color: white;
+}
+
+/*View_fotocarrito*/
+.msgcarritovacio{
+    background-color: red; 
+    color: white;
+    font-size: 35px;
 }

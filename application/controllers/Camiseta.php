@@ -6,7 +6,7 @@ class Camiseta extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->library('cart');
+        $this->load->library('Carro', 0, 'myCarrito');
     }
     public function index() {      
     }
