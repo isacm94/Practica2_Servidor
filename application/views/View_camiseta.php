@@ -41,7 +41,7 @@
                                     <div class="quantity">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                     </div>
-                                    <button class="add_to_cart_button" type="submit"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar</button>
+                                   <?php echo anchor('Carrito/comprar/'.$camiseta[0]['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
                                 </form>   
 
 
@@ -63,31 +63,7 @@
 
                     <!-- CAMISETAS RELACIONDAS -->
                     <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Camisetas relacionadas</h2>
-                        <div class="related-products-carousel">
-                            <?php foreach ($camRelacionadas as $key => $cam): ?>
-
-                                <div class="single-product">
-                                    <div class="product-f-image">
-                                        <img src="<?= base_url().'assets/images/'.$cam['imagen']?>" alt="" >
-                                        <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <?=anchor('Camiseta/ver/'.$cam['idCamiseta'], '<i class="fa fa-link"></i>Ver detalles', 'class="view-details-link"')?>
-                                            
-                                        </div>
-                                    </div>
-
-                                    <h2><?=anchor('Camiseta/ver/'.$cam['idCamiseta'], $cam['descripcion'])?></h2>
-
-                                    <div class="product-carousel-price">
-                                        <?= MostrarDescuento($cam['precio'], $cam['descuento']) ?>
-                                    </div> 
-                                </div>
-
-                            <?php endforeach; ?>
-
-                        </div>
-                    </div>
+                    <?php $this->load->view('View_camisetasRel');?>
                 </div>                    
             </div>
 

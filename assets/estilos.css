@@ -34,6 +34,10 @@
     color: white;
 }
 
+.error_registro{
+    margin-left: 15px;
+}
+
 /*View_fotocarrito*/
 .msgcarritovacio{
     background-color: red; 

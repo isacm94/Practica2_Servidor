@@ -1,7 +1,7 @@
 <?php
-echo '<pre>';
-print_r($this->myCarrito->get_content());
-echo '</pre>';
+//echo '<pre>';
+//print_r($this->myCarrito->get_content());
+//echo '</pre>';
 
 if ($this->myCarrito->articulos_total() > 0):
     ?>
@@ -34,11 +34,11 @@ if ($this->myCarrito->articulos_total() > 0):
                                                 </td>
 
                                                 <td class="product-thumbnail">
-                                                    <a href="single-product.html"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/images/' . $items['opciones']['imagen'] ?>"></a>
+                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/images/' . $items['opciones']['imagen'] ?>"></a>
                                                 </td>
 
                                                 <td class="product-name">
-                                                    <a href="single-product.html"><?= $items['nombre'] ?></a>
+                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><?= $items['nombre'] ?></a>
                                                 </td>
 
                                                 <td class="product-price">
@@ -90,13 +90,21 @@ if ($this->myCarrito->articulos_total() > 0):
                                 </div>
                                 <div class="col-md-4">
 
-                                    <button type="submit" class="add_to_cart_button product-name" name="guardar">
-                                        <span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios
+                                    <button type="submit" class="product-name" name="guardar">
+                                        <span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios&nbsp;&nbsp;&nbsp;
                                     </button>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8"></div>
+                                    <div class="col-md-4">
                                     <a href="http://localhost/Practica2_Servidor/index.php" class="add_to_cart_button product-name">
                                         <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
                                     </a>
-
+                                        
+                                    <a href="<?=base_url().'index.php/carrito/eliminarcompra'?>" class="add_to_cart_button product-name">
+                                        <span class="glyphicon glyphicon-trash"></span> ELIMINAR COMPRA&nbsp;
+                                    </a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

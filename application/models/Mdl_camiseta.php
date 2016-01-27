@@ -10,8 +10,7 @@ class Mdl_camiseta extends CI_Model {
 
         $query = $this->db->query("SELECT idCamiseta, idCategoria, cod_camiseta, nombre_cam, descripcion, imagen, precio, descuento "
                 . "FROM camiseta "
-                . "WHERE seleccionada = 1 "
-                . "AND mostrar = 1 "
+                . "WHERE mostrar = 1 "
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
                 . "AND idCamiseta = $idCamiseta; ");

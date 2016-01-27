@@ -28,8 +28,7 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="<?= base_url().'index.php/Carrito'?>"><i class="fa fa-user"></i> Mi Carrito</a></li>
+                            <li><a href="<?=base_url().'index.php/Registro'?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>

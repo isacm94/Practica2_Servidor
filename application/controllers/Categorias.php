@@ -23,7 +23,6 @@ class Categorias extends CI_Controller {
         //$config['num_links'] = 1;
         $config['per_page'] = 6;
         $config['uri_segment'] = 4;
-
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';
         $config['num_tag_open'] = '<li>';
@@ -41,14 +40,12 @@ class Categorias extends CI_Controller {
         $config['first_tag_open'] = '<li title="Inicio">';
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li title="Final">';
-        $config['last_tag_close'] = '</li>';
-        
+        $config['last_tag_close'] = '</li>';        
         
         $this->pagination->initialize($config);
         
         $unaCategoria = $this->Mdl_categorias->getUnaCategoria($idCat); 
-        
-        
+                
         $categorias = $this->Mdl_categorias->getCategorias(); 
         
         //Conseguimos las camisetas de la categoría seleccionada
