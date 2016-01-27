@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PaginaInicial extends CI_Controller {
+class Main extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
@@ -15,7 +15,7 @@ class PaginaInicial extends CI_Controller {
     public function index($desde = 0) {        
         
         //Configuración de Paginación
-        $config['base_url'] = site_url('/PaginaInicial/index');
+        $config['base_url'] = site_url('/Main/index');
         $config['total_rows'] = $this->Mdl_seleccionadas->getNumTotalCamisetasSeleccionadas();
         //$config['num_links'] = 6;
         $config['per_page'] = 12;
