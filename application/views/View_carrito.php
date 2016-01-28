@@ -58,8 +58,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                                         <button type="button" class="add_to_cart_button"  onclick="mas(<?= $items['id'] ?>)">
                                                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                                         </button>
-
-
+                                                        
                                                         <?= $items['opciones']['error']; ?>
 
                                                     </div>

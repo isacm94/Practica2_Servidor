@@ -7,10 +7,9 @@ class Carrito extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('Carrito');
-        $this->load->helper('url');
         $this->load->helper('Descuentos_helper');
-        $this->load->library('Carro', 0, 'myCarrito');
         $this->load->model('Mdl_carrito');
+        $this->load->library('Carro', 0, 'myCarrito');
     }
 
     public function index() {

@@ -6,13 +6,12 @@ class Registro extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->library('Carro', 0, 'myCarrito');
-        $this->load->helper('url');
         $this->load->helper('CreaSelect');
         $this->load->helper('dni');
         $this->load->library('form_validation');
+        $this->load->library('Carro', 0, 'myCarrito');
         $this->load->model('Mdl_provincias');
-        $this->load->model('Mdl_registro');
+        $this->load->model('Mdl_usuarios');
     }
 
     public function index() {
@@ -76,7 +75,7 @@ class Registro extends CI_Controller {
             
             $this->Mdl_registro->setUsuario($data);//Inserta en la tabla usuario
             
-            redirect('Sesion/IniciaSesion/'.$data['nombre_usu'], 'location', 301);
+            redirect('Login/Login/'.$data['nombre_usu'], 'location', 301);
         }
     }
 
@@ -95,9 +94,9 @@ class Registro extends CI_Controller {
 
     function nombreUsuRepetido_check($nombre_usu) {
 
-        $countNomUsuario = $this->Mdl_registro->getCount_NombreUsuario($nombre_usu);
+        $countNomUsuario = $this->Mdl_usuarios->getCount_NombreUsuario($nombre_usu);
 
-        if ($countNomUsuario[0]['cont'] == 0) {//No existen nombres guardados
+        if ($countNomUsuario == 0) {//No existen nombres guardados
             return TRUE;
         } else {
             return FALSE;

@@ -25,11 +25,21 @@
     <div class="header-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <div class="user-menu">
                         <ul>
                             <li><a href="<?=base_url().'index.php/Registro'?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
                             <li><a href="<?=base_url().'index.php/Login'?>"><i class="fa fa-user"></i> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-2">
+                    <div class="user-menu">
+                        <ul>
+                            <?php if($this->session->userdata('logged_in')):?>
+                                <li><a href="<?=base_url().'index.php/Login/Logout'?>"><i class="fa fa-user"></i><?=$this->session->userdata('username');?>, <!--<i class="glyphicon glyphicon-log-out"></i>--> Cerrar sesión</a></li>
+                            <?php endif;?>
                         </ul>
                     </div>
                 </div>

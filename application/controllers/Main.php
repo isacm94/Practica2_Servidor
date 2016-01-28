@@ -6,11 +6,10 @@ class Main extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
-        $this->load->helper('Descuentos');
-        $this->load->library('Carro', 0, 'myCarrito');        
+        $this->load->helper('Descuentos');       
         $this->load->library('pagination');
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
+        $this->load->library('Carro', 0, 'myCarrito');
     }
     public function index($desde = 0) {        
         

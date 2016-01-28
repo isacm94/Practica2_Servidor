@@ -1,6 +1,6 @@
 <?php
 
-class Mdl_registro extends CI_Model {
+class Mdl_usuarios extends CI_Model {
 
     public function __construct() {
         $this->load->database();
@@ -12,12 +12,21 @@ class Mdl_registro extends CI_Model {
                                     . "FROM usuario "
                                         . "WHERE nombre_usu = '$nombre_usu'; ");
         
-        return $query->result_array();
+        return $query->result_array()[0]['cont'];
     }
     
     public function setUsuario($data){
         
         $this->db->insert('usuario', $data);
+    }
+    
+    public function getClave($username){
+        
+        $query = $this->db->query("SELECT clave "
+                                    . "FROM usuario "
+                                        . "WHERE nombre_usu = '$username'; ");
+        
+        return $query->result_array()[0]['clave'];
     }
 }
 

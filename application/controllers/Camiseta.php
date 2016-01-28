@@ -5,11 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Camiseta extends CI_Controller {
     
     public function __construct() {
-        parent::__construct();
-        $this->load->library('Carro', 0, 'myCarrito');        
-        $this->load->helper('url');
+        parent::__construct();    
         $this->load->helper('Descuentos');
         $this->load->model('Mdl_camiseta'); //Cargamos modelo de camiseta
+        $this->load->library('Carro', 0, 'myCarrito');
     }
     public function index() {}
 

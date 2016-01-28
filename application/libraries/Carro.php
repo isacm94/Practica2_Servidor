@@ -31,12 +31,12 @@ class Carro {
         if (!is_array($articulo) || empty($articulo)) {
             throw new Exception("Error, el articulo no es un array!", 1);
         }
-        //nuestro carro necesita siempre un id producto, cantidad y precio articulo
+        //nuestro myCarrito necesita siempre un id producto, cantidad y precio articulo
         if (!$articulo["id"] || !$articulo["cantidad"] || !$articulo["precio"]) {
             throw new Exception("Error, el articulo debe tener un id, cantidad y precio!", 1);
         }
 
-        //nuestro carro necesita siempre un id producto, cantidad y precio articulo
+        //nuestro myCarrito necesita siempre un id producto, cantidad y precio articulo
         if (!is_numeric($articulo["id"]) || !is_numeric($articulo["cantidad"]) || !is_numeric($articulo["precio"])) {
             throw new Exception("Error, el id, cantidad y precio deben ser números!", 1);
         }
@@ -88,12 +88,12 @@ class Carro {
         if (!is_array($articulo) || empty($articulo)) {
             throw new Exception("Error, el articulo no es un array!", 1);
         }
-        //nuestro carro necesita siempre un id producto, cantidad y precio articulo
+        //nuestro myCarrito necesita siempre un id producto, cantidad y precio articulo
         if (!$articulo["id"] || !$articulo["cantidad"] || !$articulo["precio"]) {
             throw new Exception("Error, el articulo debe tener un id, cantidad y precio!", 1);
         }
 
-        //nuestro carro necesita siempre un id producto, cantidad y precio articulo
+        //nuestro myCarrito necesita siempre un id producto, cantidad y precio articulo
         if (!is_numeric($articulo["id"]) || !is_numeric($articulo["cantidad"]) || !is_numeric($articulo["precio"])) {
             throw new Exception("Error, el id, cantidad y precio deben ser números!", 1);
         }

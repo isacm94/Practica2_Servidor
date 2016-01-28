@@ -6,11 +6,10 @@ class Categorias extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
         $this->load->library('form_validation');        
         $this->load->library('pagination');
-        $this->load->library('Carro', 0, 'myCarrito');
         $this->load->model('Mdl_categorias');
+        $this->load->library('Carro', 0, 'myCarrito');
     }
 
     public function index() {    }

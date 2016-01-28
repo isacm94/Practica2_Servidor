@@ -1,3 +1,8 @@
+<?php
+echo '<pre>';
+print_r($this->session->all_userdata());
+echo '</pre>';
+?>
 <!-- CUERPO -->
 
 <div class="single-product-area">
