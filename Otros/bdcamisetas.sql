@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2016 a las 13:32:46
+-- Tiempo de generación: 28-01-2016 a las 13:30:43
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -126,7 +126,7 @@ INSERT INTO `categoria` (`idCategoria`, `cod_categoria`, `nombre_cat`, `descripc
 (4, 'CAT_BUNDELISGA', 'Bundesliga', 'Liga de primera división de Alemania', NULL, 1),
 (5, 'CAT_PREMIER', 'Premier League', 'Liga de primera división de Inglaterra', NULL, 1),
 (6, 'CAT_SERIEA', 'Seria A', 'Liga de primera división de Italia', NULL, 1),
-(7, 'CAT_SELECCIONES', 'Selecciones Nacionales', 'Selecciones Nacional de Fútbol', NULL, 1);
+(7, 'CAT_SELECCIONES', 'Selecciones Nacionales', 'Selecciones Nacionales de Fútbol', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -244,15 +244,24 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL,
   `cod_provincia` char(2) NOT NULL,
   `nombre_usu` varchar(30) DEFAULT NULL,
-  `clave` varchar(60) DEFAULT NULL,
+  `clave` varchar(260) DEFAULT NULL,
   `dni` varchar(10) DEFAULT NULL,
   `correo` varchar(180) DEFAULT NULL,
   `nombre_persona` varchar(40) DEFAULT NULL,
   `apellidos_persona` varchar(60) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
-  `estado` char(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `estado` char(1) DEFAULT 'A'
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `cod_provincia`, `nombre_usu`, `clave`, `dni`, `correo`, `nombre_persona`, `apellidos_persona`, `direccion`, `cp`, `estado`) VALUES
+(0, '21', 'admin', '$2y$10$2aDcxX8hSbTCKbU0OBtsw.qrYeSdHos5mN.PGksasWeInhdTltqnS', '44248212f', 'isacm94@gmail.com', 'Isabel María', 'Calvo Mateos', 'Calle Placido,  17', 21720, 'A'),
+(1, '21', 'isacm94', '$2y$10$Bip6u01wFvH1w18ov273FuPD9n2Mfi/anqc38O5Rx54T6dLwb9neq', '44248212f', 'isacm94@gmail.com', 'Isabel', 'Calvo Mateos', 'Calle Cabreros, 36', 21720, 'A'),
+(2, '06', 'adanwaky', '$2y$10$h//bUAInarvyiXuY/Ub0G.GOoSrRCbMi1TDsJnVzXRJ81cpTNzFe2', '44246522l', 'adanwaky@gmail.com', 'Adán', 'Candeas Mozo', 'Calle Huelva, 36', 21720, 'A');
 
 --
 -- Índices para tablas volcadas
@@ -319,10 +328,20 @@ ALTER TABLE `camiseta`
 ALTER TABLE `categoria`
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT de la tabla `linea_pedido`
+--
+ALTER TABLE `linea_pedido`
+  MODIFY `id_LineaPedido` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --

@@ -29,7 +29,7 @@
                     <div class="user-menu">
                         <ul>
                             <li><a href="<?=base_url().'index.php/Registro'?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="<?=base_url().'index.php/Login'?>"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
