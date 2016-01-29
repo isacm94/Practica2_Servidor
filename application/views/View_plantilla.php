@@ -29,7 +29,11 @@
                         <div class="user-menu">
                             <ul>
                                 <li><a href="<?= base_url() . 'index.php/Registro' ?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
+                                
+                                 <?php if (! $this->session->userdata('logged_in')): //Sólo mostrar si la sesión iniciada ?>
                                 <li><a href="<?= base_url() . 'index.php/Login' ?>"><i class="fa fa-user"></i> Login</a></li>
+                                <?php endif; ?>
+                                
                             </ul>
                         </div>
                     </div>
@@ -37,14 +41,14 @@
                     <div class="col-md-3">
                         <div class="user-menu">
                             <ul>
-                                <?php if ($this->session->userdata('logged_in')): ?>
+                                <?php if ($this->session->userdata('logged_in')): //Sesión iniciada ?>
                                         <li><a href="<?= base_url() . 'index.php/Login/Logout' ?>"><i class="fa fa-user"></i><?= $this->session->userdata('username'); ?>, <!--<i class="glyphicon glyphicon-log-out"></i>--> Cerrar sesión</a></li>
 
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
-                                            <li><a href="<?=base_url().'index.php/EliminarUsuario'?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
+                                            <li><a href="<?=base_url().'index.php/ModUsuario'?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
+                                            <li><a href="<?=base_url().'index.php/eliminarUsuario'?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>

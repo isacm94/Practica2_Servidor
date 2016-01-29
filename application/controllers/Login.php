@@ -12,42 +12,53 @@ class Login extends CI_Controller {
 
     public function index() {
 
-        if ($this->input->post('entrar')) {//Botón entrar pulsado
-            if ($this->Mdl_usuarios->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
-                if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->input->post('username')))) {
-                    //la clave es correcta
-                    $this->Login($this->input->post('username'));
-
-                    //redirect('', 'location', 301);
+        if (!$this->session->userdata('logged_in')) {//Sólo ir a login si no está sesión inicada, por si entra por url
+            if ($this->input->post('entrar')) {//Botón entrar pulsado
+                if ($this->Mdl_usuarios->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
+                    if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->input->post('username')))) {
+                        //la clave es correcta
+                        $this->Login($this->input->post('username'));
+                    } else {
+                        $this->MuestraErrorEnVista();
+                    }
                 } else {
                     $this->MuestraErrorEnVista();
                 }
             } else {
-                $this->MuestraErrorEnVista();
+                $cuerpo = $this->load->view('View_login', '', true); //Generamos la vista
+                $this->load->view('View_plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
             }
         } else {
-            $cuerpo = $this->load->view('View_login', '', true); //Generamos la vista
-            $this->load->view('View_plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+            $cuerpo = $this->load->view('View_error404', '', true); //Generamos la vista
+            $this->load->view('View_plantilla', Array('titulo' => 'Error 404', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
         }
     }
 
     public function Login($username) {
-        $datos = array(
-            'username' => $username,
-            'logged_in' => TRUE
-        );
 
-        $this->session->set_userdata($datos);
+        if ($username) {
+            $datos = array(
+                'username' => $username,
+                'userid' => $this->Mdl_usuarios->getId($username),
+                'logged_in' => TRUE
+            );
 
+            $this->session->set_userdata($datos);
+        }
         redirect('', 'location', 301);
     }
 
     public function Logout() {
 
-        $this->session->unset_userdata('username');
-        $this->session->unset_userdata('logged_in');
+        if ($this->session->userdata('logged_in')) {//Sólo puede cerrar sesión si está iniciada, por si entra por url
+            $this->session->unset_userdata('username');
+            $this->session->unset_userdata('logged_in');
 
-        redirect('', 'location', 301);
+            redirect('', 'location', 301);
+        } else {
+            $cuerpo = $this->load->view('View_error404', '', true); //Generamos la vista
+            $this->load->view('View_plantilla', Array('titulo' => 'Error 404', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+        }
     }
 
     public function MuestraErrorEnVista() {

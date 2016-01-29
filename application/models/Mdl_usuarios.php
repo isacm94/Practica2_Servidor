@@ -37,5 +37,35 @@ class Mdl_usuarios extends CI_Model {
         $this->db->where('nombre_usu', $username);
         $this->db->update('usuario', $data);
     }
+    
+    //Te devuelve los datos que se van a modificar para mostrarlos en el formualario
+    public function getDatosModificar($nombre_usu) {
 
+        $query = $this->db->query("SELECT idUsuario, nombre_usu, correo, direccion, cp, cod_provincia "
+                . "FROM usuario "
+                . "WHERE nombre_usu = '$nombre_usu'");
+                    
+
+        return $query->result_array();
+    }
+    
+    public function getCount_NombreUsuarioModificar($nombre_usu, $idUsuario) {
+
+        $query = $this->db->query("SELECT count(*) as cont "
+                . "FROM usuario "
+                . "WHERE nombre_usu = '$nombre_usu' "
+                . "AND estado = 'A' "
+                . "AND idUsuario != $idUsuario; ");
+
+        return $query->result_array()[0]['cont'];
+    }
+    
+    public function getId($nombre_usu) {
+
+        $query = $this->db->query("SELECT idUsuario "
+                . "FROM usuario "
+                . "WHERE nombre_usu = '$nombre_usu' ");
+
+        return $query->result_array()[0]['idUsuario'];
+    }
 }

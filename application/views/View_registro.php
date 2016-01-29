@@ -27,16 +27,16 @@
 
                             <div class="col-md-2">
                                 <label class="">Contraseña:</label>
-                                <input type="password" value="" style="width: 160px" placeholder="Contraseña" id="billing_first_name" name="clave" class="input-text">                                
+                                <input type="password" value="" style="width: 100%" placeholder="Contraseña" id="billing_first_name" name="clave" class="input-text">                                
                             </div>
 
                             <div class="col-md-2">
                                 <label class="">Repita Contraseña:</label>
-                                <input type="password" value="" style="width: 160px" placeholder="Repita Contraseña" id="billing_first_name" name="rep_clave" class="input-text">                                
+                                <input type="password" value="" style="width: 100%" placeholder="Repita Contraseña" id="billing_first_name" name="rep_clave" class="input-text">                                
                             </div>
 
                             <div class="col-md-4">
-                                <label class="">Correo de electrónico:</label>
+                                <label class="">Correo electrónico:</label>
                                 <input type="text" value="<?= set_value('correo') ?>" placeholder="Correo de electrónico" id="billing_first_name" name="correo" class="input-text" maxlength="180">
                             </div>
 
@@ -97,6 +97,7 @@
                             <div class="row">
                                 <div class="col-md-4"><?= form_error('direccion'); ?></div>
                                 <div class="col-md-4"><?= form_error('cp'); ?></div>
+                                <div class="col-md-4"><?= form_error('cod_provincia'); ?></div>
                             </div>
                         </div>
                         <!--///-->

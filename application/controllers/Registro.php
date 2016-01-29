@@ -8,6 +8,7 @@ class Registro extends CI_Controller {
         parent::__construct();
         $this->load->helper('CreaSelect');
         $this->load->helper('dni');
+        $this->load->helper('claves');
         $this->load->library('form_validation');
         $this->load->library('Carro', 0, 'myCarrito');
         $this->load->model('Mdl_provincias');
