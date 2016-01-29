@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class eliminarUsuario extends CI_Controller {
+class EliminarUsuario extends CI_Controller {
 
     public function __construct() {
         parent::__construct();

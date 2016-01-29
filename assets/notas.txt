@@ -1,0 +1,13 @@
+direccion
+cp
+cod_provincia
+correo
+clave
+
+nombre_usu?
+
+
+NO:
+nombre_persona
+apellidos_persona
+dni

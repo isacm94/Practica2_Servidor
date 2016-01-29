@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-01-2016 a las 13:30:43
+-- Tiempo de generación: 29-01-2016 a las 17:03:10
 -- Versión del servidor: 5.6.26
--- Versión de PHP: 5.5.28
+-- Versión de PHP: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -158,9 +158,6 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `direccion` varchar(100) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
   `cod_provincia` varchar(45) DEFAULT NULL,
-  `nombre_persona` varchar(40) DEFAULT NULL,
-  `apellidos_persona` varchar(60) DEFAULT NULL,
-  `dni` varchar(10) DEFAULT NULL,
   `correo` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -252,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `direccion` varchar(100) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
   `estado` char(1) DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -341,7 +338,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
