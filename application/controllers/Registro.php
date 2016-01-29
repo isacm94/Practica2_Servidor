@@ -30,25 +30,10 @@ class Registro extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
 
         //Establecemos los mensajes de errores
-        $this->form_validation->set_message('required', 'El campo %s está vacío');
-        $this->form_validation->set_message('valid_email', 'Formato de correo electrónico incorrecto');
-        $this->form_validation->set_message('integer', 'El campo %s debe ser un número de 5 dígitos');
-        $this->form_validation->set_message('exact_length', 'El campo %s debe tener %s caracteres');
-        $this->form_validation->set_message('integer', 'El campo %s debe ser númerico');
-        $this->form_validation->set_message('dni_check', 'Formato de DNI incorrecto');
-        $this->form_validation->set_message('nombreUsuRepetido_check', 'El nombre de usuario ya existe');
-
+        $this->setMensajesErrores();
+        
         //Establecemos reglas de validación para el formulario
-        $this->form_validation->set_rules('nombre_usu', 'nombre de usuario', 'required|callback_nombreUsuRepetido_check');
-        $this->form_validation->set_rules('clave', 'contraseña', 'required');
-        $this->form_validation->set_rules('rep_clave', 'repita contraseña', 'required');
-        $this->form_validation->set_rules('correo', 'correo electrónico', 'required|valid_email');
-        $this->form_validation->set_rules('nombre_persona', 'nombre', 'required');
-        $this->form_validation->set_rules('apellidos_persona', 'apellidos', 'required');
-        $this->form_validation->set_rules('dni', 'DNI', 'required|exact_length[9]|callback_dni_check');
-        $this->form_validation->set_rules('direccion', 'dirección', 'required');
-        $this->form_validation->set_rules('cp', 'CP', 'required|integer|exact_length[5]');
-        $this->form_validation->set_rules('cod_provincia', 'provincia', 'required');
+        $this->setReglasValidacion();
 
         if ($this->form_validation->run() == FALSE || !claves_check($this->input->post('clave'), $this->input->post('rep_clave'))) {//Validación de datos incorrecta
             $errorclave = '';
@@ -103,5 +88,26 @@ class Registro extends CI_Controller {
         }
     }
 
+    function setMensajesErrores(){
+        $this->form_validation->set_message('required', 'El campo %s está vacío');
+        $this->form_validation->set_message('valid_email', 'Formato de correo electrónico incorrecto');
+        $this->form_validation->set_message('integer', 'El campo %s debe ser un número de 5 dígitos');
+        $this->form_validation->set_message('exact_length', 'El campo %s debe tener %s caracteres');
+        $this->form_validation->set_message('integer', 'El campo %s debe ser númerico');
+        $this->form_validation->set_message('dni_check', 'Formato de DNI incorrecto');
+        $this->form_validation->set_message('nombreUsuRepetido_check', 'El nombre de usuario ya existe');
+    }
    
+    function setReglasValidacion(){
+        $this->form_validation->set_rules('nombre_usu', 'nombre de usuario', 'required|callback_nombreUsuRepetido_check');
+        $this->form_validation->set_rules('clave', 'contraseña', 'required');
+        $this->form_validation->set_rules('rep_clave', 'repita contraseña', 'required');
+        $this->form_validation->set_rules('correo', 'correo electrónico', 'required|valid_email');
+        $this->form_validation->set_rules('nombre_persona', 'nombre', 'required');
+        $this->form_validation->set_rules('apellidos_persona', 'apellidos', 'required');
+        $this->form_validation->set_rules('dni', 'DNI', 'required|exact_length[9]|callback_dni_check');
+        $this->form_validation->set_rules('direccion', 'dirección', 'required');
+        $this->form_validation->set_rules('cp', 'CP', 'required|integer|exact_length[5]');
+        $this->form_validation->set_rules('cod_provincia', 'provincia', 'required');
+    }
 }

@@ -13,6 +13,17 @@ class Main extends CI_Controller {
     }
     public function index($desde = 0) {        
         
+        $config = $this->getConfigPag();
+        
+        $this->pagination->initialize($config);
+        
+        $seleccionadas = $this->Mdl_seleccionadas->getSeleccionadas($config['per_page'], $desde); //Conseguimos los artículos seleccionados
+        
+        $cuerpo = $this->load->view('View_seleccionadas', Array('seleccionadas' => $seleccionadas), true); //Generamos la vista       
+        
+        $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol destacadas', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+    }
+    public function getConfigPag(){
         //Configuración de Paginación
         $config['base_url'] = site_url('/Main/index');
         $config['total_rows'] = $this->Mdl_seleccionadas->getNumTotalCamisetasSeleccionadas();
@@ -38,14 +49,8 @@ class Main extends CI_Controller {
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li title="Final">';
         $config['last_tag_close'] = '</li>';
-
-        $this->pagination->initialize($config);
-        
-        $seleccionadas = $this->Mdl_seleccionadas->getSeleccionadas($config['per_page'], $desde); //Conseguimos los artículos seleccionados
-        
-        $cuerpo = $this->load->view('View_seleccionadas', Array('seleccionadas' => $seleccionadas), true); //Generamos la vista       
-        
-        $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol destacadas', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+    
+        return $config;
     }
     
 }

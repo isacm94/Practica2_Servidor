@@ -17,6 +17,27 @@ class Categorias extends CI_Controller {
     public function ver($idCat = 1, $desde = 0){
         
         //Configuración de Paginación
+        $config = $this->getConfigPag($idCat);       
+        
+        $this->pagination->initialize($config);
+        
+        $unaCategoria = $this->Mdl_categorias->getUnaCategoria($idCat); 
+                
+        $categorias = $this->Mdl_categorias->getCategorias(); 
+        
+        //Conseguimos las camisetas de la categoría seleccionada
+        $camisetas = $this->Mdl_categorias->getCamisetasFromCategoria($idCat,  $config['per_page'], $desde);
+        
+        //Cargamos vista de las camisetas de la categoría seleccionada
+        $htmlUnaCategoria = $this->load->view('View_unaCategoria', Array('unaCategoria' =>  $unaCategoria, 'camisetas' => $camisetas), true);
+        
+        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria[0]['nombre_cat'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
+        
+        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo));
+        
+    }
+    
+    function getConfigPag($idCat){
         $config['base_url'] = site_url('/Categorias/ver/'.$idCat.'/');   
         $config['total_rows'] = $this->Mdl_categorias->getNumTotalCamisetasFromCategoria($idCat);
         //$config['num_links'] = 1;
@@ -39,24 +60,9 @@ class Categorias extends CI_Controller {
         $config['first_tag_open'] = '<li title="Inicio">';
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li title="Final">';
-        $config['last_tag_close'] = '</li>';        
-        
-        $this->pagination->initialize($config);
-        
-        $unaCategoria = $this->Mdl_categorias->getUnaCategoria($idCat); 
-                
-        $categorias = $this->Mdl_categorias->getCategorias(); 
-        
-        //Conseguimos las camisetas de la categoría seleccionada
-        $camisetas = $this->Mdl_categorias->getCamisetasFromCategoria($idCat,  $config['per_page'], $desde);
-        
-        //Cargamos vista de las camisetas de la categoría seleccionada
-        $htmlUnaCategoria = $this->load->view('View_unaCategoria', Array('unaCategoria' =>  $unaCategoria, 'camisetas' => $camisetas), true);
-        
-        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria[0]['nombre_cat'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
-        
-        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo));
-        
+        $config['last_tag_close'] = '</li>'; 
+    
+        return $config;
     }
 }
 
