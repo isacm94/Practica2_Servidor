@@ -1,8 +1,3 @@
-<?php
-//echo '<pre>';
-//print_r($_POST);
-//echo '</pre>';
-?>
 <!-- CUERPO-->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
@@ -11,7 +6,7 @@
             <div class="col-sm-6 col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong> Login</strong>
+                        <strong> Restablecer Contraseña</strong>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="" method="POST">
@@ -24,31 +19,16 @@
                                                     <i class="glyphicon glyphicon-user"></i>
                                                 </span> 
                                                 <input class="input-text btn-block" placeholder="Nombre de usuario" name="username" type="text" autofocus>
-                                            </div>
+                                            </div>                                            
                                         </div>
+                                        <?= form_error('username'); ?>
                                         <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="glyphicon glyphicon-lock"></i>
-                                                </span>
-                                                <input class="input-text btn-block" placeholder="Contraseña" name="clave" type="password" value="">
-                                            </div>
-                                        </div>
-                                        <?php  if(isset($error))
-                                                echo $error;?>
-                                        <div class="form-group">
-                                            <button type="submit" value="entrar" name="entrar" class="add_to_cart_button btn-block"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Entrar</button>
+                                            <button type="submit" name="enviar" class="add_to_cart_button btn-block"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Enviar mail</button>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                         </form>
-                    </div>
-                    <div class="panel-footer ">
-                        ¡No estoy registrado! <a href="<?=base_url().'/index.php/Registro'?>">Registrate aquí</a>
-                    </div>
-                    <div class="panel-footer ">
-                        ¡He olvidado mi contraseña! <a href="<?=base_url().'/index.php/RestablecerCont'?>">Restablecer contraseña</a>
                     </div>
                 </div>
             </div>
