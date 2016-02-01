@@ -53,7 +53,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                                         </button>
 
-                                                        <input type="number" id="cantidad[<?= $items['id'] ?>]" name="cantidad[<?= $items['id'] ?>]" size="4" class="input-text qty text" value="<?= $items['cantidad'] ?>" min="0" step="1">
+                                                        <input type="number" id="cantidad[<?= $items['id'] ?>]" name="cantidad[<?= $items['id'] ?>]" size="4" class="input-text qty text" value="<?= $items['cantidad'] ?>" min="1" step="1">
 
                                                         <button type="button" class="add_to_cart_button"  onclick="mas(<?= $items['id'] ?>)">
                                                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

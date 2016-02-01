@@ -22,11 +22,13 @@ class ModUsuario extends CI_Controller {
 
         $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'datos' => $datos[0]), true);
 
-        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Registro de Usuario', 'homeactive' => 'active'));
+        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
     }
 
     public function Modificar() {
-        $todocorrecto = FALSE;
+        $todocorrecto = TRUE;
+        $cambiarclave = FALSE;
+        
         $provincias = $this->Mdl_provincias->getProvincias();
         $select = CreaSelect($provincias, 'cod_provincia');
 
@@ -38,37 +40,54 @@ class ModUsuario extends CI_Controller {
         $this->setReglasValidacion();
 
         if ($this->form_validation->run() == FALSE) {//Validación de datos incorrecta
+            
             $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'datos' => $datos[0]), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                 'homeactive' => 'active'));
+            
+            $todocorrecto = FALSE;
+            echo 'ooo';
         } else if (!EMPTY($this->input->post('clave_nueva')) || !EMPTY($this->input->post('rep_clave_nueva'))) {//Si se ha introducido una de las dos claves para mofificar
             //Tienen que ser las dos claves iguales
+            $cambiarclave = TRUE;
             if (!claves_check($this->input->post('clave_nueva'), $this->input->post('rep_clave_nueva'))) {
 
                 $errorclave = '<div class="alert alert-danger msgerror"><b>¡Error! </b> Las contraseñas no son iguales</div>';
                 $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos[0]), true);
                 $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                     'homeactive' => 'active'));
-            } else {
-                $todocorrecto = TRUE;
-            }
+                
+                $todocorrecto = FALSE;
+            } 
         }
 
         if ($todocorrecto) {
+            
             echo "4";
             //Crea el array de los datos a insertar en la tabla usuario
             foreach ($this->input->post() as $key => $value) {
-                if ($key == 'clave') {
-                    $data[$key] = password_hash($value, PASSWORD_DEFAULT);
-                } else if ($key != 'rep_clave' && $key != 'GuardarUsuario')
+                if ($key == 'clave_nueva' && $cambiarclave) {
+                    $data['clave'] = password_hash($value, PASSWORD_DEFAULT);
+                } 
+                else if ( $key == 'clave' && ! $cambiarclave){
+                    $data['clave'] = password_hash($value, PASSWORD_DEFAULT);
+                }
+                
+                if ($key != 'rep_clave_nueva' && $key != 'GuardarUsuario' && $key != 'clave_nueva' && $key != 'clave')
                     $data[$key] = $value;
             }
 
-            $this->Mdl_registro->setUsuario($data); //Inserta en la tabla usuario
-
-            $cuerpo = $this->load->view('View_modCorrecto', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos[0]), true);
-            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
-                'homeactive' => 'active'));
+            $datos = array(
+                'username' => $this->input->post('nombre_usu')
+            );
+            $this->session->set_userdata($datos);
+            $this->Mdl_usuarios->updateUsuario($this->session->userdata('userid'), $data); //Inserta en la tabla usuario
+                                    
+            redirect('ModificarCorrecto', 'location', 301);
+            
+        }
+        else{
+            echo "ee";
         }
     }
 
@@ -85,7 +104,7 @@ class ModUsuario extends CI_Controller {
 
     function clavecorrecta_check() {
 
-        if (password_hash($this->session->userdata('username'), PASSWORD_DEFAULT) == $this->Mdl_usuarios->getClave($this->session->userdata('username')))
+        if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->session->userdata('username'))))
             return TRUE;
         else
             return FALSE;

@@ -59,7 +59,7 @@ class Registro extends CI_Controller {
                 
             }
             
-            $this->Mdl_registro->setUsuario($data);//Inserta en la tabla usuario
+            $this->Mdl_usuarios->setUsuario($data);//Inserta en la tabla usuario
             
             redirect('Login/Login/'.$data['nombre_usu'], 'location', 301);
         }

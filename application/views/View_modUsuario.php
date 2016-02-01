@@ -1,6 +1,6 @@
 <?php
 //echo '<pre>';
-//print_r($datos);
+//print_r($_POST);
 //echo '</pre>';
 ?>
 <!-- CUERPO -->
@@ -33,7 +33,7 @@
 
                                 <div class="col-md-2">
                                     <label class="">Contraseña Nueva:</label>
-                                    <input type="password" value="" style="width: 100%" placeholder="Contraseña Nueva" id="billing_first_name" name="clavenueva" class="input-text">                                
+                                    <input type="password" value="" style="width: 100%" placeholder="Contraseña Nueva" id="billing_first_name" name="clave_nueva" class="input-text">                                
                                 </div>
 
                                 <div class="col-md-3">

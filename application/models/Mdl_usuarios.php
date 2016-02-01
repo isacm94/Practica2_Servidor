@@ -68,4 +68,12 @@ class Mdl_usuarios extends CI_Model {
 
         return $query->result_array()[0]['idUsuario'];
     }
+    
+    public function updateUsuario($id, $data) {
+//        $data = array(
+//            'estado' => 'B'
+//        );
+        $this->db->where('idUsuario', $id);
+        $this->db->update('usuario', $data);
+    }
 }

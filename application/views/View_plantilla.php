@@ -30,7 +30,7 @@
                             <ul>
                                 <li><a href="<?= base_url() . 'index.php/Registro' ?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
                                 
-                                 <?php if (! $this->session->userdata('logged_in')): //Sólo mostrar si la sesión iniciada ?>
+                                 <?php if (!  SesionIniciadaCheck()): //Sólo mostrar si la sesión iniciada ?>
                                 <li><a href="<?= base_url() . 'index.php/Login' ?>"><i class="fa fa-user"></i> Login</a></li>
                                 <?php endif; ?>
                                 
@@ -41,7 +41,7 @@
                     <div class="col-md-3">
                         <div class="user-menu">
                             <ul>
-                                <?php if ($this->session->userdata('logged_in')): //Sesión iniciada ?>
+                                <?php  if (SesionIniciadaCheck()): //Sesión iniciada ?>
                                         <li><a href="<?= base_url() . 'index.php/Login/Logout' ?>"><i class="fa fa-user"></i><?= $this->session->userdata('username'); ?>, <!--<i class="glyphicon glyphicon-log-out"></i>--> Cerrar sesión</a></li>
 
                                     <li class="dropdown">
