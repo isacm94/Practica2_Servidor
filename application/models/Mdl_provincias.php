@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MODELO de la consultas de provincias.
+ */
 class Mdl_provincias extends CI_Model {
 
     public function __construct() {

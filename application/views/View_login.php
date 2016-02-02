@@ -1,9 +1,9 @@
 <?php
-//echo '<pre>';
-//print_r($_POST);
-//echo '</pre>';
+/*
+ * VISTA que pide usuario y contraseña para iniciar sesión en la aplicación con la opción de registrarse en la página o restablecer la contraseña.
+ */
 ?>
-<!-- CUERPO-->
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -34,8 +34,9 @@
                                                 <input class="input-text btn-block" placeholder="Contraseña" name="clave" type="password" value="">
                                             </div>
                                         </div>
-                                        <?php  if(isset($error))
-                                                echo $error;?>
+                                        <?php if (isset($error))
+                                            echo $error;
+                                        ?>
                                         <div class="form-group">
                                             <button type="submit" value="entrar" name="entrar" class="add_to_cart_button btn-block"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Entrar</button>
                                         </div>
@@ -45,10 +46,10 @@
                         </form>
                     </div>
                     <div class="panel-footer ">
-                        ¡No estoy registrado! <a href="<?=base_url().'index.php/Registro'?>">Registrate aquí</a>
+                        ¡No estoy registrado! <a href="<?= base_url() . 'index.php/Registro' ?>">Registrate aquí</a>
                     </div>
                     <div class="panel-footer ">
-                        ¡He olvidado mi contraseña! <a href="<?=base_url().'index.php/RestablecerCont'?>">Restablecer contraseña</a>
+                        ¡He olvidado mi contraseña! <a href="<?= base_url() . 'index.php/RestablecerCont' ?>">Restablecer contraseña</a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MODELO que recuperar las camisetas que estén seleccionadas en la tabla camisetas.
+ */
 class Mdl_seleccionadas extends CI_Model {
 
     public function __construct() {

@@ -25,7 +25,7 @@ class ModificarUsuario extends CI_Controller {
 
             $select = CreaSelectMod($provincias, 'cod_provincia', $datos[0]['cod_provincia']);
 
-            $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'datos' => $datos[0]), true);
+            $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
 
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
         } else {
@@ -50,7 +50,7 @@ class ModificarUsuario extends CI_Controller {
             $this->setReglasValidacion();
 
             if ($this->form_validation->run() == FALSE) {//Validación de datos incorrecta
-                $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'datos' => $datos[0]), true);
+                $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
                 $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                     'homeactive' => 'active'));
 
@@ -61,7 +61,7 @@ class ModificarUsuario extends CI_Controller {
                 if (!claves_check($this->input->post('clave_nueva'), $this->input->post('rep_clave_nueva'))) {
 
                     $errorclave = '<div class="alert alert-danger msgerror"><b>¡Error! </b> Las contraseñas no son iguales</div>';
-                    $cuerpo = $this->load->view('View_modUsuario', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos[0]), true);
+                    $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos[0]), true);
                     $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                         'homeactive' => 'active'));
 

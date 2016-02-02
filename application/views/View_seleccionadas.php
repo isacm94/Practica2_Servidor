@@ -1,3 +1,9 @@
+<?php
+/*
+ * VISTA que muestra las camisetas seleccionadas. 
+ * Esta vista es la que se muestra al acceder a la aplicación.
+ */
+?>
 <!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>

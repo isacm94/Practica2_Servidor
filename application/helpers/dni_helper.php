@@ -1,7 +1,11 @@
 <?php
+/*
+ * HELPER que contiene una función para validar el DNI.
+ */
+
 /**
- * Devuelve la letra que le corresponde al NIF a un DNI
- * @param string $dni
+ * Devuelve la letra que le corresponde a un DNI.
+ * @param string $dni Números del DNI.
  */
 function dni_LetraNIF($dni)
 {

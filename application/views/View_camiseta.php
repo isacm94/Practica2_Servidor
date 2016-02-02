@@ -1,15 +1,7 @@
 <?php
-//echo '<pre>';
-//print_r($camiseta);
-//echo '</pre>'; 
-//
-//echo '<pre>';
-//print_r($categoria);
-//echo '</pre>'; 
-
-//echo '<pre>';
-//print_r($camRelacionadas);
-//echo '</pre>';
+/*
+ * VISTA que muestra la imagen e información relacionada de una camiseta.
+ */
 ?>
 <!-- CUERPO -->
 <div class="single-product-area">

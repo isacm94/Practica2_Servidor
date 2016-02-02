@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MODELO de la consultas relacionadas con el carrito.
+ */
 class Mdl_carrito extends CI_Model {
 
     public function __construct() {

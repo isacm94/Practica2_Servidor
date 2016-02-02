@@ -1,10 +1,9 @@
 <?php
-//echo '<pre>';
-//print_r($_POST);
-//echo '</pre>';
+/*
+ * VISTA que muestra el formulario para modificar el usuario que ha iniciado sesión.
+ */
 ?>
 <!-- CUERPO -->
-
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
 

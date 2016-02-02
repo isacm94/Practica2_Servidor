@@ -1,3 +1,9 @@
+<?php
+/*
+ * VISTA que muestra el error404 de nuestra aplicación.
+ */
+?>
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="row">

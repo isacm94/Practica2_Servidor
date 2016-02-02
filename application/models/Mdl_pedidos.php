@@ -4,7 +4,7 @@
  * MODELO relacionado con Restablecer Contraseña por correo. 
  * Recupera datos dando su id o dando su nombre de usuario y actualiza la clave.
  */
-class Mdl_restablecerCont extends CI_Model {
+class Mdl_pedidos extends CI_Model {
 
     public function __construct() {
         $this->load->database();

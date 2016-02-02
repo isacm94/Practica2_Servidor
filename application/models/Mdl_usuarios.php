@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MODELO relacionado con las consultas, insercción y actualización de la tabla usuario.
+ */
 class Mdl_usuarios extends CI_Model {
 
     public function __construct() {
@@ -70,9 +73,6 @@ class Mdl_usuarios extends CI_Model {
     }
     
     public function updateUsuario($id, $data) {
-//        $data = array(
-//            'estado' => 'B'
-//        );
         $this->db->where('idUsuario', $id);
         $this->db->update('usuario', $data);
     }

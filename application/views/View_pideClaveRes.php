@@ -1,4 +1,9 @@
-<!-- CUERPO-->
+<?php
+/*
+ * VISTA que pide la contraseña para restablecerla.
+ */
+?>
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">

@@ -1,7 +1,8 @@
 <?php
-//echo '<pre>';
-//print_r($this->myCarrito->get_content());
-//echo '</pre>';
+/*
+ * VISTA que muestra información sobre las camisetas compradas. 
+ * Si el carrito está vacío muestra una imagen.
+ */
 
 if ($this->myCarrito->articulos_total() > 0):
     ?>
@@ -34,11 +35,11 @@ if ($this->myCarrito->articulos_total() > 0):
                                                 </td>
 
                                                 <td class="product-thumbnail">
-                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/img/imagesAPP/' . $items['opciones']['imagen'] ?>"></a>
+                                                    <a href="<?= base_url() . 'index.php/Camiseta/ver/' . $items['id'] ?>"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/img/imagesAPP/' . $items['opciones']['imagen'] ?>"></a>
                                                 </td>
 
                                                 <td class="product-name">
-                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><?= $items['nombre'] ?></a>
+                                                    <a href="<?= base_url() . 'index.php/Camiseta/ver/' . $items['id'] ?>"><?= $items['nombre'] ?></a>
                                                 </td>
 
                                                 <td class="product-price">
@@ -58,7 +59,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                                         <button type="button" class="add_to_cart_button"  onclick="mas(<?= $items['id'] ?>)">
                                                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                                         </button>
-                                                        
+
                                                         <?= $items['opciones']['error']; ?>
 
                                                     </div>
@@ -83,7 +84,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                 <div class="col-md-8">
                                     <?php
                                     if (isset($msg_error))
-                                      echo $msg_error;
+                                        echo $msg_error;
                                     ?>
 
                                 </div>
@@ -96,13 +97,13 @@ if ($this->myCarrito->articulos_total() > 0):
                                 <div class="row">
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4">
-                                    <a href="http://localhost/Practica2_Servidor/index.php" class="add_to_cart_button product-name">
-                                        <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
-                                    </a>
-                                        
-                                    <a href="<?=base_url().'index.php/carrito/eliminarcompra'?>" class="add_to_cart_button product-name">
-                                        <span class="glyphicon glyphicon-trash"></span> ELIMINAR COMPRA&nbsp;
-                                    </a>
+                                        <a href="http://localhost/Practica2_Servidor/index.php" class="add_to_cart_button product-name">
+                                            <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
+                                        </a>
+
+                                        <a href="<?= base_url() . 'index.php/carrito/eliminarcompra' ?>" class="add_to_cart_button product-name">
+                                            <span class="glyphicon glyphicon-trash"></span> ELIMINAR COMPRA&nbsp;
+                                        </a>
                                     </div>
                                 </div>
                             </form>
@@ -113,7 +114,8 @@ if ($this->myCarrito->articulos_total() > 0):
         </div>
     </div>
 
-<?php endif;
+    <?php
+endif;
 if ($this->myCarrito->articulos_total() <= 0):
     $this->load->view('View_fotocarrito');
 endif;

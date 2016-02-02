@@ -1,7 +1,7 @@
 <?php
-//echo '<pre>';
-//print_r($this->session->all_userdata());
-//echo '</pre>';
+/*
+ * VISTA que muestra el formulario para añadir un usuario.
+ */
 ?>
 <!-- CUERPO -->
 

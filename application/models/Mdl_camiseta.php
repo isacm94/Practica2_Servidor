@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * MODELO de la consultas relacionadas con la tabla camiseta.
+ */
 class Mdl_camiseta extends CI_Model {
 
     public function __construct() {
         $this->load->database();
     }
-
+      
     public function getCamiseta($idCamiseta) {
 
         $query = $this->db->query("SELECT idCamiseta, idCategoria, cod_camiseta, nombre_cam, descripcion, imagen, precio, descuento "

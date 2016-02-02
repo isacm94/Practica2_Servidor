@@ -107,7 +107,7 @@ class RestablecerContrasenha extends CI_Controller {
 
             $this->Mdl_restablecerCont->UpdateClave($this->input->post('username'), password_hash($this->input->post('clave'), PASSWORD_DEFAULT));
 
-            $cuerpo = $this->load->view('View_contCorrecta', Array(), true);
+            $cuerpo = $this->load->view('View_contrasenhaCorrecta', Array(), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Restablecer Contraseña'));
         }
     }

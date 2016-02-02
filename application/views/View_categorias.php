@@ -1,7 +1,7 @@
 <?php
-//echo '<pre>';
-//print_r($categorias);
-//echo '</pre>';
+/*
+ * VISTA que muestra en la parte izquierda botones de las distintas categorías para ver su camisetas.
+ */
 ?>
 <!--CUERPO-->
 <div class="single-product-area">

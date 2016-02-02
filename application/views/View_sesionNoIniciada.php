@@ -1,3 +1,9 @@
+<?php
+/*
+ * VISTA que informa desde que no se ha iniciado sesión.
+ */
+?>
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="row">

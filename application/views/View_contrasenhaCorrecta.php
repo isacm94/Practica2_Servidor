@@ -1,3 +1,9 @@
+<?php
+/*
+ * VISTA que muestra un mensaje cuando se ha cambiando la contraseña correctamente a tráves del correo.
+ */
+?>
+<!--CUERPO-->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="row">

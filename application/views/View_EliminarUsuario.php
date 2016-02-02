@@ -1,3 +1,8 @@
+<?php
+/*
+ * VISTA que pide al usuario si elimina o no su cuenta.
+ */
+?>
 <!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>

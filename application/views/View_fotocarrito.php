@@ -1,3 +1,9 @@
+<?php
+/*
+ * VISTA que muestra una imagen y un mensaje cuando se accede al carrito y está vacío.
+ */
+?>
+<!-- CUERPO -->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="row">

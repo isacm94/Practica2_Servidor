@@ -1,3 +1,8 @@
+<?php
+/*
+ * VISTA que pide el nombre de usuario para restablecer la contraseña en la aplicación a tráves del correo.
+ */
+?>
 <!-- CUERPO-->
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>

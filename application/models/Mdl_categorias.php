@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MODELO de la consultas relacionadas con la tabla categoría.
+ */
 class Mdl_categorias extends CI_Model {
 
     public function __construct() {

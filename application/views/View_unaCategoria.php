@@ -1,16 +1,18 @@
 <?php
-//echo '<pre>';
-//print_r($camisetas);
-//echo '</pre>';
+/*
+ * VISTA que muestra las camisetas de una categoría determinada.
+ */
+
 if (count($camisetas) == 0):
     ?>
+    <!-- CUERPO -->
     <div class="woocommerce-info">No existen camisetas para mostrar en esta categoría</div>
     <?php
 endif;
 
 if (count($camisetas) > 0):
     ?>
-
+    <!-- CUERPO -->
     <div class="single-product-area">
         <div class="container">
 
@@ -43,7 +45,7 @@ if (count($camisetas) > 0):
                         </div>
 
                         <div class="product-option-shop">
-                            <?php echo anchor('Carrito/comprar/'.$camiseta['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
+                            <?php echo anchor('Carrito/comprar/' . $camiseta['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
                         </div>
                     </div>
                 </div>
