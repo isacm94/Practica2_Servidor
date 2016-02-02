@@ -2,11 +2,15 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * CONTROLADOR en el que se lleva a cabo todo lo relacionado con la compra de productos.
+ * (Añadir y eliminar camisetas, actualizar y vacíar carrito).
+ * Sólo se podrá acceder a este controlador si se ha iniciado sesión.
+ */
 class Carrito extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('Carrito');
         $this->load->helper('Descuentos_helper');
         $this->load->model('Mdl_carrito');
         $this->load->library('Carro', 0, 'myCarrito');

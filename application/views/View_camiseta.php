@@ -25,7 +25,7 @@
                         <div class="col-sm-6">
                             <div class="product-images">
                                 <div class="product-main-img">
-                                    <img src="<?= base_url() . 'assets/images/' . $camiseta[0]['imagen'] ?>" alt="">
+                                    <img src="<?= base_url() . 'assets/img/imagesAPP/' . $camiseta[0]['imagen'] ?>" alt="">
                                 </div>
                             </div>
                         </div>

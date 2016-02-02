@@ -2,6 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * CONTROLADOR que muestra la vista al iniciar la aplicación.
+ * Muestra todas las camisetas seleccionadas en distintas páginas.
+ */
 class Main extends CI_Controller {
     
     public function __construct() {

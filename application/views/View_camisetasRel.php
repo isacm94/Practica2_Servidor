@@ -4,7 +4,7 @@
 
                                 <div class="single-product">
                                     <div class="product-f-image">
-                                        <img src="<?= base_url().'assets/images/'.$cam['imagen']?>" alt="" >
+                                        <img src="<?= base_url().'assets/img/imagesAPP/'.$cam['imagen']?>" alt="" >
                                         <div class="product-hover">
                                             <a href="<?=site_url()."Carrito/comprar/".$cam['idCamiseta']?>" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>
                                             

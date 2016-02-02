@@ -17,8 +17,8 @@
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/owl.carousel.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/style.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/responsive.css">
-        <link rel="stylesheet" href="<?= base_url() ?>assets/estilos.css">
-        <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/favicon.png" />
+        <link rel="stylesheet" href="<?= base_url() ?>assets/css/estilos.css">
+        <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/img/favicon.png" />
     </head>
     <body>
 
@@ -47,8 +47,8 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?=base_url().'index.php/ModUsuario'?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
-                                            <li><a href="<?=base_url().'index.php/eliminarUsuario'?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
+                                            <li><a href="<?=base_url().'index.php/ModificarUsuario'?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
+                                            <li><a href="<?=base_url().'index.php/EliminarUsuario'?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="">Camisetas <span>de Fútbol</span> <img src="<?= base_url() ?>assets/ball.png" style="height: 65px; width: 65px;"></a></h1>
+                            <h1><a href="">Camisetas <span>de Fútbol</span> <img src="<?= base_url() ?>assets/img/ball.png" style="height: 65px; width: 65px;"></a></h1>
                         </div>
                     </div>
 

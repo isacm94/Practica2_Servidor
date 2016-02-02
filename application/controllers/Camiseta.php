@@ -1,7 +1,10 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+/**
+ * CONTROLADOR que muestra la información de una camiseta determinada.
+ */
 class Camiseta extends CI_Controller {
     
     public function __construct() {
@@ -12,7 +15,9 @@ class Camiseta extends CI_Controller {
     }
     public function index() {}
 
+    
     //Ver camiseta detallada
+   
     public function ver($idCamiseta) {
         
         //Información de camiseta

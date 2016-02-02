@@ -1,3 +1,7 @@
+<?php
+?>
+<!-- VISTA que muestra un mensaje cuando un usuario ha modificado correctamente su cuenta. -->
+
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="row">

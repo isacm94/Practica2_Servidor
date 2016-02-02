@@ -34,7 +34,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                                 </td>
 
                                                 <td class="product-thumbnail">
-                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/images/' . $items['opciones']['imagen'] ?>"></a>
+                                                    <a href="<?=base_url().'index.php/Camiseta/ver/'.$items['id']?>"><img width="145" height="145" class="shop_thumbnail" src="<?= base_url() . 'assets/img/imagesAPP/' . $items['opciones']['imagen'] ?>"></a>
                                                 </td>
 
                                                 <td class="product-name">

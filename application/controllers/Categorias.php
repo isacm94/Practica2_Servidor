@@ -2,6 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * CONTROLADOR en el que se puede elegir la categoría a mostrar con las camisetas paginadas.
+ */
 class Categorias extends CI_Controller {
     
     public function __construct() {

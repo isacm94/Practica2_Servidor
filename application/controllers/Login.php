@@ -2,6 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * CONTROLADOR en el que se inicia y se cierra sesión en la aplicación.
+ */
 class Login extends CI_Controller {
 
     public function __construct() {
@@ -29,8 +32,7 @@ class Login extends CI_Controller {
                 $this->load->view('View_plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
             }
         } else {
-            $cuerpo = $this->load->view('View_error404', '', true); //Generamos la vista
-            $this->load->view('View_plantilla', Array('titulo' => 'Error 404', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+            redirect('Error404', 'location', 301);
         }
     }
 

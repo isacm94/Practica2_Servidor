@@ -30,7 +30,7 @@ if (count($camisetas) > 0):
                         <div class="product-upper">
 
                         </div>
-                        <h2><?= anchor('Camiseta/ver/' . $camiseta['idCamiseta'], '<img src="' . base_url() . 'assets/images/' . $camiseta['imagen'] . '"">' . $camiseta['descripcion']) ?></h2>
+                        <h2><?= anchor('Camiseta/ver/' . $camiseta['idCamiseta'], '<img src="' . base_url() . 'assets/img/imagesAPP/' . $camiseta['imagen'] . '"">' . $camiseta['descripcion']) ?></h2>
                         <div class="product-carousel-price">
                             <?php if ($camiseta['descuento'] != '0.00') : ?>
                                 <ins><?= $camiseta['precio'] * (1 - ($camiseta['descuento'] / 100)) ?> €</ins>
