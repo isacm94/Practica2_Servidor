@@ -10,32 +10,32 @@ class Mdl_pedidos extends CI_Model {
         $this->load->database();
     }
 
-    public function getDatosFromUserName($username) {
-
-        $query = $this->db->query("SELECT idUsuario 'id', dni, nombre_persona 'nombre', correo "
-                . "FROM usuario "
-                . "WHERE nombre_usu LIKE '$username'; ");
-
+    public function insertPedido($dataPedido) {
+        $this->db->insert('pedido', $dataPedido);
+    }
+    
+    public function insertLineaPedido($dataPedido) {
+        $this->db->insert('linea_pedido', $dataPedido);
+    }
+    
+    //consulta datos necesarios del usuario para hacer el pedidos
+    public function getDatosParaPedido($id){
+        $query = $this->db->query("SELECT direccion, cp, cod_provincia, correo "
+                                    . "FROM usuario "
+                                        . "WHERE idUsuario = $id; ");
+        
         return $query->result_array()[0];
     }
-
-    public function getDatosFromId($id) {
-
-        $query = $this->db->query("SELECT idUsuario 'id', dni, nombre_persona 'nombre', correo "
-                . "FROM usuario "
-                . "WHERE idUsuario LIKE '$id'; ");
-        if(count($query->result_array()) > 0)
-            return $query->result_array()[0];
-        else
-            return -1;
+    
+    public function getCountPedidos(){
+        return $this->db->count_all('pedido');
     }
 
-    public function UpdateClave($username, $clave) {
-        $data = array(
-            'clave' => $clave
-        );
-        $this->db->where('nombre_usu', $username);
-        $this->db->update('usuario', $data);
+    public function getIva($id){
+        $query = $this->db->query("SELECT iva "
+                                    . "FROM camiseta "
+                                        . "WHERE idcamiseta = $id; ");
+        
+        return $query->result_array()[0];
     }
-
 }
