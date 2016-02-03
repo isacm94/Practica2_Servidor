@@ -97,7 +97,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                 <div class="row">
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4">
-                                        <a href="<?= base_url() . 'index.php/Pedidos' ?>" class="add_to_cart_button product-name">
+                                        <a href="<?= base_url() . 'index.php/Pedidos/RealizaPedido' ?>" class="add_to_cart_button product-name">
                                             <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
                                         </a>
 

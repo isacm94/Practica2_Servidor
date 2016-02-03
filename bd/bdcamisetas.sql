@@ -97,17 +97,27 @@ INSERT INTO `categoria` (`idCategoria`, `cod_categoria`, `nombre_cat`, `descripc
 
 CREATE TABLE IF NOT EXISTS `linea_pedido` (
   `id_LineaPedido` int(11) NOT NULL,
-  `idCamiseta` int(11) NOT NULL,
   `idPedido` int(11) NOT NULL,
-  `iva` decimal(5,2) DEFAULT NULL,
+  `idCamiseta` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
   `precio` decimal(5,2) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `importe` decimal(20,2) DEFAULT NULL,
+  `iva` decimal(5,2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+INSERT INTO `linea_pedido` (`id_LineaPedido`, `idPedido`, `idCamiseta`, `cantidad`, `precio`, `importe`, `iva`) VALUES
+(19, 1, 25, 3, '20.24', '60.72', '21.00'),
+(20, 1, 1, 2, '23.00', '46.00', '21.00'),
+(21, 2, 21, 2, '22.54', '45.08', '21.00'),
+(22, 2, 36, 1, '25.48', '25.48', '21.00'),
+(23, 3, 24, 1, '12.65', '12.65', '21.00'),
+(24, 3, 49, 2, '21.85', '43.70', '21.00');
 
 CREATE TABLE IF NOT EXISTS `pedido` (
   `idPedido` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `importe` decimal(10,2) DEFAULT NULL,
+  `cantidad_total` int(11) DEFAULT NULL,
   `estado` varchar(10) DEFAULT 'Pendiente',
   `fecha_pedido` date DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
@@ -115,6 +125,11 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `cod_provincia` varchar(45) DEFAULT NULL,
   `correo` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `pedido` (`idPedido`, `idUsuario`, `importe`, `cantidad_total`, `estado`, `fecha_pedido`, `direccion`, `cp`, `cod_provincia`, `correo`) VALUES
+(1, 0, '106.72', 5, 'Pendiente', '2016-02-03', 'Calle Huelva, 36', 21453, '51', 'isacm94@gmail.com'),
+(2, 0, '70.56', 3, 'Pendiente', '2016-02-03', 'Calle Huelva, 36', 21453, '51', 'isacm94@gmail.com'),
+(3, 3, '56.35', 3, 'Pendiente', '2016-02-03', 'Calle Cabreros, 36', 21720, '21', 'isacm94@gmail.com');
 
 CREATE TABLE IF NOT EXISTS `provincias` (
   `cod` char(2) NOT NULL DEFAULT '00' COMMENT 'Código de la provincia de dos digitos',
@@ -188,11 +203,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `direccion` varchar(100) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
   `estado` char(1) DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `usuario` (`idUsuario`, `cod_provincia`, `nombre_usu`, `clave`, `dni`, `correo`, `nombre_persona`, `apellidos_persona`, `direccion`, `cp`, `estado`) VALUES
 (0, '51', 'admin', '$2y$10$7lH0K8cSg8IEbPiTsabOaODC9oVJHaQ5KJd9WmTTb5fQ6JgIxuKby', '44248212f', 'isacm94@gmail.com', 'Admin', 'Admin Admin', 'Calle Huelva, 36', 21453, 'A'),
-(2, '06', 'adanwaky', '$2y$10$h//bUAInarvyiXuY/Ub0G.GOoSrRCbMi1TDsJnVzXRJ81cpTNzFe2', '44246522l', 'adanwaky@gmail.com', 'Adán', 'Candeas Mozo', 'Calle Huelva, 36', 21720, 'A');
+(2, '06', 'adanwaky', '$2y$10$h//bUAInarvyiXuY/Ub0G.GOoSrRCbMi1TDsJnVzXRJ81cpTNzFe2', '44246522l', 'adanwaky@gmail.com', 'Adán', 'Candeas Mozo', 'Calle Huelva, 36', 21720, 'A'),
+(1, '21', 'isacm94', '$2y$10$9isiSYMKQrfYA.p7jZqbaej9Hs/VqQuLH/FdwNyPHGKYg2821PTEm', '44248212f', 'isacm94@gmail.com', 'Isabel María', 'Calvo Mateos', 'Calle Cabreros, 36', 21720, 'A');
 
 
 ALTER TABLE `camiseta`
@@ -229,9 +245,9 @@ ALTER TABLE `camiseta`
 ALTER TABLE `categoria`
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 ALTER TABLE `linea_pedido`
-  MODIFY `id_LineaPedido` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_LineaPedido` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 
 ALTER TABLE `camiseta`
   ADD CONSTRAINT `fk_Camiseta_Categoria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
