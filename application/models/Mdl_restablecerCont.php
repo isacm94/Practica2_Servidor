@@ -16,7 +16,7 @@ class Mdl_restablecerCont extends CI_Model {
                 . "FROM usuario "
                 . "WHERE nombre_usu LIKE '$username'; ");
 
-        return $query->result_array()[0];
+        return $query->row_array();
     }
 
     public function getDatosFromId($id) {

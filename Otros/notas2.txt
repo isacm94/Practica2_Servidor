@@ -1,3 +1,3 @@
-¿Cuando se finaliza la compra y se muestra el resumen, se vacía el carrito?
-¿Si se anula un pedido, se elimina o se cambia de estado?
-Estados: procesado, recibido y pendiente?
+¿Cuando se finaliza la compra y se muestra el resumen, se vacía el carrito? SI
+¿Si se anula un pedido, se elimina o se cambia de estado? cambia estado
+Estados: procesado, recibido y pendiente, anulado

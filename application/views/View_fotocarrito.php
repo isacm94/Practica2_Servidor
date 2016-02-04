@@ -13,7 +13,7 @@
             <div class="alert msgcarritovacio">
                 <div class="row"> 
                     <div class="col-md-1"></div>
-                    <div class="col-md-10">&nbsp;¡El carrito está vacío!</div>
+                    <div class="col-md-10">¡El carrito está vacío!</div>
 
                 </div>
 

@@ -14,6 +14,7 @@ class RestablecerContrasenha extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('Mdl_usuarios');
         $this->load->model('Mdl_restablecerCont');
+        $this->load->model('Mdl_mail');
         $this->load->library('email');
         $this->load->helper('claves');
     }
@@ -29,7 +30,7 @@ class RestablecerContrasenha extends CI_Controller {
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Reestablecer Contraseña'));
         } else {
 
-            $datos = $this->Mdl_restablecerCont->getDatosFromUsername($this->input->post('username'));
+            $datos = $this->Mdl_mail->getDatosFromUsername($this->input->post('username'));
             $this->EnviaCorreo($datos);
 
             $cuerpo = $this->load->view('View_mailCorrecto', Array('correo' => $datos['correo']), true);

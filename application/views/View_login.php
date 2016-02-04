@@ -49,7 +49,7 @@
                         ¡No estoy registrado! <a href="<?= base_url() . 'index.php/Registro' ?>">Registrate aquí</a>
                     </div>
                     <div class="panel-footer ">
-                        ¡He olvidado mi contraseña! <a href="<?= base_url() . 'index.php/RestablecerCont' ?>">Restablecer contraseña</a>
+                        ¡He olvidado mi contraseña! <a href="<?= base_url() . 'index.php/RestablecerContrasenha' ?>">Restablecer contraseña</a>
                     </div>
                 </div>
             </div>

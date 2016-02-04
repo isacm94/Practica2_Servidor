@@ -11,7 +11,9 @@ class Pedidos extends CI_Controller {
         parent::__construct();
         $this->load->model('Mdl_pedidos');
         $this->load->model('Mdl_provincias');
+        $this->load->model('Mdl_mail');
         $this->load->library('Carro', 0, 'myCarrito');
+        $this->load->library('email');
         $this->load->helper('Fechas');
     }
 
@@ -39,7 +41,6 @@ class Pedidos extends CI_Controller {
 
         $this->Mdl_pedidos->insertPedido($pedido);
 
-
         foreach ($this->myCarrito->get_content() as $items) {
             $linea_pedido = Array();
             $linea_pedido['idCamiseta'] = $items['id'];
@@ -52,6 +53,12 @@ class Pedidos extends CI_Controller {
             $this->Mdl_pedidos->insertLineaPedido($linea_pedido);
         }
 
+        $this->myCarrito->destroy(); //Vacíamos carrito
+
+        $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
+
+        $this->EnviaCorreo($datos);
+        
         redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
     }
 
@@ -71,17 +78,23 @@ class Pedidos extends CI_Controller {
 
         $cuerpo = $this->load->view('View_resumenPedido', Array('pedido' => $pedido, 'datosenvio' => $datosenvio, 'lineaspedidos' => $lineaspedidos), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Resumen del pedido', 'homeactive' => 'active'));
-
-        //$this->CreaPDF_Pedido();
     }
 
-    private function CreaPDF_Pedido() {
+    private function CreaPDF_Pedido($metodo = 'F') {
+        $this->load->library('PDF', 0, 'myPDF');
 
-        $pdf = new FPDF();
-        $pdf->AddPage();
+        $this->myPDF->AddPage();
+        $this->myPDF->AliasNbPages();
+        $this->myPDF->SetFont('Arial', 'B', 16);
+        $this->myPDF->Cell(utf8_decode('Probando'));
+        $this->myPDF->Cell(utf8_decode('Probando 2'));
+        $this->myPDF->Output($metodo, 'assets/pdfs_pedidos/pedido.pdf', true);
     }
 
     private function EnviaCorreo($datos) {
+        
+        $this->CreaPDF_Pedido($metodo = 'F');
+        
         // Utilizando sendmail
         $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'mail.iessansebastian.com';
@@ -95,12 +108,14 @@ class Pedidos extends CI_Controller {
         //$this->email->cc('another@another-example.com'); 
         //$this->email->bcc('them@their-example.com'); 
 
-        $this->email->subject('Restablece la contraseña en Camisetas de Fútbol');
+        $this->email->subject('El PDF con su pedido');
 
-        $mensaje = "Restablece la contraseña accediendo a la siguiente dirección: ";
-        $mensaje.= site_url() . "/RestablecerContrasenha/Restablece/" . $datos['id'] . "/" . $this->getTonken($datos['id'], $datos['dni'], $datos['nombre']);
+        $mensaje = "Aquí puede ver el documento PDF con su pedido";
+        
         $this->email->message($mensaje);
-
+        
+        $this->email->attach('pedido.pdf');
+        
         if (!$this->email->send())
             echo "<pre>\n\nError ennviado mail\n</pre>";
 
