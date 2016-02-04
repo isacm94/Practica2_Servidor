@@ -51,7 +51,7 @@
                                             <i class="fa fa-user"></i><?= $this->session->userdata('username'); ?>, Cerrar sesión</a>
                                         </li>
                                         <li>
-                                            <a href="<?= base_url().''?>">
+                                            <a href="<?= site_url()."/MisPedidos/ver/".$this->session->userdata('userid');?>">
                                             <i class="glyphicon glyphicon-list-alt"></i> Mis pedidos</a>
                                         </li>
                                     <li class="dropdown">

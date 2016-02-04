@@ -15,21 +15,25 @@ class EliminarUsuario extends CI_Controller {
     }
 
     public function index() {
-        if (SesionIniciadaCheck()) {
-            $cuerpo = $this->load->view('View_eliminarUsuario', '', true); //Generamos la vista
-            $this->load->view('View_plantilla', Array('titulo' => 'Eliminar Usuario', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
-        } else {
-            redirect('Error404', 'location', 301);
+
+        if (!SesionIniciadaCheck()) {
+            redirect("Error404", 'Location', 301);
+            return; //Sale de la función
         }
+
+        $cuerpo = $this->load->view('View_eliminarUsuario', '', true); //Generamos la vista
+        $this->load->view('View_plantilla', Array('titulo' => 'Eliminar Usuario', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
     }
 
     public function eliminar() {
-        if (SesionIniciadaCheck()) {
-            $this->Mdl_usuarios->setBajaUsuario($this->session->userdata('username')); //Damos de baja al usuario
-            redirect(site_url() . "Login/logout", 'Location', 301); //Cerramos su sesión
-        } else {
-            redirect('Error404', 'location', 301);
+
+        if (!SesionIniciadaCheck()) {
+            redirect("Error404", 'Location', 301);
+            return; //Sale de la función
         }
+
+        $this->Mdl_usuarios->setBajaUsuario($this->session->userdata('username')); //Damos de baja al usuario
+        redirect(site_url() . "Login/logout", 'Location', 301); //Cerramos su sesión
     }
 
 }

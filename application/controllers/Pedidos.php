@@ -72,7 +72,7 @@ class Pedidos extends CI_Controller {
         $cuerpo = $this->load->view('View_resumenPedido', Array('pedido' => $pedido, 'datosenvio' => $datosenvio, 'lineaspedidos' => $lineaspedidos), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Resumen del pedido', 'homeactive' => 'active'));
 
-        $this->CreaPDF_Pedido();
+        //$this->CreaPDF_Pedido();
     }
 
     private function CreaPDF_Pedido() {

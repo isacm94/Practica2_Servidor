@@ -14,25 +14,25 @@ class Login extends CI_Controller {
     }
 
     public function index() {
+        if (SesionIniciadaCheck()) {
+            redirect("Error404", 'Location', 301);
+            return; //Sale de la función
+        }
 
-        if (!SesionIniciadaCheck()) {//Sólo ir a login si no está sesión inicada, por si entra por url
-            if ($this->input->post('entrar')) {//Botón entrar pulsado
-                if ($this->Mdl_usuarios->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
-                    if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->input->post('username')))) {
-                        //la clave es correcta
-                        $this->Login($this->input->post('username'));
-                    } else {
-                        $this->MuestraErrorEnVista();
-                    }
+        if ($this->input->post('entrar')) {//Botón entrar pulsado
+            if ($this->Mdl_usuarios->getCount_NombreUsuario($this->input->post('username')) > 0) {//Existe Usuario
+                if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->input->post('username')))) {
+                    //la clave es correcta
+                    $this->Login($this->input->post('username'));
                 } else {
                     $this->MuestraErrorEnVista();
                 }
             } else {
-                $cuerpo = $this->load->view('View_login', '', true); //Generamos la vista
-                $this->load->view('View_plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
+                $this->MuestraErrorEnVista();
             }
         } else {
-            redirect('Error404', 'location', 301);
+            $cuerpo = $this->load->view('View_login', '', true); //Generamos la vista
+            $this->load->view('View_plantilla', Array('titulo' => 'Login', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
         }
     }
 

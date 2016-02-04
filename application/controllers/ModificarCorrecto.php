@@ -14,13 +14,14 @@ class ModificarCorrecto extends CI_Controller {
     }
 
     public function index() {
-        if (SesionIniciadaCheck()) {
-            $cuerpo = $this->load->view('View_modificarUserCorrecto', array(''), true);
-            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
-                'homeactive' => 'active'));
-        } else {
-            redirect('Error404', 'location', 301);
+        if (!SesionIniciadaCheck()) {
+            redirect("Error404", 'Location', 301);
+            return; //Sale de la función
         }
+
+        $cuerpo = $this->load->view('View_modificarUserCorrecto', array(''), true);
+        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
+            'homeactive' => 'active'));
     }
 
 }

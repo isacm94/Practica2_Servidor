@@ -19,18 +19,20 @@ class ModificarUsuario extends CI_Controller {
     }
 
     public function index() {
-        if (SesionIniciadaCheck()) {
-            $provincias = $this->Mdl_provincias->getProvincias();
-            $datos = $this->Mdl_usuarios->getDatosModificar($this->session->userdata('username'));
 
-            $select = CreaSelectMod($provincias, 'cod_provincia', $datos[0]['cod_provincia']);
-
-            $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
-
-            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
-        } else {
-            redirect('Error404', 'location', 301);
+        if (!SesionIniciadaCheck()) {
+            redirect("Error404", 'Location', 301);
+            return; //Sale de la función
         }
+
+        $provincias = $this->Mdl_provincias->getProvincias();
+        $datos = $this->Mdl_usuarios->getDatosModificar($this->session->userdata('username'));
+
+        $select = CreaSelectMod($provincias, 'cod_provincia', $datos[0]['cod_provincia']);
+
+        $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
+
+        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
     }
 
     public function Modificar() {

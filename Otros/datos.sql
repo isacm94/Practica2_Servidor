@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-01-2016 a las 13:31:55
+-- Tiempo de generación: 04-02-2016 a las 12:54:50
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -21,16 +21,11 @@ SET time_zone = "+00:00";
 --
 
 --
--- Truncar tablas antes de insertar `camiseta`
---
-
-TRUNCATE TABLE `camiseta`;
---
 -- Volcado de datos para la tabla `camiseta`
 --
 
 INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam`, `precio`, `descuento`, `imagen`, `iva`, `descripcion`, `anuncio`, `seleccionada`, `mostrar`, `fecha_inicio`, `fecha_fin`, `stock`) VALUES
-(1, 1, 'CAM_RM', 'Camiseta Real Madrid', '23.00', '0.00', 'cat_1/1.jpg', '21.00', 'Camiseta Real Madrid Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 5),
+(1, 1, 'CAM_RM', 'Camiseta Real Madrid CF', '23.00', '0.00', 'cat_1/1.jpg', '21.00', 'Camiseta Real Madrid Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 5),
 (2, 1, 'CAM_FCB', 'Camiseta FC Barcelona', '23.00', '0.00', 'cat_1/2.jpg', '21.00', 'Camiseta FC Barcelona Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 20),
 (3, 1, 'CAM_ATL', 'Camiseta Atlético de Madrid', '23.00', '10.00', 'cat_1/3.jpg', '21.00', 'Camiseta Atlético de Madrid Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 30),
 (4, 2, 'CAM_OPO', 'Camiseta Oporto', '18.00', '0.00', 'cat_2/4.jpg', '21.00', 'Camiseta Oporto Home 2015/2016', '', 1, 1, '2016-01-01', '2016-12-31', 20),
@@ -82,11 +77,6 @@ INSERT INTO `camiseta` (`idCamiseta`, `idCategoria`, `cod_camiseta`, `nombre_cam
 (50, 6, 'CAM_NAP', 'Camiseta SSC Napoli', '23.00', '5.00', 'cat_6/50.jpg', '21.00', 'Camiseta SSC Napoli Home 2015/2016', NULL, 1, 1, '2016-01-01', '2016-12-31', 16);
 
 --
--- Truncar tablas antes de insertar `categoria`
---
-
-TRUNCATE TABLE `categoria`;
---
 -- Volcado de datos para la tabla `categoria`
 --
 
@@ -100,20 +90,28 @@ INSERT INTO `categoria` (`idCategoria`, `cod_categoria`, `nombre_cat`, `descripc
 (7, 'CAT_SELECCIONES', 'Selecciones Nacionales', 'Selecciones Nacionales de Fútbol', NULL, 1);
 
 --
--- Truncar tablas antes de insertar `linea_pedido`
+-- Volcado de datos para la tabla `linea_pedido`
 --
 
-TRUNCATE TABLE `linea_pedido`;
+INSERT INTO `linea_pedido` (`id_LineaPedido`, `idPedido`, `idCamiseta`, `cantidad`, `precio`, `importe`, `iva`) VALUES
+(1, 1, 1, 3, '23.00', '69.00', '21.00'),
+(2, 1, 25, 1, '20.24', '20.24', '21.00'),
+(3, 1, 31, 2, '26.00', '52.00', '21.00'),
+(4, 2, 1, 3, '23.00', '69.00', '21.00'),
+(5, 2, 25, 1, '20.24', '20.24', '21.00'),
+(6, 2, 31, 3, '26.00', '78.00', '21.00'),
+(7, 2, 26, 1, '20.70', '20.70', '21.00'),
+(8, 2, 19, 1, '22.31', '22.31', '21.00'),
+(9, 2, 15, 1, '21.60', '21.60', '21.00');
+
 --
--- Truncar tablas antes de insertar `pedido`
+-- Volcado de datos para la tabla `pedido`
 --
 
-TRUNCATE TABLE `pedido`;
---
--- Truncar tablas antes de insertar `provincias`
---
+INSERT INTO `pedido` (`idPedido`, `idUsuario`, `importe`, `cantidad_total`, `estado`, `fecha_pedido`, `direccion`, `cp`, `cod_provincia`, `correo`) VALUES
+(1, 0, '141.24', 6, 'Pendiente', '2016-02-04', 'Calle Huelva, 36', 21453, '51', 'isacm94@gmail.com'),
+(2, 0, '231.85', 10, 'Pendiente', '2016-02-04', 'Calle Huelva, 36', 21453, '51', 'isacm94@gmail.com');
 
-TRUNCATE TABLE `provincias`;
 --
 -- Volcado de datos para la tabla `provincias`
 --
@@ -173,17 +171,12 @@ INSERT INTO `provincias` (`cod`, `nombre`, `comunidad_id`) VALUES
 ('52', 'Melilla', 19);
 
 --
--- Truncar tablas antes de insertar `usuario`
---
-
-TRUNCATE TABLE `usuario`;
---
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `cod_provincia`, `nombre_usu`, `clave`, `dni`, `correo`, `nombre_persona`, `apellidos_persona`, `direccion`, `cp`, `estado`) VALUES
-(0, '21', 'admin', '$2y$10$2aDcxX8hSbTCKbU0OBtsw.qrYeSdHos5mN.PGksasWeInhdTltqnS', '44248212f', 'isacm94@gmail.com', 'Isabel María', 'Calvo Mateos', 'Calle Placido,  17', 21720, 'A'),
-(1, '21', 'isacm94', '$2y$10$Bip6u01wFvH1w18ov273FuPD9n2Mfi/anqc38O5Rx54T6dLwb9neq', '44248212f', 'isacm94@gmail.com', 'Isabel', 'Calvo Mateos', 'Calle Cabreros, 36', 21720, 'A'),
+(0, '51', 'admin', '$2y$10$7lH0K8cSg8IEbPiTsabOaODC9oVJHaQ5KJd9WmTTb5fQ6JgIxuKby', '44248212f', 'isacm94@gmail.com', 'Admin', 'Admin Admin', 'Calle Huelva, 36', 21453, 'A'),
+(1, '21', 'isacm94', '$2y$10$9isiSYMKQrfYA.p7jZqbaej9Hs/VqQuLH/FdwNyPHGKYg2821PTEm', '44248212f', 'isacm94@gmail.com', 'Isabel María', 'Calvo Mateos', 'Calle Cabreros, 36', 21720, 'A'),
 (2, '06', 'adanwaky', '$2y$10$h//bUAInarvyiXuY/Ub0G.GOoSrRCbMi1TDsJnVzXRJ81cpTNzFe2', '44246522l', 'adanwaky@gmail.com', 'Adán', 'Candeas Mozo', 'Calle Huelva, 36', 21720, 'A');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

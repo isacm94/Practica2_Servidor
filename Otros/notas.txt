@@ -1,4 +1,4 @@
-1. Mostrar productos (1 pto)
+﻿1. Mostrar productos (1 pto)
     • Destacados en página inicio (0,5 ptos) ok
     • Lista de categorias (0,5 ptos) ok
 2. Carrito de la compra (1,5 ptos)
@@ -8,13 +8,13 @@
     • Registro (0,75 ptos) ok
     • Modificación de datos (0,5 ptos) ok
     • Baja (0,25 ptos) ok
-    • Restablecer contraseña utilizando el correo (0,5 ptos)
+    • Restablecer contraseña utilizando el correo (0,5 ptos) ok
 4. Proceso de venta (creación de pedido) (1,5)
-    • Mostrar resumen de la lista de productos que forman parte del pedido (0,5 ptos)
+    • Mostrar resumen de la lista de productos que forman parte del pedido (0,5 ptos) ok
     • Envío por correo del detalle con una presentación apropiada (0,5 ptos)
     • Envío por correo del fichero PDF con los detalles. (0,5 ptos)
 5. Pedidos (1,5 ptos)
-    • Mostrar pedidos realizados (0,5 ptos)
+    • Mostrar pedidos realizados (0,5 ptos) 
     • Anular pedido, sólo si aun no se ha enviado (0,5 ptos)
     • Generar albarán/factura de un pedido seleccionado en PDF (0,5 ptos)
 6. Valoración global de la aplicación completa (2 ptos).
