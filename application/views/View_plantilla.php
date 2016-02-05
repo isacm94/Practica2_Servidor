@@ -22,7 +22,8 @@
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/style.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/responsive.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/estilos.css">
-        <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/img/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/img/favicon.png">
+
     </head>
     <body>
 
@@ -33,11 +34,11 @@
                         <div class="user-menu">
                             <ul>
                                 <li><a href="<?= base_url() . 'index.php/Registro' ?>"><i class="fa fa-user"></i> Registro Usuario</a></li>
-                                
-                                 <?php if (!  SesionIniciadaCheck()): //Sólo mostrar si la sesión iniciada ?>
-                                <li><a href="<?= base_url() . 'index.php/Login' ?>"><i class="fa fa-user"></i> Login</a></li>
+
+                                <?php if (!SesionIniciadaCheck()): //Sólo mostrar si la sesión iniciada ?>
+                                    <li><a href="<?= base_url() . 'index.php/Login' ?>"><i class="fa fa-user"></i> Login</a></li>
                                 <?php endif; ?>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -45,20 +46,20 @@
                     <div class="col-md-4">
                         <div class="user-menu">
                             <ul>
-                                <?php  if (SesionIniciadaCheck()): //Sesión iniciada ?>
-                                        <li>
-                                            <a href="<?= base_url() . 'index.php/Login/Logout' ?>">
+                                <?php if (SesionIniciadaCheck()): //Sesión iniciada ?>
+                                    <li>
+                                        <a href="<?= base_url() . 'index.php/Login/Logout' ?>">
                                             <i class="fa fa-user"></i><?= $this->session->userdata('username'); ?>, Cerrar sesión</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= site_url()."/MisPedidos/ver/".$this->session->userdata('userid');?>">
+                                    </li>
+                                    <li>
+                                        <a href="<?= site_url() . "/MisPedidos/ver" ?>">
                                             <i class="glyphicon glyphicon-list-alt"></i> Mis pedidos</a>
-                                        </li>
+                                    </li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?=base_url().'index.php/ModificarUsuario'?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
-                                            <li><a href="<?=base_url().'index.php/EliminarUsuario'?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
+                                            <li><a href="<?= base_url() . 'index.php/ModificarUsuario' ?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
+                                            <li><a href="<?= base_url() . 'index.php/EliminarUsuario' ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
@@ -91,20 +92,32 @@
             </div>
         </div> 
 
-        <div class="mainmenu-area">
+        <!--BARRA-->
+        <div class="mainmenu-area" role="navigation">
             <div class="container">
-                <div class="row">                     
+                <div class="row">  
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="<?php if (isset($homeactive)) {
-                                    echo $homeactive;
-                                }
-                                ?>"><?= anchor('', 'Home') ?></li>
-                            <li class="<?php if (isset($categoriaactive)) {
-                                    echo $categoriaactive;
-                                }
-                                ?>"><?= anchor('Categorias/ver', 'Categoría') ?></li>                        
-                            <li class="<?php if (isset($carritoactive)) {
+                            <li class="<?php
+                            if (isset($homeactive)) {
+                                echo $homeactive;
+                            }
+                            ?>"><?= anchor('', 'Home') ?></li>
+                            <li class="<?php
+                            if (isset($categoriaactive)) {
+                                echo $categoriaactive;
+                            }
+                            ?>"><?= anchor('Categorias/ver', 'Categoría') ?></li>                        
+                            <li class="<?php
+                                if (isset($carritoactive)) {
                                     echo $carritoactive;
                                 }
                                 ?>"><?= anchor('Carrito', 'Carrito') ?></li>
@@ -119,7 +132,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="product-bit-title text-center">
-                            <h2><?php if (isset($titulo))
+                            <h2><?php
+                                if (isset($titulo))
                                     echo $titulo;
                                 ?></h2>
                         </div>
@@ -128,7 +142,8 @@
             </div>
         </div>
 
-<?php if (isset($cuerpo))
+<?php
+if (isset($cuerpo))
     echo $cuerpo;
 ?>
 
@@ -171,5 +186,7 @@
         <script src="<?= base_url() ?>assets/template/js/main.js"></script>
         <script src="<?= base_url() ?>assets/js/script.js"></script>
         <script src="<?= base_url() ?>assets/js/menudesplegable.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     </body>
 </html>

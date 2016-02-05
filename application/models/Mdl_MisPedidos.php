@@ -11,12 +11,28 @@ class Mdl_MisPedidos extends CI_Model {
     }
 
      
-    public function getPedido($iduser){
+    public function getPedidos($iduser){
         $query = $this->db->query("SELECT *, pr.nombre 'nom_provincia' "
                                     . "FROM pedido pe "
                                         . "INNER JOIN provincias pr on pr.cod = pe.cod_provincia "
                                         . "WHERE idUsuario = $iduser; ");
         
         return $query->result_array();
+    }
+    
+    public function getEstado($idpedido){
+        $query = $this->db->query("SELECT estado "
+                                    . "FROM pedido "
+                                        . "WHERE idPedido = $idpedido; ");
+        
+        return $query->row_array()['estado'];
+    }
+    
+    public function setAnulado($idPedido){
+        $data = array(
+            'estado' => 'Anulado'
+        );
+        $this->db->where('idPedido', $idPedido);
+        $this->db->update('pedido', $data);
     }
 }

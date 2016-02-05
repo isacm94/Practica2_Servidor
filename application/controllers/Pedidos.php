@@ -23,10 +23,7 @@ class Pedidos extends CI_Controller {
 
     public function RealizaPedido() {
         $pedido = Array();
-        echo '<pre>';
-        print_r($this->myCarrito->get_content());
-        echo '</pre>';
-
+        
         $datos = $this->Mdl_pedidos->getDatosParaPedido($this->session->userdata('userid'));
 
         $pedido['idPedido'] = $this->getIdPedido();
@@ -41,6 +38,7 @@ class Pedidos extends CI_Controller {
 
         $this->Mdl_pedidos->insertPedido($pedido);
 
+        $lineas_pedidos = Array();
         foreach ($this->myCarrito->get_content() as $items) {
             $linea_pedido = Array();
             $linea_pedido['idCamiseta'] = $items['id'];
@@ -51,15 +49,16 @@ class Pedidos extends CI_Controller {
             $linea_pedido['importe'] = $items['precio'] * $items['cantidad'];
 
             $this->Mdl_pedidos->insertLineaPedido($linea_pedido);
+            $lineas_pedidos[] = $linea_pedido;
         }
 
         $this->myCarrito->destroy(); //Vacíamos carrito
 
         $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
 
-        $this->EnviaCorreo($datos);
-        
-        redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
+        //$this->EnviaCorreo($datos);
+        $this->CreaPDF_Pedido($lineas_pedidos, 'I');
+        //redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
     }
 
     public function MuestraResumen($idPedido) {
@@ -80,20 +79,35 @@ class Pedidos extends CI_Controller {
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Resumen del pedido', 'homeactive' => 'active'));
     }
 
-    private function CreaPDF_Pedido($metodo = 'F') {
+    private function CreaPDF_Pedido($lineas_pedidos, $metodo = 'F') {
         $this->load->library('PDF', 0, 'myPDF');
 
         $this->myPDF->AddPage();
-        $this->myPDF->AliasNbPages();
+        $this->myPDF->AliasNbPages(); //nº de páginas
         $this->myPDF->SetFont('Arial', 'B', 16);
-        $this->myPDF->Cell(utf8_decode('Probando'));
-        $this->myPDF->Cell(utf8_decode('Probando 2'));
-        $this->myPDF->Output($metodo, 'assets/pdfs_pedidos/pedido.pdf', true);
+        
+        $header = array('DESCRIPCIÓN', 'PRECIO', 'IVA APLICADO', 'CANTIDAD', 'TOTAL');
+        
+//        echo '<pre>';
+//        print_r($header);
+//        echo '</pre>';
+        
+        
+        foreach ($lineas_pedidos as $linea) {
+            $data[] = $linea;
+        }
+        
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+        $this->myPDF->CreaTablaLineaPedidos($header, $data);
+        
+        $this->myPDF->Output();
     }
 
-    private function EnviaCorreo($datos) {
+    public function EnviaCorreo($datos) {
         
-        $this->CreaPDF_Pedido($metodo = 'F');
+        $this->CreaPDF_Pedido();
         
         // Utilizando sendmail
         $config['protocol'] = 'smtp';
@@ -104,17 +118,18 @@ class Pedidos extends CI_Controller {
         $this->email->initialize($config);
 
         $this->email->from('aula4@iessansebastian.com', 'Camisetas de Fútbol');
+        echo $datos['correo'];
         $this->email->to($datos['correo']);
         //$this->email->cc('another@another-example.com'); 
         //$this->email->bcc('them@their-example.com'); 
 
         $this->email->subject('El PDF con su pedido');
 
-        $mensaje = "Aquí puede ver el documento PDF con su pedido";
+        $mensaje = "Aquí puede ver el documento PDF de su pedido";
         
         $this->email->message($mensaje);
         
-        $this->email->attach('pedido.pdf');
+        //$this->email->attach('assets/pdfs_pedidos/pedido.pdf');
         
         if (!$this->email->send())
             echo "<pre>\n\nError ennviado mail\n</pre>";
