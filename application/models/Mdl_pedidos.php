@@ -49,7 +49,7 @@ class Mdl_pedidos extends CI_Model {
     }
     
     public function getDatosEnvio($id){
-        $query = $this->db->query("SELECT direccion, cp, estado, cod_provincia  "
+        $query = $this->db->query("SELECT direccion, cp, cod_provincia  "
                                     . "FROM pedido "
                                         . "WHERE idPedido = $id; ");
         
@@ -58,7 +58,7 @@ class Mdl_pedidos extends CI_Model {
     
     public function getLineasPedidos($id){
         //iva?
-        $query = $this->db->query("SELECT cam.imagen, cam.descripcion, cantidad, li.precio, importe, li.iva  "
+        $query = $this->db->query("SELECT cam.imagen, cam.descripcion, cam.nombre_cam, cantidad, li.precio, importe, li.iva  "
                                     . "FROM linea_pedido li "
                                         . "INNER JOIN camiseta cam on li.idCamiseta = cam.idCamiseta "
                                             . "WHERE li.idPedido = $id; ");

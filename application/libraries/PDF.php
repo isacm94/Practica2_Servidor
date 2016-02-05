@@ -74,30 +74,37 @@ class PDF extends FPDF {
     }
 
     // Tabla coloreada
-    function CreaTablaLineaPedidos($header, $data) {
-        // Colores, ancho de línea y fuente en negrita
-        $this->SetFillColor(255, 0, 0);
+    function CreaTablaLineaPedidos($data) {
+
+        //CABECERA
+        // Colores, ancho de línea y fuente en negrita        
+        $this->SetFillColor(26, 188, 156); //Verde agua
         $this->SetTextColor(255);
-        $this->SetDrawColor(128, 0, 0);
+        $this->SetDrawColor(255, 255, 255);
         $this->SetLineWidth(.3);
         $this->SetFont('', 'B');
-        // Cabecera
-        $w = array(40, 35, 45, 40, 45);
+
+        //Datos
+        $header = array('CAMISETA', 'PRECIO', 'IVA', 'CANTIDAD', 'TOTAL');
+        $w = array(83, 25, 22, 35, 25);
         for ($i = 0; $i < count($header); $i++)
-            $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
+            $this->Cell($w[$i], 7, utf8_decode($header[$i]), 1, 0, 'C', true);
         $this->Ln();
+
+        //CUERPO
         // Restauración de colores y fuentes
-        $this->SetFillColor(224, 235, 255);
+        $this->SetFillColor(223, 223, 223); //gris
         $this->SetTextColor(0);
-        $this->SetFont('');
+        $this->SetFont('', '', 10);
+
         // Datos
         $fill = false;
         foreach ($data as $row) {
-            $this->Cell($w[0], 6, $row['idCamiseta'], 'LR', 0, 'L', $fill);
-            $this->Cell($w[1], 6, $row['precio'], 'LR', 0, 'L', $fill);
-            $this->Cell($w[2], 6, $row['iva'], 'LR', 0, 'R', $fill);
-            $this->Cell($w[3], 6, $row['cantidad'], 'LR', 0, 'R', $fill);
-            $this->Cell($w[3], 6, $row['importe'], 'LR', 0, 'R', $fill);
+            $this->Cell($w[0], 6, utf8_decode($row['nombre_cam']), 'LR', 0, 'L', $fill);
+            $this->Cell($w[1], 6, utf8_decode($row['precio'] . " $"), 'LR', 0, 'L', $fill);
+            $this->Cell($w[2], 6, utf8_decode($row['iva']) . "%", 'LR', 0, 'L', $fill);
+            $this->Cell($w[3], 6, utf8_decode($row['cantidad']), 'LR', 0, 'L', $fill);
+            $this->Cell($w[4], 6, utf8_decode($row['importe'] . " $"), 'LR', 0, 'L', $fill);
             $this->Ln();
             $fill = !$fill;
         }
@@ -105,4 +112,83 @@ class PDF extends FPDF {
         $this->Cell(array_sum($w), 0, '', 'T');
     }
 
+    // Tabla coloreada
+    function CreaTablaDatosEnvio($data) {
+
+        //CABECERA
+        // Colores, ancho de línea y fuente en negrita        
+        $this->SetFillColor(26, 188, 156); //Verde agua
+        $this->SetTextColor(255);
+        $this->SetDrawColor(255, 255, 255);
+        $this->SetLineWidth(.3);
+        $this->SetFont('', 'B');
+
+        //Datos
+        $header = array('DIRECCIÓN', 'CP', 'PROVINCIA');
+        $w = array(30, 15, 25);
+
+        $this->Cell($w[0], 7, utf8_decode($header[0]), 1, 0, 'C', true);
+        $this->Cell($w[1], 7, utf8_decode($header[1]), 1, 0, 'C', true);
+        $this->Cell($w[2], 7, utf8_decode($header[2]), 1, 0, 'C', true);
+        $this->Ln();
+
+        //CUERPO
+        // Restauración de colores y fuentes
+        $this->SetFillColor(223, 223, 223); //gris
+        $this->SetTextColor(0);
+        $this->SetFont('', '', 10);
+
+        // Datos
+        $fill = false;
+        $fill = !$fill;
+        $this->Cell($w[0], 6, utf8_decode($data['direccion']), 'LR', 0, 'L', $fill);
+        $this->Cell($w[1], 6, utf8_decode($data['cp']), 'LR', 0, 'L', $fill);
+        $this->Cell($w[2], 6, utf8_decode($data['provincia']), 'LR', 0, 'L', $fill);
+        //$this->Ln();
+
+        // Línea de cierre
+        $this->Cell(array_sum($w), 0, '', 'T');
+    }
+    
+    function CreaTablaPedido($data) {
+
+        //CABECERA
+        // Colores, ancho de línea y fuente en negrita        
+        $this->SetFillColor(26, 188, 156); //Verde agua
+        $this->SetTextColor(255);
+        $this->SetDrawColor(255, 255, 255);
+        $this->SetLineWidth(.3);
+        $this->SetFont('', 'B');
+
+        //Datos
+        $header = array('IMPORTE', 'CANTIDAD', 'ESTADO', 'FECHA PEDIDO');
+        $w = array(25, 25, 25, 28);
+        
+        $this->SetX(90);
+        
+        $this->Cell($w[0], 7, utf8_decode($header[0]), 1, 0, 'C', true);
+        $this->Cell($w[1], 7, utf8_decode($header[1]), 1, 0, 'C', true);
+        $this->Cell($w[2], 7, utf8_decode($header[2]), 1, 0, 'C', true);
+        $this->Cell($w[3], 7, utf8_decode($header[3]), 1, 0, 'C', true);
+        $this->Ln();
+
+        //CUERPO
+        // Restauración de colores y fuentes
+        $this->SetFillColor(223, 223, 223); //gris
+        $this->SetTextColor(0);
+        $this->SetFont('', '', 10);
+
+        // Datos
+        $fill = false;
+        $fill = !$fill;
+        $this->SetX(90);
+        $this->Cell($w[0], 6, utf8_decode($data['importe']), 'LR', 0, 'L', $fill);
+        $this->Cell($w[1], 6, utf8_decode($data['cantidad_total']), 'LR', 0, 'L', $fill);
+        $this->Cell($w[2], 6, utf8_decode($data['estado']), 'LR', 0, 'L', $fill);
+        $this->Cell($w[3], 6, utf8_decode($data['fecha_pedido']), 'LR', 0, 'L', $fill);
+        $this->Ln();
+
+        // Línea de cierre
+        $this->Cell(array_sum($w), 0, '', 'T');
+    }
 }
