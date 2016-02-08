@@ -43,47 +43,8 @@ class PDF extends FPDF {
         return $data;
     }
 
-    function CreaTablaDatosEnvio($data) {
-
-        //CABECERA
-        // Colores, ancho de línea y fuente en negrita        
-        $this->SetFillColor(26, 188, 156); //Verde agua
-        $this->SetTextColor(255);
-        $this->SetDrawColor(255, 255, 255);
-        $this->SetLineWidth(.3);
-        $this->SetFont('', 'B');
-
-        //Datos
-        $header = array('DIRECCIÓN', 'CP', 'PROVINCIA');
-        $w = array(30, 15, 25);
-
-        $this->Cell($w[0], 7, utf8_decode($header[0]), 1, 0, 'C', true);
-        $this->Cell($w[1], 7, utf8_decode($header[1]), 1, 0, 'C', true);
-        $this->Cell($w[2], 7, utf8_decode($header[2]), 1, 0, 'C', true);
-        $this->Ln();
-
-        //CUERPO
-        // Restauración de colores y fuentes
-        $this->SetFillColor(223, 223, 223); //gris
-        $this->SetTextColor(0);
-        $this->SetFont('', '', 10);
-
-        // Datos
-        $fill = false;
-        $fill = !$fill;
-        $this->Cell($w[0], 6, utf8_decode($data['direccion']), 'LR', 0, 'L', $fill);
-        $this->Cell($w[1], 6, utf8_decode($data['cp']), 'LR', 0, 'L', $fill);
-        $this->Cell($w[2], 6, utf8_decode($data['provincia']), 'LR', 0, 'L', $fill);
-        $this->Ln(20);
-
-        // Línea de cierre
-        $this->Cell(array_sum($w), 0, '', 'T');
-
-        $this->Ln(); //Salto de linea
-    }
-
     function CreaTablaLineaPedidos($data) {
-
+        $this->Ln(10);
         //CABECERA tabla
         // Colores, ancho de línea y fuente en negrita        
         $this->SetFillColor(26, 188, 156); //Verde agua
@@ -114,6 +75,9 @@ class PDF extends FPDF {
             $this->Cell($w[3], 6, utf8_decode($row['cantidad']), 'LR', 0, 'L', $fill);
             $this->Cell($w[4], 6, utf8_decode($row['importe'] . " $"), 'LR', 0, 'L', $fill);
             $this->Ln();
+            if ($this->GetY()>27) {
+                $this->AddPage();
+            }
             $fill = !$fill;
         }
         // Línea de cierre

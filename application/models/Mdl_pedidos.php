@@ -26,7 +26,14 @@ class Mdl_pedidos extends CI_Model {
         
         return $query->row_array();
     }
-    
+    public function getDatosParaPDF($id){
+        $query = $this->db->query("SELECT nombre_persona, apellidos_persona, dni, direccion, cp, p.nombre 'provincia' "
+                                    . "FROM usuario u "
+                                        . "INNER JOIN provincias p on u.cod_provincia = p.cod "
+                                                . "WHERE idUsuario = $id; ");
+        
+        return $query->row_array();
+    }
     public function getCountPedidos(){
         return $this->db->count_all('pedido');
     }

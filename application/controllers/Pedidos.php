@@ -50,14 +50,13 @@ class Pedidos extends CI_Controller {
             $this->Mdl_pedidos->insertLineaPedido($linea_pedido);
             $lineas_pedidos[] = $linea_pedido;
         }
-
-        
+       
 
         $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
 
         $this->EnviaCorreo($datos, $pedido['idPedido']);
        
-        $this->myCarrito->destroy(); //Vacíamos carrito
+        //$this->myCarrito->destroy(); //Vacíamos carrito
         redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
     }
 
@@ -84,13 +83,15 @@ class Pedidos extends CI_Controller {
 
         $this->myPDF->AddPage();
         $this->myPDF->AliasNbPages(); //nº de páginas
-        $this->myPDF->SetFont('Arial', 'B', 12);
+        $this->myPDF->SetFont('Arial', '', 10);
         
-        //TABLA DATOS DE ENVÍO
-        $datosenvio = $this->Mdl_pedidos->getDatosEnvio($idPedido);
-        $datosenvio['provincia'] = $this->Mdl_provincias->getNombreProvincia($datosenvio['cod_provincia']);
-         
-        $this->myPDF->CreaTablaDatosEnvio($datosenvio);
+        //DATOS que ponemos al principio de la factura
+        $datos = $this->Mdl_pedidos->getDatosParaPDF($this->session->userdata('userid'));
+        
+        $this->myPDF->Cell(0,7, utf8_decode($datos['nombre_persona'].', '.$datos['apellidos_persona']), 0, 1);        
+        $this->myPDF->Cell(0,7, utf8_decode("DNI: ".$datos['dni']), 0, 1);        
+        $this->myPDF->Cell(0,7, utf8_decode($datos['direccion'].', '.$datos['cp']. ' ('.$datos['provincia'].')'), 0, 1);
+             
         
         //TABLA LÍNEA DE PEDIDOS
         $lineas_pedidos = $this->Mdl_pedidos->getLineasPedidos($idPedido);
