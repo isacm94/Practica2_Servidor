@@ -84,8 +84,13 @@ class Pedidos extends CI_Controller {
 
         $this->myPDF->AddPage();
         $this->myPDF->AliasNbPages(); //nº de páginas
-        $this->myPDF->SetFont('Arial', 'B', 16);
+        $this->myPDF->SetFont('Arial', 'B', 12);
         
+        //TABLA DATOS DE ENVÍO
+        $datosenvio = $this->Mdl_pedidos->getDatosEnvio($idPedido);
+        $datosenvio['provincia'] = $this->Mdl_provincias->getNombreProvincia($datosenvio['cod_provincia']);
+         
+        $this->myPDF->CreaTablaDatosEnvio($datosenvio);
         
         //TABLA LÍNEA DE PEDIDOS
         $lineas_pedidos = $this->Mdl_pedidos->getLineasPedidos($idPedido);
@@ -94,13 +99,7 @@ class Pedidos extends CI_Controller {
         }
         
         $this->myPDF->CreaTablaLineaPedidos($data);
-        $this->myPDF->Ln(10);//Salto de linea
         
-        //TABLA DATOS DE ENVÍO
-        $datosenvio = $this->Mdl_pedidos->getDatosEnvio($idPedido);
-        $datosenvio['provincia'] = $this->Mdl_provincias->getNombreProvincia($datosenvio['cod_provincia']);
-                
-        $this->myPDF->CreaTablaDatosEnvio($datosenvio);
         
         //TABLA PEDIDO
         $pedido = $this->Mdl_pedidos->getPedido($idPedido, $this->session->userdata('userid'));
