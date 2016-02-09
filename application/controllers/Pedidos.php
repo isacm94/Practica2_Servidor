@@ -56,7 +56,7 @@ class Pedidos extends CI_Controller {
 
         $this->EnviaCorreo($datos, $pedido['idPedido']);
        
-        //$this->myCarrito->destroy(); //Vacíamos carrito
+        $this->myCarrito->destroy(); //Vacíamos carrito
         redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
     }
 
@@ -91,8 +91,7 @@ class Pedidos extends CI_Controller {
         $this->myPDF->Cell(0,7, utf8_decode($datos['nombre_persona'].', '.$datos['apellidos_persona']), 0, 1);        
         $this->myPDF->Cell(0,7, utf8_decode("DNI: ".$datos['dni']), 0, 1);        
         $this->myPDF->Cell(0,7, utf8_decode($datos['direccion'].', '.$datos['cp']. ' ('.$datos['provincia'].')'), 0, 1);
-             
-        
+                     
         //TABLA LÍNEA DE PEDIDOS
         $lineas_pedidos = $this->Mdl_pedidos->getLineasPedidos($idPedido);
         foreach ($lineas_pedidos as $linea) {
@@ -100,8 +99,7 @@ class Pedidos extends CI_Controller {
         }
         
         $this->myPDF->CreaTablaLineaPedidos($data);
-        
-        
+                
         //TABLA PEDIDO
         $pedido = $this->Mdl_pedidos->getPedido($idPedido, $this->session->userdata('userid'));
         $this->myPDF->CreaTablaPedido($pedido);
@@ -142,6 +140,13 @@ class Pedidos extends CI_Controller {
         //echo $this->email->print_debugger();
     }
 
+    public function VerPDFPedido($idPedido){
+        $this->CreaPDF_Pedido($idPedido, 'I');
+    }
+    
+    public function DescargarPDFPedido($idPedido){
+        $this->CreaPDF_Pedido($idPedido, 'D');
+    }
     //Función que crea un id para un pedido, sumándole uno al nº total de pedidos
     private function getIdPedido() {
         return $this->Mdl_pedidos->getCountPedidos() + 1;

@@ -90,18 +90,21 @@ if ($this->myCarrito->articulos_total() > 0):
                                 </div>
                                 <div class="col-md-4">
 
-                                    <button type="submit" class="product-name" name="guardar">
+                                    <button type="submit" style="margin-left: 5px;" class="add_to_cart_button" name="guardar">
                                         <span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios&nbsp;&nbsp;&nbsp;
                                     </button>
+                                    <br><br>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4">
-                                        <a href="<?= base_url() . 'index.php/Pedidos/RealizaPedido' ?>" class="add_to_cart_button product-name">
+                                        <a href="<?= base_url() . 'index.php/Pedidos/RealizaPedido' ?>" style="padding: 11px 20px; width: 186px; height: 42px;" class="add_to_cart_button" >
                                             <span class="glyphicon glyphicon-ok"></span> FINALIZAR COMPRA
                                         </a>
+                                        
+                                        <br><br>
 
-                                        <a href="<?= base_url() . 'index.php/Carrito/eliminarcompra' ?>" class="add_to_cart_button product-name">
+                                        <a href="<?= base_url() . 'index.php/Carrito/eliminarcompra' ?>" style="padding: 11px 20px; width: 186px; height: 42px;" class="add_to_cart_button">
                                             <span class="glyphicon glyphicon-trash"></span> ELIMINAR COMPRA&nbsp;
                                         </a>
                                     </div>

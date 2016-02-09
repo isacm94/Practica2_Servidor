@@ -1,3 +1,11 @@
 ¿Cuando se finaliza la compra y se muestra el resumen, se vacía el carrito? SI
 ¿Si se anula un pedido, se elimina o se cambia de estado? cambia estado
 Estados: procesado, recibido y pendiente, anulado
+
+
+
+---------------
+
+¿Un usuario necesita estar logueado para iniciar la compra?
+páginar mis pedidos?
+archivos de configuracion

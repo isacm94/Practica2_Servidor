@@ -75,7 +75,7 @@ class PDF extends FPDF {
             $this->Cell($w[3], 6, utf8_decode($row['cantidad']), 'LR', 0, 'L', $fill);
             $this->Cell($w[4], 6, utf8_decode($row['importe'] . " $"), 'LR', 0, 'L', $fill);
             $this->Ln();
-            if ($this->GetY()>27) {
+            if ($this->GetY() > 264) {
                 $this->AddPage();
             }
             $fill = !$fill;
@@ -84,6 +84,10 @@ class PDF extends FPDF {
         $this->Cell(array_sum($w), 0, '', 'T');
 
         $this->Ln(10); //Salto de linea
+        
+        if ($this->GetY()>264) {
+                $this->AddPage();
+            }
     }
 
     function CreaTablaPedido($data) {

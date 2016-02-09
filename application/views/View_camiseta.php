@@ -29,11 +29,15 @@
                                     <?= MostrarDescuento($camiseta[0]['precio'], $camiseta[0]['descuento']) ?>
                                 </div>    
 
-                                <form action="" class="cart">
+                                <form action="<?=  site_url().'/Carrito/comprar/'.$camiseta[0]['idCamiseta']?>" method="POST" class="cart">
                                     <div class="quantity">
-                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                        <input type="number" class="input-text qty text"  value="1" name="cantidadCam" min="1" step="1">
                                     </div>
-                                   <?php echo anchor('Carrito/comprar/'.$camiseta[0]['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
+                                    
+                                    <button type="submit" class="add_to_cart_button" name="guardar" style="">
+                                        <i class="fa fa-shopping-cart"></i> Comprar
+                                    </button>
+                                   <?php //echo anchor('Carrito/comprar/'.$camiseta[0]['idCamiseta'], '<i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Comprar', 'class  = "add_to_cart_button"') ?>
                                 </form>   
 
 

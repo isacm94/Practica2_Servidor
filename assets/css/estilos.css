@@ -20,9 +20,9 @@
 .iconoerror{
     margin-left: 270px;
     margin-top: -25px;
-    float: rigth;
+    padding-top: 3px;
     width: 25px; 
-    heigth: 25px;
+    height:  25px;
     background-color: red; 
     color: white;
     border-radius: 5px;

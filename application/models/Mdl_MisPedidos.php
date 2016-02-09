@@ -20,6 +20,13 @@ class Mdl_MisPedidos extends CI_Model {
         return $query->result_array();
     }
     
+    public function getCountPedidos($iduser){
+        $query = $this->db->query("SELECT count(*)cont "
+                                    . "FROM pedido "
+                                        . "WHERE idUsuario = $iduser; ");
+        
+        return $query->row_array();
+    }
     public function getEstado($idpedido){
         $query = $this->db->query("SELECT estado "
                                     . "FROM pedido "

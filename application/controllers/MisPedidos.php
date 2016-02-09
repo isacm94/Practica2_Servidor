@@ -20,45 +20,48 @@ class MisPedidos extends CI_Controller {
     }
 
     public function ver() {
-        
+
         $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
+        $numPedidos = $this->Mdl_MisPedidos->getCountPedidos($this->session->userdata('userid'));
         
-        if(! $pedidos){
+        if ($numPedidos['cont'] == 0) {
+            $cuerpo = $this->load->view('View_NoExistenPedidos', Array(), true);
+            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
+        
+            return;
+        } else if (!$pedidos) {
             redirect("Error404", "Location", 301);
             return;
         }
-        
+
         $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
-    
+
     public function AnularPedido($idPedido) {
         $msg_error = '';
         $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
+
         $estado = $this->Mdl_MisPedidos->getEstado($idPedido);
-        
-        if(! $pedidos){
+
+        if (!$pedidos) {
             redirect('Error404', 'Location', 301);
             return;
-        }           
-       
-        if($estado == 'Pendiente'){
+        }
+
+        if ($estado == 'Pendiente') {
             $this->Mdl_MisPedidos->setAnulado($idPedido);
-        }
-        else if($estado == 'Anulado'){
+        } else if ($estado == 'Anulado') {
             $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya está anulado</div>';
-        }
-        else if($estado == 'Procesado'){
+        } else if ($estado == 'Procesado') {
             $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya está procesado, no se puede anular</div>';
-        }
-        else if($estado == 'Recibido'){
+        } else if ($estado == 'Recibido') {
             $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya ha sido recibido, no se puede anular</div>';
-        }  
-        else{            
+        } else {
             redirect('Error404', 'Location', 301);
         }
-        
-        $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos, 'msg_error'=>$msg_error), true);
+
+        $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos, 'msg_error' => $msg_error), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
 

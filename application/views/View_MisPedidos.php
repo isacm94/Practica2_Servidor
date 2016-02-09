@@ -66,9 +66,9 @@
                                 </td>
 
                                 <td class="product-subtotal">
-                                    <a title="Descargar PDF" href="<?= site_url() . "/Pedidos/MuestraResumen/" . $pedido['idPedido'] ?>"><span class="glyphicon glyphicon-download-alt"></span></a>
+                                    <a title="Descargar PDF" href="<?= site_url() . "/Pedidos/DescargarPDFPedido/" . $pedido['idPedido'] ?>"><span class="glyphicon glyphicon-download-alt"></span></a>
                                     /
-                                    <a title="Ver PDF" href="<?= site_url() . "/Pedidos/MuestraResumen/" . $pedido['idPedido'] ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                    <a title="Ver PDF" href="<?= site_url() . "/Pedidos/VerPDFPedido/" . $pedido['idPedido'] ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 </td>
 
                                 <td class="product-subtotal">
