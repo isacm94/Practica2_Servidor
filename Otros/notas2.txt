@@ -8,4 +8,8 @@ Estados: procesado, recibido y pendiente, anulado
 
 ¿Un usuario necesita estar logueado para iniciar la compra?
 páginar mis pedidos?
+
+--------------------
 archivos de configuracion
+
+¿Donde se pone en la pagina lo de xml y excel?

@@ -18,7 +18,7 @@ class Carrito extends CI_Controller {
 
     public function index() {
 
-        if (SesionIniciadaCheck()) {
+        //if (SesionIniciadaCheck()) {
 
             $msg_error = "";
             $data = array();
@@ -64,14 +64,14 @@ class Carrito extends CI_Controller {
             }
             $cuerpo = $this->load->view('View_carrito', Array('msg_error' => $msg_error), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Carrito', 'carritoactive' => 'active'));
-        } else {
-            redirect('SesionNoIniciada', 'Location', 301);
-        }
+//        } else {
+//            redirect('SesionNoIniciada', 'Location', 301);
+//        }
     }
 
     public function eliminar($id) {
 
-        if (SesionIniciadaCheck()) {
+        //if (SesionIniciadaCheck()) {
             foreach ($this->myCarrito->get_content() as $items) {
 
                 if ($items['id'] == $id) {
@@ -80,13 +80,13 @@ class Carrito extends CI_Controller {
             }
 
             redirect('Carrito', 'location', 301);
-        } else {
-            redirect('SesionNoIniciada', 'Location', 301);
-        }
+        //} else {
+            //redirect('SesionNoIniciada', 'Location', 301);
+        //}
     }
 
     public function comprar($id) {
-        if (SesionIniciadaCheck()) {
+        //if (SesionIniciadaCheck()) {
             $camiseta = $this->Mdl_carrito->getDataCamiseta($id);
             $stock = $this->Mdl_carrito->getStock($id)[0]['stock']; //Guardamos su stock
 
@@ -131,20 +131,20 @@ class Carrito extends CI_Controller {
                 $cuerpo = $this->load->view('View_carrito', Array('msg_error' => $msg_error), true);
                 $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Carrito', 'carritoactive' => 'active'));
             }
-        } else {
-            redirect('SesionNoIniciada', 'Location', 301);
-        }
+//        } else {
+//            redirect('SesionNoIniciada', 'Location', 301);
+//        }
     }
 
     //Elimina todo el carrito
     public function eliminarcompra() {
-        if (SesionIniciadaCheck()) {
+        //if (SesionIniciadaCheck()) {
             $this->myCarrito->destroy();
 
             redirect('', 'location', 301); //Vuelve a la página principal
-        } else {
-            redirect('SesionNoIniciada', 'Location', 301);
-        }
+        //} else {
+            //redirect('SesionNoIniciada', 'Location', 301);
+        //}
     }
 
     public function BorrarMensajesError() {

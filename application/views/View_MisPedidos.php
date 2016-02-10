@@ -92,6 +92,20 @@
                 ?>
             </div>
         </div>
+        
+        <!-- PAGINACIÓN -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-pagination text-center">
+                    <nav>                              
+                        <!-- PAGINATION CODEIGNITER -->
+                        <?= $this->pagination->create_links(); ?>
+
+                    </nav>                        
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 

@@ -21,7 +21,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <i class="glyphicon glyphicon-user"></i>
+                                                    <i class="fa fa-user"></i>
                                                 </span> 
                                                 <input class="input-text btn-block" placeholder="Nombre de usuario" name="username" type="text" autofocus>
                                             </div>                                            

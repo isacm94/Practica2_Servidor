@@ -15,9 +15,10 @@
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/owl.carousel.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/style.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/responsive.css">
@@ -42,8 +43,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
                         <div class="user-menu">
                             <ul>
                                 <?php if (SesionIniciadaCheck()): //Sesión iniciada ?>
@@ -60,6 +61,14 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= base_url() . 'index.php/ModificarUsuario' ?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
                                             <li><a href="<?= base_url() . 'index.php/EliminarUsuario' ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="XML"><span>XML</span> <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?= base_url() . 'index.php/XML/exportar' ?>"><span class="glyphicon glyphicon-save-file"></span> Exportar</a></li>
+                                            <li><a href="<?= base_url() . 'index.php/XML/importar' ?>"><span class="glyphicon glyphicon-open-file"></span> Importar</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
@@ -117,10 +126,10 @@
                             }
                             ?>"><?= anchor('Categorias/ver', 'Categoría') ?></li>                        
                             <li class="<?php
-                                if (isset($carritoactive)) {
-                                    echo $carritoactive;
-                                }
-                                ?>"><?= anchor('Carrito', 'Carrito') ?></li>
+                            if (isset($carritoactive)) {
+                                echo $carritoactive;
+                            }
+                            ?>"><?= anchor('Carrito', 'Carrito') ?></li>
                         </ul>
                     </div>  
                 </div>
@@ -142,10 +151,10 @@
             </div>
         </div>
 
-<?php
-if (isset($cuerpo))
-    echo $cuerpo;
-?>
+        <?php
+        if (isset($cuerpo))
+            echo $cuerpo;
+        ?>
 
         <!-- PRE PIE -->
         <div class="footer-top-area">
@@ -179,7 +188,7 @@ if (isset($cuerpo))
         </div>
 
         <script src="https://code.jquery.com/jquery.min.js"></script>    
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>    
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
         <script src="<?= base_url() ?>assets/template/js/owl.carousel.min.js"></script>
         <script src="<?= base_url() ?>assets/template/js/jquery.sticky.js"></script>
         <script src="<?= base_url() ?>assets/template/js/jquery.easing.1.3.min.js"></script>
@@ -188,5 +197,6 @@ if (isset($cuerpo))
         <script src="<?= base_url() ?>assets/js/menudesplegable.js"></script>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>

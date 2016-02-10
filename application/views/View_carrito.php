@@ -31,7 +31,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                         <?php foreach ($this->myCarrito->get_content() as $items): ?>
                                             <tr class="cart_item">
                                                 <td class="product-remove">
-                                                    <?= anchor('Carrito/eliminar/' . $items['id'], '<span class="glyphicon glyphicon-remove"></span>', 'title = "Eliminar esta camiseta"') ?>
+                                                    <?= anchor('Carrito/eliminar/' . $items['id'], '<span class="glyphicon glyphicon-remove" style="color: red;"></span>', 'title = "Eliminar esta camiseta"') ?>
                                                 </td>
 
                                                 <td class="product-thumbnail">
