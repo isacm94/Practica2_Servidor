@@ -12,50 +12,41 @@ class XML extends CI_Controller {
         $this->load->library('Carro', 0, 'myCarrito');
         $this->load->model('Mdl_xml');
     }
-
-    public function index() {}
-
     public function exportar() {
-        Header('Content-type: text/xml');
-        Header('Content-type: octec/stream');
-        Header('Content-disposition: filename="camisetasycategorias.xml"');
-        $this->GeneraXMLCamisetas();
-        $this->GeneraXMLCategorias();
-    }
-
-    public function GeneraXMLCamisetas() {
-        //Generación XML de camisetas
-        $camisetas = $this->Mdl_xml->getCamisetas();
-
-        $xmlcamiseta = new SimpleXMLElement('<camisetas/>');
-
-        foreach ($camisetas as $camiseta) {
-            $cam = $xmlcamiseta->addChild('camiseta');
-            foreach ($camiseta as $key => $value) {
-                $cam->addChild($key, $value);
-            }
-        }
-
-        
-        print($xmlcamiseta->asXML());
-    }
-
-    public function GeneraXMLCategorias() {
 
         $categorias = $this->Mdl_xml->getCategorias();
-
-        $xmlcategoria = new SimpleXMLElement('<categorias/>');
+        
+        $xml = new SimpleXMLElement('<categorias/>');//Crea el nodo principal <categorias>
 
         foreach ($categorias as $categoria) {
-            $cat = $xmlcategoria->addChild('categoria');
+            $xml_cat = $xml->addChild('categoria'); //Crea etiqueta <categoria> dentro de <categorias>
             foreach ($categoria as $key => $value) {
-                $cat->addChild($key, $value);
+
+                if ($key != 'idCategoria') {
+                    $xml_cat->addChild($key, utf8_encode($value)); //Añade los datos de la categoria a <categoria>
+                }
             }
+            $this->XMLAddCamisetas($xml_cat, $categoria['idCategoria']);//Añade a <categoria> sus <camisetas>
         }
 
-        //Header('Content-type: text/xml');
-        //Header('Content-type: octec/stream');
-        print($xmlcategoria->asXML());
+        Header('Content-type: text/xml; charset=utf-8');
+        Header('Content-type: octec/stream');
+        Header('Content-disposition: filename="camisetasycategorias.xml"');
+        print($xml->asXML());
     }
+
+    protected function XMLAddCamisetas($xml_cat, $idCat) {
+        $lista_camisetas = $this->Mdl_xml->getCamisetas($idCat);
+        
+        $xml_camisetas = $xml_cat->addChild('camisetas'); //Crea etiqueta <camisetas> dentro de <categoria>
+        
+        foreach ($lista_camisetas as $camiseta) {
+            $xml_camiseta = $xml_camisetas->addChild('camiseta'); //Crea etiqueta <camiseta> dentro de <camisetas>
+
+            foreach ($camiseta as $idx => $valor) {
+                $xml_camiseta->addChild($idx, utf8_encode($valor)); //Añade a la etiqueta <camiseta>
+            }           
+        }
+    }   
 
 }

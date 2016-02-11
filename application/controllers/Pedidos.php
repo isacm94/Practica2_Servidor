@@ -122,11 +122,23 @@ class Pedidos extends CI_Controller {
         $config['smtp_host'] = 'mail.iessansebastian.com';
         $config['smtp_user'] = 'aula4@iessansebastian.com';
         $config['smtp_pass'] = 'daw2alumno';
+        
+        
+//        $config['protocol'] = 'smtp';
+//        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+//        $config['smtp_port'] = 465;
+//        $config['smtp_user'] = 'camisetasdefutbol.2daw@gmail.com';
+//        $config['smtp_pass'] = 'camisetasdefutbol';
+//        $config['smtp_timeout'] = '7';
+//        $config['charset'] = 'utf-8';
+//        $config['newline'] = "\r\n";
+//        $config['mailtype'] = 'text'; // or html
+//        $config['validation'] = TRUE; // bool whether to validate email or not
 
         $this->email->initialize($config);
 
         $this->email->from('aula4@iessansebastian.com', 'Camisetas de Fútbol');
-        echo $datos['correo'];
+        //echo $datos['correo'];
         $this->email->to($datos['correo']);
         //$this->email->cc('another@another-example.com'); 
         //$this->email->bcc('them@their-example.com'); 
