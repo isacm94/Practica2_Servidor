@@ -13,15 +13,14 @@ class XML extends CI_Controller {
         $this->load->model('Mdl_xml');
     }
 
-    public function index() {
-        
-    }
+    public function index() {}
 
     public function exportar() {
+        Header('Content-type: text/xml');
+        Header('Content-type: octec/stream');
+        Header('Content-disposition: filename="camisetasycategorias.xml"');
         $this->GeneraXMLCamisetas();
         $this->GeneraXMLCategorias();
-        //Header('Content-type: text/xml');
-//        Header('Content-type: octec/stream');
     }
 
     public function GeneraXMLCamisetas() {
@@ -37,10 +36,8 @@ class XML extends CI_Controller {
             }
         }
 
-        Header('Content-type: text/xml');
-        Header('Content-type: octec/stream');
-
-        //print($xmlcamiseta->asXML());
+        
+        print($xmlcamiseta->asXML());
     }
 
     public function GeneraXMLCategorias() {
@@ -56,9 +53,9 @@ class XML extends CI_Controller {
             }
         }
 
-        Header('Content-type: text/xml');
-        Header('Content-type: octec/stream');
-        //print($xmlcategoria->asXML());
+        //Header('Content-type: text/xml');
+        //Header('Content-type: octec/stream');
+        print($xmlcategoria->asXML());
     }
 
 }
