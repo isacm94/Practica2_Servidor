@@ -56,29 +56,40 @@ class XML extends CI_Controller {
     }
 
     public function ProcesaArchivo() {
-        echo '<pre>';
-        print_r($_FILES);
-        echo '</pre>';
+//        echo '<pre>';
+//        print_r($_FILES);
+//        echo '</pre>';
 
         $archivo = $_FILES['archivo'];
-
-//        echo "<p>Fichero:</p><pre>";
-//        echo htmlentities(file_get_contents($archivo['tmp_name']));
-//        echo "</pre><p>Fin</p>";
-        //exit;
-
-        //00$xml = simplexml_load_string($archivo['tmp_name']);
 
         if (file_exists($archivo['tmp_name'])) {
             $xml = simplexml_load_file($archivo['tmp_name']);
 
+            echo '<pre>';
             print_r($xml);
+            echo '</pre>';
+            
+            $datos = Array();
+           
+            //echo $xml->categoria[0]->descripcion;
+            foreach ($xml as $categoria){
+                
+                $datos['cod_categoria'] = $categoria->cod_categoria;
+                $datos['nombre_cat'] = $categoria->nombre_cat;
+                $datos['descripcion'] = $categoria->descripcion;
+                $datos['mostrar'] = $categoria->mostrar;
+                //$datos[]['descripcion'] = $categoria->descripcion;
+                
+            }
+            
+            echo '<pre>';
+            print_r($datos);
+            echo '</pre>';
         } else {
-            exit('Error abriendo el archivo');
+            exit('Error abriendo el archivo XML');
         }
 
-        foreach ($xml->categorias as $categoria)
-            echo $categoria->texto . ' ';
+        
     }
 
 }

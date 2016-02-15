@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        
+
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/owl.carousel.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/style.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/responsive.css">
@@ -57,20 +57,14 @@
                                             <i class="glyphicon glyphicon-list-alt"></i> Mis pedidos</a>
                                     </li>
                                     <li class="dropdown">
+                                        <div class="footer-about-us">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= base_url() . 'index.php/ModificarUsuario' ?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
                                             <li><a href="<?= base_url() . 'index.php/EliminarUsuario' ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
                                         </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="XML"><span>XML</span> <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?= base_url() . 'index.php/XML/exportar' ?>"><span class="glyphicon glyphicon-save-file"></span> Exportar</a></li>
-                                            <li><a href="<?= base_url() . 'index.php/XML/importar' ?>"><span class="glyphicon glyphicon-open-file"></span> Importar</a></li>
-                                        </ul>
-                                    </li>
+                                        </div>
+                                    </li>                                    
                                 <?php endif; ?>
                             </ul>
                         </div>
@@ -168,7 +162,21 @@
                             <p>isacm94@gmail.com</p>
                         </div>
                     </div>
-
+                    <div class="col-md-3 col-sm-6"></div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-about-us">
+                            <h2>Otras opciones</h2>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="XML"><span>XML</span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?= base_url() . 'index.php/XML/exportar' ?>"><span class="glyphicon glyphicon-save-file"></span> Exportar</a></li>
+                                    <li><a href="<?= base_url() . 'index.php/XML/importar' ?>"><span class="glyphicon glyphicon-open-file"></span> Importar</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li><a href="<?=  site_url().'/PruebasUnitarias'?>">Pruebas Unitarias del Carrito</a></li>
+                        </div>
+                    </div>
 
                 </div>
             </div>
