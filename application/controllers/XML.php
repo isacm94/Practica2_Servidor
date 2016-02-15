@@ -65,31 +65,46 @@ class XML extends CI_Controller {
         if (file_exists($archivo['tmp_name'])) {
             $xml = simplexml_load_file($archivo['tmp_name']);
 
-            echo '<pre>';
-            print_r($xml);
-            echo '</pre>';
-            
-            $datos = Array();
-           
-            //echo $xml->categoria[0]->descripcion;
-            foreach ($xml as $categoria){
-                
-                $datos['cod_categoria'] = $categoria->cod_categoria;
-                $datos['nombre_cat'] = $categoria->nombre_cat;
-                $datos['descripcion'] = $categoria->descripcion;
-                $datos['mostrar'] = $categoria->mostrar;
-                //$datos[]['descripcion'] = $categoria->descripcion;
-                
-            }
-            
-            echo '<pre>';
-            print_r($datos);
-            echo '</pre>';
+            $this->InsertFromXML($xml);
+                       
         } else {
             exit('Error abriendo el archivo XML');
         }
+    }
 
-        
+    //Función que crea un array con los datos que lee desde el xml para insertarlos
+    function InsertFromXML($xml) {
+
+        foreach ($xml as $categoria) {
+                        
+            $cat['cod_categoria'] = (string) $categoria->cod_categoria;
+            $cat['nombre_cat'] = (string) $categoria->nombre_cat;
+            $cat['descripcion'] = (string) $categoria->descripcion;
+            $cat['mostrar'] = (string) $categoria->mostrar;
+            
+            // Inserta categoria
+            $categoria_id = $this->Mdl_xml->addCategoria($cat);
+
+            foreach ($categoria->camisetas->camiseta as $camiseta) {
+
+                $cam['cod_camiseta'] = (string) $camiseta->cod_camiseta;
+                $cam['nombre_cam'] = (string) $camiseta->nombre_cam;
+                $cam['precio'] = (string) $camiseta->precio;
+                $cam['imagen'] = (string) $camiseta->imagen;
+                $cam['iva'] = (string) $camiseta->iva;
+                $cam['descripcion'] = (string) $camiseta->descripcion;
+                $cam['seleccionada'] = (string) $camiseta->seleccionada;
+                $cam['mostrar'] = (string) $camiseta->mostrar;
+                $cam['fecha_inicio'] = (string) $camiseta->fecha_inicio;
+                $cam['fecha_fin'] = (string) $camiseta->fecha_fin;
+                $cam['stock'] = (string) $camiseta->stock;
+
+                $cam['idCategoria'] = $categoria_id;
+                // Inserta camiseta
+                $this->Mdl_xml->AddCamiseta($cam);
+                
+            }
+        }
     }
 
 }

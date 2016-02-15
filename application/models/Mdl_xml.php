@@ -7,6 +7,7 @@ class Mdl_xml extends CI_Model {
 
     public function __construct() {
         $this->load->database();
+        //$this->load->helper('db');
     }
     
     public function getCamisetas($idCat){
@@ -23,5 +24,17 @@ class Mdl_xml extends CI_Model {
                                     . "FROM categoria ");
         
         return $query->result_array();
+    }
+    
+    public function addCategoria($data) {
+
+        $this->db->insert('categoria', $data);
+        
+        return $this->db->insert_id();
+    }
+    
+    public function addCamiseta($data) {
+
+        $this->db->insert('camiseta', $data);
     }
 }
