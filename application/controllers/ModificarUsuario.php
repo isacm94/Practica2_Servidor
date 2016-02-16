@@ -28,9 +28,9 @@ class ModificarUsuario extends CI_Controller {
         $provincias = $this->Mdl_provincias->getProvincias();
         $datos = $this->Mdl_usuarios->getDatosModificar($this->session->userdata('username'));
 
-        $select = CreaSelectMod($provincias, 'cod_provincia', $datos[0]['cod_provincia']);
+        $select = CreaSelectMod($provincias, 'cod_provincia', $datos['cod_provincia']);
 
-        $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
+        $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos), true);
 
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
     }
@@ -52,7 +52,7 @@ class ModificarUsuario extends CI_Controller {
             $this->setReglasValidacion();
 
             if ($this->form_validation->run() == FALSE) {//Validación de datos incorrecta
-                $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos[0]), true);
+                $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'datos' => $datos), true);
                 $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                     'homeactive' => 'active'));
 
@@ -63,7 +63,7 @@ class ModificarUsuario extends CI_Controller {
                 if (!claves_check($this->input->post('clave_nueva'), $this->input->post('rep_clave_nueva'))) {
 
                     $errorclave = '<div class="alert alert-danger msgerror"><b>¡Error! </b> Las contraseñas no son iguales</div>';
-                    $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos[0]), true);
+                    $cuerpo = $this->load->view('View_modificarUsuario', array('select' => $select, 'errorclave' => $errorclave, 'datos' => $datos), true);
                     $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario',
                         'homeactive' => 'active'));
 

@@ -29,7 +29,8 @@ class XML extends CI_Controller {
             }
             $this->XMLAddCamisetas($xml_cat, $categoria['idCategoria']); //Añade a <categoria> sus <camisetas>
         }
-
+        
+        header('Content-Description: File Transfer');
         Header('Content-type: text/xml; charset=utf-8');
         Header('Content-type: octec/stream');
         Header('Content-disposition: filename="camisetasycategorias.xml"');
@@ -83,7 +84,7 @@ class XML extends CI_Controller {
             $cat['mostrar'] = (string) $categoria->mostrar;
 
             // Inserta categoria
-            $categoria_id = $this->Mdl_xml->addCategoria($cat);
+            $categoria_id = $this->Mdl_xml->addCategoria($cat);//Guardamos su id para poder insertar las camisetas en esa categoría
 
             foreach ($categoria->camisetas->camiseta as $camiseta) {
 

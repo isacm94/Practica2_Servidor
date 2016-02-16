@@ -175,6 +175,9 @@
                             </li>
                             
                             <li><a href="<?=  site_url().'/PruebasUnitarias'?>">Pruebas Unitarias del Carrito</a></li>
+                            
+                            <li><a href="<?= base_url() . 'index.php/Excel' ?>">
+                                    <span style="color: white;" class="glyphicon glyphicon-open-file"></span> Importar en Excel</a></li>
                         </div>
                     </div>
 

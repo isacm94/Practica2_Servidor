@@ -16,8 +16,7 @@ class MisPedidos extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index() {
-        
+    public function index() {     
     }
 
     public function ver($desde = 0) {

@@ -49,7 +49,7 @@ class Mdl_usuarios extends CI_Model {
                 . "WHERE nombre_usu = '$nombre_usu'");
                     
 
-        return $query->result_array();
+        return $query->row_array();
     }
     
     public function getCount_NombreUsuarioModificar($nombre_usu, $idUsuario) {
