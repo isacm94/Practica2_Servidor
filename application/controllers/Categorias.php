@@ -34,7 +34,7 @@ class Categorias extends CI_Controller {
         //Cargamos vista de las camisetas de la categoría seleccionada
         $htmlUnaCategoria = $this->load->view('View_unaCategoria', Array('unaCategoria' =>  $unaCategoria, 'camisetas' => $camisetas), true);
         
-        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria[0]['nombre_cat'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
+        $cuerpo = $this->load->view('View_categorias', Array('categoriaactive' => 'active', 'titulo' => $unaCategoria['descripcion'], 'categorias' => $categorias, 'htmlUnaCategoria' => $htmlUnaCategoria ), true);
         
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo));
         

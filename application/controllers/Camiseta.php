@@ -25,12 +25,12 @@ class Camiseta extends CI_Controller {
 
             $camiseta = $this->Mdl_camiseta->getCamiseta($idCamiseta); //Conseguimos la camiseta a mostrar
                         
-            $categoria = $this->Mdl_camiseta->getInfoCategoriaFromCamiseta($camiseta[0]['idCategoria']); //Conseguimos la categoría
+            $categoria = $this->Mdl_camiseta->getInfoCategoriaFromCamiseta($camiseta['idCategoria']); //Conseguimos la categoría
 
-            $camRelacionadas = $this->Mdl_camiseta->getCamisetasRelacionadasFromCategoria($camiseta[0]['idCategoria'], $camiseta[0]['idCamiseta']); //Camisetas relacionadas
+            $camRelacionadas = $this->Mdl_camiseta->getCamisetasRelacionadasFromCategoria($camiseta['idCategoria'], $camiseta['idCamiseta']); //Camisetas relacionadas
 
             $cuerpo = $this->load->view('View_camiseta', Array('camiseta' => $camiseta, 'categoria' => $categoria,
-                'titulo' => $camiseta[0]['descripcion'], 'camRelacionadas' => $camRelacionadas), true);
+                'titulo' => $camiseta['descripcion'], 'camRelacionadas' => $camRelacionadas), true);
 
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active'));
         } else {

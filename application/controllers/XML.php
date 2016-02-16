@@ -52,21 +52,21 @@ class XML extends CI_Controller {
 
     public function importar() {
         $cuerpo = $this->load->view('View_importarXML', Array('' => ''), true);
-        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Importar XML'));
+        $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Importación en XML'));
     }
 
     public function ProcesaArchivo() {
-//        echo '<pre>';
-//        print_r($_FILES);
-//        echo '</pre>';
 
         $archivo = $_FILES['archivo'];
 
         if (file_exists($archivo['tmp_name'])) {
-            $xml = simplexml_load_file($archivo['tmp_name']);
+            $contentXML = utf8_encode(file_get_contents($archivo['tmp_name']));
+            $xml = simplexml_load_string($contentXML);
 
             $this->InsertFromXML($xml);
-                       
+
+            $cuerpo = $this->load->view('View_importacionXMLCorrecta', '', true);
+            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Importación en XML', 'homeactive' => 'active'));
         } else {
             exit('Error abriendo el archivo XML');
         }
@@ -76,12 +76,12 @@ class XML extends CI_Controller {
     function InsertFromXML($xml) {
 
         foreach ($xml as $categoria) {
-                        
+
             $cat['cod_categoria'] = (string) $categoria->cod_categoria;
             $cat['nombre_cat'] = (string) $categoria->nombre_cat;
             $cat['descripcion'] = (string) $categoria->descripcion;
             $cat['mostrar'] = (string) $categoria->mostrar;
-            
+
             // Inserta categoria
             $categoria_id = $this->Mdl_xml->addCategoria($cat);
 
@@ -92,6 +92,7 @@ class XML extends CI_Controller {
                 $cam['precio'] = (string) $camiseta->precio;
                 $cam['imagen'] = (string) $camiseta->imagen;
                 $cam['iva'] = (string) $camiseta->iva;
+                $cam['descuento'] = (string) $camiseta->descuento;
                 $cam['descripcion'] = (string) $camiseta->descripcion;
                 $cam['seleccionada'] = (string) $camiseta->seleccionada;
                 $cam['mostrar'] = (string) $camiseta->mostrar;
@@ -102,7 +103,6 @@ class XML extends CI_Controller {
                 $cam['idCategoria'] = $categoria_id;
                 // Inserta camiseta
                 $this->Mdl_xml->AddCamiseta($cam);
-                
             }
         }
     }

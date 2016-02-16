@@ -26,7 +26,7 @@ class Mdl_categorias extends CI_Model {
                                                 . "AND idCategoria = $idCategoria ");
                                                     
         
-        return $query->result_array();
+        return $query->row_array();
     }
     
     public function getCamisetasFromCategoria($idCategoria, $limit, $start) {

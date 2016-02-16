@@ -18,7 +18,7 @@ class Mdl_camiseta extends CI_Model {
                 . "AND curdate() <= fecha_fin "
                 . "AND idCamiseta = $idCamiseta; ");
 
-        return $query->result_array();
+        return $query->row_array();
     }
 
     public function getInfoCategoriaFromCamiseta($idCategoria) {

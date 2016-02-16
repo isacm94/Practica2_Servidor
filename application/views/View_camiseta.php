@@ -17,19 +17,19 @@
                         <div class="col-sm-6">
                             <div class="product-images">
                                 <div class="product-main-img">
-                                    <img src="<?= base_url() . 'assets/img/imagesAPP/' . $camiseta[0]['imagen'] ?>" alt="">
+                                    <img src="<?= base_url() . 'assets/img/imagesAPP/' . $camiseta['imagen'] ?>" alt="">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="product-inner">
-                                <h2 class="product-name"><?= $camiseta[0]['nombre_cam'] . ' - ' . $camiseta[0]['cod_camiseta'] ?></h2>
+                                <h2 class="product-name"><?= $camiseta['nombre_cam'] . ' - ' . $camiseta['cod_camiseta'] ?></h2>
                                 <div class="product-inner-price">
-                                    <?= MostrarDescuento($camiseta[0]['precio'], $camiseta[0]['descuento']) ?>
+                                    <?= MostrarDescuento($camiseta['precio'], $camiseta['descuento']) ?>
                                 </div>    
 
-                                <form action="<?=  site_url().'/Carrito/comprar/'.$camiseta[0]['idCamiseta']?>" method="POST" class="cart">
+                                <form action="<?=  site_url().'/Carrito/comprar/'.$camiseta['idCamiseta']?>" method="POST" class="cart">
                                     <div class="quantity">
                                         <input type="number" class="input-text qty text"  value="1" name="cantidadCam" min="1" step="1">
                                     </div>
@@ -48,7 +48,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Descripción</h2>  
-                                            <p><?= $camiseta[0]['descripcion'] ?></p>
+                                            <p><?= $camiseta['descripcion'] ?></p>
                                         </div>
                                     </div>
                                 </div>

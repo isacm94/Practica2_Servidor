@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<categorias>
+	<categoria>
+        <cod_categoria>CAT_ARG</cod_categoria>
+        <nombre_cat>Liga Argentina</nombre_cat>
+        <descripcion>Liga de primera división de Argentina</descripcion>
+        <mostrar>1</mostrar>
+        <camisetas>
+            <camiseta>
+                <cod_camiseta>CAM_BOCA</cod_camiseta>
+                <nombre_cam>Club Atlético Boca Juniors</nombre_cam>
+                <precio>17.00</precio>
+                <descuento>10.00</descuento>
+                <imagen>cat_8/boca.jpg</imagen>
+                <iva>21.00</iva>
+                <descripcion>Camiseta Boca Juniors Home 2016</descripcion>
+                <seleccionada>1</seleccionada>
+                <mostrar>1</mostrar>
+                <fecha_inicio>2016-01-01</fecha_inicio>
+                <fecha_fin>2016-12-31</fecha_fin>
+                <stock>6</stock>
+            </camiseta>
+			
+			<camiseta>
+                <cod_camiseta>CAM_RIV</cod_camiseta>
+                <nombre_cam>Club Atlético River Plate</nombre_cam>
+                <precio>17.00</precio>
+                <descuento>10.00</descuento>
+                <imagen>cat_8/river.jpg</imagen>
+                <iva>21.00</iva>
+                <descripcion>Camiseta River Plate Home 2016</descripcion>
+                <seleccionada>1</seleccionada>
+                <mostrar>1</mostrar>
+                <fecha_inicio>2016-01-01</fecha_inicio>
+                <fecha_fin>2016-12-31</fecha_fin>
+                <stock>6</stock>
+            </camiseta>
+        </camisetas>
+    </categoria>
+	
+    <categoria>
+        <cod_categoria>CAT_OTRAS</cod_categoria>
+        <nombre_cat>Otras Ligas</nombre_cat>
+        <descripcion>Otras Ligas de Fútbol Profesional</descripcion>
+        <mostrar>1</mostrar>
+        <camisetas>
+            <camiseta>
+                <cod_camiseta>CAM_RECRE</cod_camiseta>
+                <nombre_cam>RC Recreativo de Huelva</nombre_cam>
+                <precio>20.00</precio>
+                <descuento>0.00</descuento>
+                <imagen>cat_9/recre.jpg</imagen>
+                <iva>21.00</iva>
+                <descripcion>Camiseta Recreativo de Huelva Home 2016</descripcion>
+                <seleccionada>1</seleccionada>
+                <mostrar>1</mostrar>
+                <fecha_inicio>2016-01-01</fecha_inicio>
+                <fecha_fin>2016-12-31</fecha_fin>
+                <stock>6</stock>
+            </camiseta>
+			
+			<camiseta>
+                <cod_camiseta>CAM_LAG</cod_camiseta>
+                <nombre_cam>Los Angeles Galaxy</nombre_cam>
+                <precio>15.00</precio>
+                <descuento>15.00</descuento>
+                <imagen>cat_9/ang.jpg</imagen>
+                <iva>21.00</iva>
+                <descripcion>Camiseta Los Angeles Galaxy Home 2016</descripcion>
+                <seleccionada>1</seleccionada>
+                <mostrar>1</mostrar>
+                <fecha_inicio>2016-01-01</fecha_inicio>
+                <fecha_fin>2016-12-31</fecha_fin>
+                <stock>6</stock>
+            </camiseta>
+        </camisetas>
+    </categoria>
+</categorias>
