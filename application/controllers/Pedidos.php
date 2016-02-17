@@ -28,7 +28,7 @@ class Pedidos extends CI_Controller {
 
             $datos = $this->Mdl_pedidos->getDatosParaPedido($this->session->userdata('userid'));
 
-            $pedido['idPedido'] = $this->getIdPedido();
+            //$pedido['idPedido'] = $this->getIdPedido();
             $pedido['idUsuario'] = $this->session->userdata('userid');
             $pedido['importe'] = $this->myCarrito->precio_total();
             $pedido['cantidad_total'] = $this->myCarrito->articulos_total();
@@ -38,13 +38,13 @@ class Pedidos extends CI_Controller {
             $pedido['cod_provincia'] = $datos['cod_provincia'];
             $pedido['correo'] = $datos['correo'];
 
-            $this->Mdl_pedidos->insertPedido($pedido);
+            $idPedido = $this->Mdl_pedidos->insertPedido($pedido);
 
             $lineas_pedidos = Array();
             foreach ($this->myCarrito->get_content() as $items) {
                 $linea_pedido = Array();
                 $linea_pedido['idCamiseta'] = $items['id'];
-                $linea_pedido['idPedido'] = $pedido['idPedido'];
+                $linea_pedido['idPedido'] = $idPedido;
                 $linea_pedido['iva'] = $this->Mdl_pedidos->getIva($items['id'])['iva'];
                 $linea_pedido['precio'] = $items['precio'];
                 $linea_pedido['cantidad'] = $items['cantidad'];
@@ -57,10 +57,10 @@ class Pedidos extends CI_Controller {
 
             $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
 
-            $this->EnviaCorreo($datos, $pedido['idPedido']);
+            $this->EnviaCorreo($datos, $idPedido);
 
             $this->myCarrito->destroy(); //Vacíamos carrito
-            redirect('Pedidos/MuestraResumen/' . $pedido['idPedido'], 'Location', 301);
+            redirect('Pedidos/MuestraResumen/' . $idPedido, 'Location', 301);
         } else {
             redirect('SesionNoIniciada', 'Location', 301);
         }

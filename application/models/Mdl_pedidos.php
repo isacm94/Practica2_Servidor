@@ -12,6 +12,8 @@ class Mdl_pedidos extends CI_Model {
 
     public function insertPedido($dataPedido) {
         $this->db->insert('pedido', $dataPedido);
+        
+        return $this->db->insert_id();
     }
     
     public function insertLineaPedido($dataPedido) {

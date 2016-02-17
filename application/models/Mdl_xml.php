@@ -30,7 +30,7 @@ class Mdl_xml extends CI_Model {
 
         $this->db->insert('categoria', $data);
         
-        return $this->db->insert_id();
+        return $this->db->insert_id();//Devuelve el id de la categoría insertada
     }
     
     public function addCamiseta($data) {
