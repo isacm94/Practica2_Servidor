@@ -16,7 +16,7 @@
                         <div class="product-upper">
 
                         </div>
-                        <h2> <?php echo anchor('Camiseta/ver/' . $camiseta['idCamiseta'], '<img src="' . base_url() . 'assets/img/imagesAPP/' . $camiseta['imagen'] . '">' . $camiseta['descripcion']) ?></h2>
+                        <h2> <?php echo anchor('Camiseta/ver/' . $camiseta['idCamiseta'], '<img src="' . base_url() . 'assets/img/imagesAPP/' . $camiseta['imagen'] . '" style="width: 647px; heigth; 500px;">' . $camiseta['descripcion']) ?></h2>
                         <div class="product-carousel-price">                            
                             <?php MostrarDescuento($camiseta['precio'], $camiseta['descuento']) ?>
                         </div>  
