@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |
  */
 $config['base_url'] = 'http://localhost/Practica2_Servidor/'; 
+//$config['base_url'] = 'http://iessansebastian.com/alumnos/2daw1516/isabel/'; 
 
 /*
   |--------------------------------------------------------------------------

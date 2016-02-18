@@ -10,12 +10,11 @@ class Mdl_MisPedidos extends CI_Model {
         $this->load->database();
     }
 
-    public function getPedidos($iduser, $limit, $start) {
+    public function getPedidos($iduser/* $limit, $start*/) {
         $query = $this->db->query("SELECT *, pr.nombre 'nom_provincia' "
                 . "FROM pedido pe "
                 . "INNER JOIN provincias pr on pr.cod = pe.cod_provincia "
-                . "WHERE idUsuario = $iduser "
-                . "LIMIT $start, $limit; ");
+                . "WHERE idUsuario = $iduser ");
 
         return $query->result_array();
     }

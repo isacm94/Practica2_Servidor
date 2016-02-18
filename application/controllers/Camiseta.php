@@ -9,7 +9,7 @@ class Camiseta extends CI_Controller {
     
     public function __construct() {
         parent::__construct();    
-        $this->load->helper('Descuentos');
+        $this->load->helper('descuentos_helper');
         $this->load->model('Mdl_camiseta'); //Cargamos modelo de camiseta
         $this->load->library('Carro', 0, 'myCarrito');
     }

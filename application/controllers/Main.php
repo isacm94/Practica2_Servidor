@@ -10,7 +10,7 @@ class Main extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper('Descuentos');       
+        $this->load->helper('descuentos_helper');       
         $this->load->library('pagination');
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
         $this->load->library('Carro', 0, 'myCarrito');

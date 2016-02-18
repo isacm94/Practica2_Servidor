@@ -48,12 +48,23 @@ class RestablecerContrasenha extends CI_Controller {
 
     private function EnviaCorreo($datos) {
         // Utilizando sendmail
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'mail.iessansebastian.com';
-        $config['smtp_user'] = 'aula4@iessansebastian.com';
-        $config['smtp_pass'] = 'daw2alumno';
+//        $config['protocol'] = 'sendmail';
+//        $config['smtp_host'] = 'mail.iessansebastian.com';
+//        $config['smtp_user'] = 'aula4@iessansebastian.com';
+//        $config['smtp_pass'] = 'daw2alumno';
+        
+        /*$config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = 'camisetasdefutbol.2daw@gmail.com';
+        $config['smtp_pass'] = 'camisetasdefutbol';
+        $config['smtp_timeout'] = '7';
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+        $config['mailtype'] = 'text'; // or html
+        $config['validation'] = TRUE; // bool whether to validate email or not*/
 
-        $this->email->initialize($config);
+        //$this->email->initialize($config);
 
         $this->email->from('aula4@iessansebastian.com', 'Camisetas de Fútbol');
         $this->email->to($datos['correo']);
@@ -67,7 +78,7 @@ class RestablecerContrasenha extends CI_Controller {
         $this->email->message($mensaje);
 
         if (!$this->email->send())
-            echo "<pre>\n\nError ennviado mail\n</pre>";
+            echo "<pre>\n\nError enviado mail\n</pre>";
 
 
         //echo $this->email->print_debugger();

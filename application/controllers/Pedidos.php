@@ -14,7 +14,7 @@ class Pedidos extends CI_Controller {
         $this->load->model('Mdl_mail');
         $this->load->library('Carro', 0, 'myCarrito');
         $this->load->library('email');
-        $this->load->helper('Fechas');
+        $this->load->helper('fechas_helper');
     }
 
     public function index() {

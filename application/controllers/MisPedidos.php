@@ -12,18 +12,18 @@ class MisPedidos extends CI_Controller {
         $this->load->model('Mdl_MisPedidos');
         $this->load->model('Mdl_provincias');
         $this->load->library('Carro', 0, 'myCarrito');
-        $this->load->helper('Fechas');
+        $this->load->helper('fechas_helper');
         $this->load->library('pagination');
     }
 
     public function index() {     
     }
 
-    public function ver($desde = 0) {
-        $config = $this->getConfigPag();        
-        $this->pagination->initialize($config);
+    public function ver(/*$desde = 0*/) {
+        //$config = $this->getConfigPag();        
+        //$this->pagination->initialize($config);
         
-        $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'), $config['per_page'], $desde);
+        $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
         $numPedidos = $this->Mdl_MisPedidos->getCountPedidos($this->session->userdata('userid'));
         
         if ($numPedidos == 0) {
@@ -56,11 +56,11 @@ class MisPedidos extends CI_Controller {
         if ($estado == 'Pendiente') {
             $this->Mdl_MisPedidos->setAnulado($idPedido);
         } else if ($estado == 'Anulado') {
-            $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya está anulado</div>';
+            $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b> El pedido ya está anulado</div>';
         } else if ($estado == 'Procesado') {
-            $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya está procesado, no se puede anular</div>';
+            $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b> El pedido ya está procesado, no se puede anular</div>';
         } else if ($estado == 'Recibido') {
-            $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b> El pedido ya ha sido recibido, no se puede anular</div>';
+            $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b> El pedido ya ha sido recibido, no se puede anular</div>';
         } else {
             redirect('Error404', 'Location', 301);
         }

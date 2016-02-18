@@ -6,7 +6,7 @@ class Registro extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('CreaSelect');
+        $this->load->helper('creaSelect');
         $this->load->helper('dni');
         $this->load->helper('claves');
         $this->load->library('form_validation');
