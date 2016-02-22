@@ -10,8 +10,8 @@ class Mdl_seleccionadas extends CI_Model {
     }
 
     public function getSeleccionadas($limit, $start) {
-        $this->db->limit($limit, $start);
-        $query = $this->db->query("SELECT cam.idCamiseta, cam.descripcion, cam.imagen, cam.precio, cam.descuento "
+        //$this->db->limit($limit, $start);
+        $query = $this->db->query("SELECT cam.nombre_cam, cam.idCamiseta, cam.descripcion, cam.imagen, cam.precio, cam.descuento "
                 . "FROM camiseta cam "
                 . "INNER JOIN categoria cat on cam.idCategoria = cat.idCategoria "
                 . "WHERE cat.mostrar=1 "

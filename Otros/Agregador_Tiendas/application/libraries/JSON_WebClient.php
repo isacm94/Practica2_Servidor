@@ -154,7 +154,7 @@ class JSON_WebClient
         }
 
         $val_return=json_decode($responseText, TRUE);
-
+        
         if (! isset($val_return['error']) || ! isset($val_return['return']) )
         {
             // Algo fallo. No existe o no está disponible el servicio

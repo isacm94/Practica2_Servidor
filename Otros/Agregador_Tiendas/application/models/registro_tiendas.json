@@ -1,11 +1,1 @@
-[{
-        "id": "a611a184d68cdfc8d44f7657d109df61a102fd8c",
-        "name": "Tienda prueba 1",
-        "info": "Tienda de productos varios",
-        "URL": "http:\/\/iessansebastian.com\/~santiago_d\/dwes\/agregador\/index.php\/server\/tienda01"
-    }, {
-        "id": "c448d6e892b2ac0c5e83774e0165a6e3e652894f",
-        "name": "Tienda prueba 2",
-        "info": "Tienda de algo",
-        "URL": "http:\/\/iessansebastian.com\/~santiago_d\/dwes\/agregador\/index.php\/server\/tienda02"
-    }]
+[{"id":"a611a184d68cdfc8d44f7657d109df61a102fd8c","name":"Tienda prueba 1","info":"Tienda de productos varios","URL":"http:\/\/iessansebastian.com\/~santiago_d\/dwes\/agregador\/index.php\/server\/tienda01"},{"id":"c448d6e892b2ac0c5e83774e0165a6e3e652894f","name":"Tienda prueba 2","info":"Tienda de algo","URL":"http:\/\/iessansebastian.com\/~santiago_d\/dwes\/agregador\/index.php\/server\/tienda02"},{"id":"8d3f6ba3bf6fc3f54a8556577dc6163c7f04bc7d","name":"Camisetas de F\u00fatbo","info":"h","URL":"http:\/\/localhost\/Practica2_Servidor\/index.php\/Agregador"},{"id":"4a830038d4659fc5c73b03904c2e011d469d73d8","name":"cam2","info":"","URL":"http:\/\/localhost\/Practica2_Servidor\/index.php\/Agregador"}]
