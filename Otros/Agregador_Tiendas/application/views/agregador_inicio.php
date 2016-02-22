@@ -1,0 +1,1 @@
+<p>Seleccione en el menú la tienda para la que desea consultar los productos</p>

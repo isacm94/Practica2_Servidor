@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productos>
+    <producto>
+        <id>1</id>
+        <nombre><![CDATA[Shrek]]></nombre>
+        <descripcion><![CDATA[Muñeco Shrek]]></descripcion>
+        <img><![CDATA[http://iessansebastian.com/~santiago_d/dwes/agregador/productos/Shrek-icon.png]]></img>
+        <precio>10</precio>
+    </producto>
+    <producto>
+        <id>2</id>
+        <nombre><![CDATA[Fiona]]></nombre>
+        <descripcion><![CDATA[Muñeco Fiona]]></descripcion>
+        <img><![CDATA[http://iessansebastian.com/~santiago_d/dwes/agregador/productos/Fiona-3-icon.png]]></img>
+        <precio>5</precio>
+    </producto>
+    <producto>
+        <id>3</id>
+        <nombre><![CDATA[Camara]]></nombre>
+        <descripcion><![CDATA[Camara de fotos]]></descripcion>
+        <img><![CDATA[http://iessansebastian.com/~santiago_d/dwes/agregador/productos/Camera-icon.png]]></img>
+        <precio>120</precio>
+    </producto>
+    <producto>
+        <id>4</id>
+        <nombre><![CDATA[Producto 4]]></nombre>
+        <descripcion><![CDATA[Desc. producto 4]]></descripcion>
+        <img><![CDATA[http://icons.iconarchive.com/icons/majdi-khawaja/shrek/96/Donkey-icon.png]]></img>
+        <precio>0</precio>
+    </producto>
+    <producto>
+        <id>5</id>
+        <nombre><![CDATA[Producto 5]]></nombre>
+        <descripcion><![CDATA[Descripción producto 5]]></descripcion>
+        <img><![CDATA[http://icons.iconarchive.com/icons/majdi-khawaja/shrek/96/Puss-2-icon.png]]></img>
+        <precio>4</precio>
+    </producto>
+    <producto>
+        <id>6</id>
+        <nombre><![CDATA[Producto 6]]></nombre>
+        <descripcion><![CDATA[Descripción producto 6]]></descripcion>
+        <img><![CDATA[http://icons.iconarchive.com/icons/martin-berube/people/96/artist-icon.png]]></img>
+        <precio>40</precio>
+    </producto>
+    <producto>
+        <id>7</id>
+        <nombre><![CDATA[Princesa]]></nombre>
+        <descripcion><![CDATA[Muñeco princesa]]></descripcion>
+        <img><![CDATA[http://icons.iconarchive.com/icons/martin-berube/people/96/princess-icon.png]]></img>
+        <precio>1</precio>
+    </producto>
+</productos>

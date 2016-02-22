@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientes>
+    <cliente>
+        <id>1</id>
+        <nif></nif>
+        <email></email>
+        <nombre><![CDATA[]]></nombre>
+        <apellidos><![CDATA[]]></apellidos>
+        <direccion><![CDATA[]]></direccion>
+        <cp><![CDATA[]]></cp>
+        <provincia></provincia>
+        <cod_provincia></cod_provincia>
+    </cliente>
+</productos>
