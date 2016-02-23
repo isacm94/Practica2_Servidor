@@ -13,6 +13,9 @@ class ModificarCorrecto extends CI_Controller {
         $this->load->library('Carro', 0, 'myCarrito');
     }
 
+    /**
+     * Muestra la vista de una modificación de usuario realizada correctamente
+     */
     public function index() {
         if (!SesionIniciadaCheck()) {
             redirect("Error404", 'Location', 301);

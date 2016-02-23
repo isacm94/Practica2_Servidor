@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CONTROLADOR 
+ * CONTROLADOR que muestra los pedidos del usuario pudiendo anularlo
  */
 class MisPedidos extends CI_Controller {
 
@@ -16,13 +16,11 @@ class MisPedidos extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index() {     
-    }
-
-    public function ver(/*$desde = 0*/) {
-        //$config = $this->getConfigPag();        
-        //$this->pagination->initialize($config);
-        
+    /**
+     * Muestras todos los pedidos del usuario loagueado en forma de tabla
+     */
+    public function ver() {
+                
         $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
         $numPedidos = $this->Mdl_MisPedidos->getCountPedidos($this->session->userdata('userid'));
         
@@ -35,13 +33,15 @@ class MisPedidos extends CI_Controller {
             redirect("Error404", "Location", 301);
             return;
         }
-        
-        
             
         $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
 
+    /**
+     * Anula un pedido si se puede sino muestra un mensaje de error
+     * @param Int $idPedido ID del pedido
+     */
     public function AnularPedido($idPedido) {
         $msg_error = '';
         $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
@@ -69,6 +69,10 @@ class MisPedidos extends CI_Controller {
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
     
+    /**
+     * Establece y devuelve la configuración de la paginación
+     * @return Array Configuración
+     */
     public function getConfigPag(){
         //Configuración de Paginación
         $config['base_url'] = site_url('/MisPedidos/ver');

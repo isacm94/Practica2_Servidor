@@ -15,6 +15,10 @@ class Main extends CI_Controller {
         $this->load->model('Mdl_seleccionadas'); //Cargamos modelo
         $this->load->library('Carro', 0, 'myCarrito');
     }
+    /**
+     * Muestra todas las camisetas seleccionadas
+     * @param Int $desde Posición desde la que empieza a paginar
+     */
     public function index($desde = 0) {        
         
         $config = $this->getConfigPag();
@@ -27,11 +31,15 @@ class Main extends CI_Controller {
         
         $this->load->view('View_plantilla', Array('titulo' => 'Camisetas de Fútbol destacadas', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
     }
+    
+    /**
+     * Establece y devuelve la configuración de la paginación
+     * @return Array Configuración
+     */
     public function getConfigPag(){
         //Configuración de Paginación
         $config['base_url'] = site_url('/Main/index');
-        $config['total_rows'] = $this->Mdl_seleccionadas->getNumTotalCamisetasSeleccionadas();
-        //$config['num_links'] = 6;
+        $config['total_rows'] = $this->Mdl_seleccionadas->getNumTotalCamisetasSeleccionadas();       
         $config['per_page'] = 12;
         $config['uri_segment'] = 3;
 

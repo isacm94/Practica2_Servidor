@@ -18,6 +18,9 @@ class ModificarUsuario extends CI_Controller {
         $this->load->helper('claves');
     }
 
+    /**
+     * Muestra el formulario para modificar un usuario
+     */
     public function index() {
 
         if (!SesionIniciadaCheck()) {
@@ -35,6 +38,9 @@ class ModificarUsuario extends CI_Controller {
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Modificar Usuario', 'homeactive' => 'active'));
     }
 
+    /**
+     * Modifica un usuario si se han introducido correctamente los datos
+     */
     public function Modificar() {
 
         if (SesionIniciadaCheck()) {
@@ -82,13 +88,13 @@ class ModificarUsuario extends CI_Controller {
                         $data['clave'] = password_hash($value, PASSWORD_DEFAULT);
                     }
 
-                    if ($key != 'rep_clave_nueva' && $key != 'GuardarUsuario' && $key != 'clave_nueva' && $key != 'clave')
+                    if ($key != 'rep_clave_nueva' && $key != 'GuardarUsuario' && $key != 'clave_nueva' && $key != 'clave') {
                         $data[$key] = $value;
+                    }
                 }
 
-                $datos = array(
-                    'username' => $this->input->post('nombre_usu')
-                );
+                $datos = array('username' => $this->input->post('nombre_usu'));
+
                 $this->session->set_userdata($datos);
                 $this->Mdl_usuarios->updateUsuario($this->session->userdata('userid'), $data); //Inserta en la tabla usuario
 
@@ -99,6 +105,11 @@ class ModificarUsuario extends CI_Controller {
         }
     }
 
+    /**
+     * Devuelve si un nombre de usuario ya está guardado en la base de datos
+     * @param String $nombre_usu Nombre del usuario
+     * @return boolean
+     */
     function nombreUsuRepetido_check($nombre_usu) {
 
         $countNomUsuario = $this->Mdl_usuarios->getCount_NombreUsuarioModificar($nombre_usu, $this->session->userdata('userid'));
@@ -110,6 +121,10 @@ class ModificarUsuario extends CI_Controller {
         }
     }
 
+    /**
+     * Devuelve si la clave introducida corresponde con la guardada en la base de datos
+     * @return boolean
+     */
     function clavecorrecta_check() {
 
         if (password_verify($this->input->post('clave'), $this->Mdl_usuarios->getClave($this->session->userdata('username'))))
@@ -118,6 +133,9 @@ class ModificarUsuario extends CI_Controller {
             return FALSE;
     }
 
+    /**
+     * Establece los mensajes de error que se mostrarán si no se valida correctamente el formulario
+     */
     function setMensajesErrores() {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
         $this->form_validation->set_message('required', 'El campo %s está vacío');
@@ -125,19 +143,17 @@ class ModificarUsuario extends CI_Controller {
         $this->form_validation->set_message('integer', 'El campo %s debe ser un número de 5 dígitos');
         $this->form_validation->set_message('exact_length', 'El campo %s debe tener %s caracteres');
         $this->form_validation->set_message('integer', 'El campo %s debe ser númerico');
-        //$this->form_validation->set_message('dni_check', 'Formato de DNI incorrecto');
         $this->form_validation->set_message('nombreUsuRepetido_check', 'El nombre de usuario ya existe');
         $this->form_validation->set_message('clavecorrecta_check', 'La contraseña es incorrecta');
     }
 
+    /**
+     * Establece las reglas que deben seguir cada campo del formulario
+     */
     function setReglasValidacion() {
         $this->form_validation->set_rules('nombre_usu', 'nombre de usuario', 'required|callback_nombreUsuRepetido_check');
         $this->form_validation->set_rules('clave', 'contraseña', 'required|callback_clavecorrecta_check');
-        //$this->form_validation->set_rules('rep_clave', 'repita contraseña', 'required');
         $this->form_validation->set_rules('correo', 'correo electrónico', 'required|valid_email');
-        //$this->form_validation->set_rules('nombre_persona', 'nombre', 'required');
-        //$this->form_validation->set_rules('apellidos_persona', 'apellidos', 'required');
-        //$this->form_validation->set_rules('dni', 'DNI', 'required|exact_length[9]|callback_dni_check');
         $this->form_validation->set_rules('direccion', 'dirección', 'required');
         $this->form_validation->set_rules('cp', 'CP', 'required|integer|exact_length[5]');
         $this->form_validation->set_rules('cod_provincia', 'provincia', 'required');

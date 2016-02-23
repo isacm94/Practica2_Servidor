@@ -13,6 +13,9 @@ class Login extends CI_Controller {
         $this->load->model('Mdl_usuarios');
     }
 
+    /**
+     * Muestra la vista del login y comprueba que los datos sean correctos
+     */
     public function index() {
         if (SesionIniciadaCheck()) {
             redirect("Error404", 'Location', 301);
@@ -36,6 +39,10 @@ class Login extends CI_Controller {
         }
     }
 
+    /**
+     * Inicia sesión en la aplicación
+     * @param String $username Nombre del usuario
+     */
     public function Login($username) {
 
         if ($username) {
@@ -50,10 +57,14 @@ class Login extends CI_Controller {
         redirect('', 'location', 301);
     }
 
+    /**
+     * Cierra la sesión iniciada
+     */
     public function Logout() {
 
         if (SesionIniciadaCheck()) {//Sólo puede cerrar sesión si está iniciada, por si entra por url
             $this->session->unset_userdata('username');
+            $this->session->unset_userdata('userid');
             $this->session->unset_userdata('logged_in');
 
             $this->myCarrito->destroy(); //Borramos también su carrito
@@ -64,6 +75,9 @@ class Login extends CI_Controller {
         }
     }
 
+    /**
+     * Muestra un error si se ha introducido algún dato incorrecto
+     */
     public function MuestraErrorEnVista() {
         $error = "<div class='alert msgerror'><b>¡Error!</b> Usuario o contraseña incorrectos</div>";
         $cuerpo = $this->load->view('View_login', array('error' => $error), true); //Generamos la vista

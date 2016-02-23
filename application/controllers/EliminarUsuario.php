@@ -14,6 +14,9 @@ class EliminarUsuario extends CI_Controller {
         $this->load->model('Mdl_usuarios');
     }
 
+    /*
+     * Muestra una vista que pregunta si desea eliminar el usuario
+     */
     public function index() {
 
         if (!SesionIniciadaCheck()) {
@@ -25,6 +28,9 @@ class EliminarUsuario extends CI_Controller {
         $this->load->view('View_plantilla', Array('titulo' => 'Eliminar Usuario', 'cuerpo' => $cuerpo, 'homeactive' => 'active'));
     }
 
+    /**
+     * Da de baja al usuario logueado de la base de datos
+     */
     public function eliminar() {
 
         if (!SesionIniciadaCheck()) {

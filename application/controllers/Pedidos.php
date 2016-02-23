@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CONTROLADOR 
+ * CONTROLADOR que realiza un pedido
  */
 class Pedidos extends CI_Controller {
 
@@ -17,10 +17,9 @@ class Pedidos extends CI_Controller {
         $this->load->helper('fechas_helper');
     }
 
-    public function index() {
-        
-    }
-
+    /**
+     * Guarda el pedido en la base de datos con los productos que se han comprado a tráves del carrito
+     */
     public function RealizaPedido() {
 
         if (SesionIniciadaCheck()) {
@@ -28,7 +27,6 @@ class Pedidos extends CI_Controller {
 
             $datos = $this->Mdl_pedidos->getDatosParaPedido($this->session->userdata('userid'));
 
-            //$pedido['idPedido'] = $this->getIdPedido();
             $pedido['idUsuario'] = $this->session->userdata('userid');
             $pedido['importe'] = $this->myCarrito->precio_total();
             $pedido['cantidad_total'] = $this->myCarrito->articulos_total();
@@ -41,6 +39,7 @@ class Pedidos extends CI_Controller {
             $idPedido = $this->Mdl_pedidos->insertPedido($pedido);
 
             $lineas_pedidos = Array();
+            
             foreach ($this->myCarrito->get_content() as $items) {
                 $linea_pedido = Array();
                 $linea_pedido['idCamiseta'] = $items['id'];
@@ -54,10 +53,9 @@ class Pedidos extends CI_Controller {
                 $lineas_pedidos[] = $linea_pedido;
             }
 
-
             $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
 
-            $this->EnviaCorreo($datos, $idPedido);
+            $this->EnviaCorreo($datos['correo'], $idPedido);
 
             $this->myCarrito->destroy(); //Vacíamos carrito
             redirect('Pedidos/MuestraResumen/' . $idPedido, 'Location', 301);
@@ -66,6 +64,10 @@ class Pedidos extends CI_Controller {
         }
     }
 
+    /**
+     * Muestra un resumen de un pedido determinado
+     * @param Int $idPedido ID del pedido
+     */
     public function MuestraResumen($idPedido) {
 
         $pedido = $this->Mdl_pedidos->getPedido($idPedido, $this->session->userdata('userid'));
@@ -84,6 +86,11 @@ class Pedidos extends CI_Controller {
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Resumen del pedido', 'homeactive' => 'active'));
     }
 
+    /**
+     * Crea un PDF de un pedido determinado con todos los datos del pedido y los productos comprados
+     * @param Int $idPedido ID del pedido
+     * @param Char $metodo I --> envía el fichero al navegador / D --> Fuerza la descarga
+     */
     private function CreaPDF_Pedido($idPedido, $metodo = 'F') {
         $this->load->library('PDF', 0, 'myPDF');
 
@@ -113,35 +120,18 @@ class Pedidos extends CI_Controller {
         $this->myPDF->Output($metodo, 'assets/pdfs_pedidos/pedido.pdf', true);
     }
 
-    public function EnviaCorreo($datos, $idPedido) {
+    /**
+     * Envia un correo con el PDF del pedido
+     * @param String $correo Dirección de mail donde se tiene que mandar el correo
+     * @param Int $idPedido ID del pedido
+     */
+    public function EnviaCorreo($correo, $idPedido) {
 
         $this->CreaPDF_Pedido($idPedido);
-
-        // Utilizando sendmail
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'mail.iessansebastian.com';
-        $config['smtp_user'] = 'aula4@iessansebastian.com';
-        $config['smtp_pass'] = 'daw2alumno';
         
-        
-//        $config['protocol'] = 'smtp';
-//        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-//        $config['smtp_port'] = 465;
-//        $config['smtp_user'] = 'camisetasdefutbol.2daw@gmail.com';
-//        $config['smtp_pass'] = 'camisetasdefutbol';
-//        $config['smtp_timeout'] = '7';
-//        $config['charset'] = 'utf-8';
-//        $config['newline'] = "\r\n";
-//        $config['mailtype'] = 'text'; // or html
-//        $config['validation'] = TRUE; // bool whether to validate email or not
-
-        $this->email->initialize($config);
-
         $this->email->from('aula4@iessansebastian.com', 'Camisetas de Fútbol');
-        //echo $datos['correo'];
-        $this->email->to($datos['correo']);
-        //$this->email->cc('another@another-example.com'); 
-        //$this->email->bcc('them@their-example.com'); 
+        
+        $this->email->to($correo);
 
         $this->email->subject('El PDF con su pedido');
 
@@ -153,22 +143,21 @@ class Pedidos extends CI_Controller {
 
         if (!$this->email->send())
             echo "<pre>\n\nError ennviado mail\n</pre>";
-
-
-        //echo $this->email->print_debugger();
     }
 
+    /**
+     * Muestra un pedido en el navegador
+     * @param Int $idPedido ID del pedido
+     */
     public function VerPDFPedido($idPedido) {
         $this->CreaPDF_Pedido($idPedido, 'I');
     }
 
+    /**
+     * Descarga un pedido en la carpeta 'Descargas'
+     * @param Int $idPedido ID del pedido
+     */
     public function DescargarPDFPedido($idPedido) {
         $this->CreaPDF_Pedido($idPedido, 'D');
     }
-
-    //Función que crea un id para un pedido, sumándole uno al nº total de pedidos
-    private function getIdPedido() {
-        return $this->Mdl_pedidos->getCountPedidos() + 1;
-    }
-
 }

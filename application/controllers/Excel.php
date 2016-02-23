@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CONTROLADOR 
+ * CONTROLADOR que procesa un archivo cargado y lo importa en la base de datos.
  */
 class Excel extends CI_Controller {
 
@@ -13,11 +13,17 @@ class Excel extends CI_Controller {
         $this->load->model('Mdl_xml');
     }
 
+    /**
+     * Muestra la vista donde podemos cargar el archivo excel
+     */
     public function index() {
         $cuerpo = $this->load->view('View_importarExcel', Array('' => ''), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Importación en Excel'));
     }
 
+    /**
+     * Lee el archivo excel cargado y lo importa en la base de datos
+     */
     public function ProcesaArchivo() {
         $archivo = $_FILES['archivo'];
 

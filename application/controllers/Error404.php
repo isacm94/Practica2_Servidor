@@ -12,6 +12,9 @@ class Error404 extends CI_Controller {
         parent::__construct();    
         $this->load->library('Carro', 0, 'myCarrito');
     }
+    /**
+     * Muestra la vista del error404
+     */
     public function index() {
         $cuerpo = $this->load->view('View_error404', Array('' => ''), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Error'));
