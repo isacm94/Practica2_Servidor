@@ -58,16 +58,21 @@
                                     </li>
                                     <li class="dropdown">
                                         <div class="footer-about-us">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?= base_url() . 'index.php/ModificarUsuario' ?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
-                                            <li><a href="<?= base_url() . 'index.php/EliminarUsuario' ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
-                                        </ul>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Ajustes de usuario"><span class="glyphicon glyphicon-cog"></span> <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="<?= base_url() . 'index.php/ModificarUsuario' ?>"><span class="glyphicon glyphicon-pencil"></span> Modificar Usario</a></li>
+                                                <li><a href="<?= base_url() . 'index.php/EliminarUsuario' ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar Usuario</a></li>
+                                            </ul>
                                         </div>
                                     </li>                                    
                                 <?php endif; ?>
+
+                                <?= MuestraMonedas() ?>  
                             </ul>
+
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -173,9 +178,9 @@
                                     <li><a href="<?= base_url() . 'index.php/XML/importar' ?>"><span class="glyphicon glyphicon-open-file"></span> Importar</a></li>
                                 </ul>
                             </li>
-                            
-                            <li><a href="<?=  site_url().'/PruebasUnitarias'?>">Pruebas Unitarias del Carrito</a></li>
-                            
+
+                            <li><a href="<?= site_url() . '/PruebasUnitarias' ?>">Pruebas Unitarias del Carrito</a></li>
+
                             <li><a href="<?= base_url() . 'index.php/Excel' ?>">
                                     <span style="color: white;" class="glyphicon glyphicon-open-file"></span> Importar en Excel</a></li>
                         </div>

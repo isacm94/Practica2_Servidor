@@ -93,7 +93,7 @@ class RestablecerContrasenha extends CI_Controller {
             $datos = $this->Mdl_restablecerCont->getDatosFromId($id);
 
             if ($this->getTonken($datos['id'], $datos['dni'], $datos['nombre']) == $token) {
-                $this->PideClaveRestablecer($datos['nombre']);
+                $this->PideClaveRestablecer($datos['username']);
             } else {
                 $cuerpo = $this->load->view('View_error404', Array('' => ''), true);
                 $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Error'));

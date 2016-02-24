@@ -21,7 +21,7 @@ class Mdl_restablecerCont extends CI_Model {
 
     public function getDatosFromId($id) {
 
-        $query = $this->db->query("SELECT idUsuario 'id', dni, nombre_persona 'nombre', correo "
+        $query = $this->db->query("SELECT idUsuario 'id', dni, nombre_persona 'nombre', nombre_usu 'username', correo "
                 . "FROM usuario "
                 . "WHERE idUsuario LIKE '$id'; ");
         if(count($query->result_array()) > 0)
