@@ -2,6 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * CONTROLADOR del registro de usuario en la web.
+ */
 class Registro extends CI_Controller {
 
     public function __construct() {
@@ -15,6 +18,9 @@ class Registro extends CI_Controller {
         $this->load->model('Mdl_usuarios');
     }
 
+    /**
+     * Muestra el formulario de registro
+     */
     public function index() {
         $provincias = $this->Mdl_provincias->getProvincias();
         $select = CreaSelect($provincias, 'cod_provincia');
@@ -24,6 +30,9 @@ class Registro extends CI_Controller {
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Registro de Usuario', 'homeactive' => 'active'));
     }
 
+    /**
+     * Comprueba que los datos introducidos en el formulario sean correctos
+     */
     public function Usuario() {
         $provincias = $this->Mdl_provincias->getProvincias();
         $select = CreaSelect($provincias, 'cod_provincia');
@@ -65,6 +74,11 @@ class Registro extends CI_Controller {
         }
     }
 
+    /**
+     * Comprueba si un DNI es correcto
+     * @param String $dni DNI a comprobar
+     * @return boolean
+     */
     function dni_check($dni) {
 
         $numerosDNI = substr($dni, 0, 8);
@@ -78,6 +92,11 @@ class Registro extends CI_Controller {
         }
     }
 
+    /**
+     * Comprueba si un nombre de usuario está ya usado
+     * @param String $nombre_usu Nombre del usuario a comprobar
+     * @return boolean
+     */
     function nombreUsuRepetido_check($nombre_usu) {
 
         $countNomUsuario = $this->Mdl_usuarios->getCount_NombreUsuario($nombre_usu);
@@ -89,6 +108,9 @@ class Registro extends CI_Controller {
         }
     }
 
+    /**
+     * Establece los mensajes de error que se mostrarán si no se valida correctamente el formulario
+     */
     function setMensajesErrores(){
         $this->form_validation->set_message('required', 'El campo %s está vacío');
         $this->form_validation->set_message('valid_email', 'Formato de correo electrónico incorrecto');
@@ -99,6 +121,9 @@ class Registro extends CI_Controller {
         $this->form_validation->set_message('nombreUsuRepetido_check', 'El nombre de usuario ya existe');
     }
    
+    /**
+     * Establece las reglas que deben seguir cada campo del formulario
+     */
     function setReglasValidacion(){
         $this->form_validation->set_rules('nombre_usu', 'nombre de usuario', 'required|callback_nombreUsuRepetido_check');
         $this->form_validation->set_rules('clave', 'contraseña', 'required');

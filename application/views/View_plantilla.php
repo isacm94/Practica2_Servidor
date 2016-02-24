@@ -39,12 +39,13 @@
                                 <?php if (!SesionIniciadaCheck()): //Sólo mostrar si la sesión iniciada ?>
                                     <li><a href="<?= base_url() . 'index.php/Login' ?>"><i class="fa fa-user"></i> Login</a></li>
                                 <?php endif; ?>
-
+                                
+                                     <?= MuestraMonedas() ?> 
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-5">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
                         <div class="user-menu">
                             <ul>
                                 <?php if (SesionIniciadaCheck()): //Sesión iniciada ?>
@@ -66,8 +67,6 @@
                                         </div>
                                     </li>                                    
                                 <?php endif; ?>
-
-                                <?= MuestraMonedas() ?>  
                             </ul>
 
                         </div>

@@ -19,6 +19,9 @@ class RestablecerContrasenha extends CI_Controller {
         $this->load->helper('claves');
     }
 
+    /**
+     * Muestra el formulario que pide el nombre de usuario para enviar el correo, si el usuario no existe muestra un mensaje de error y si existe se envia el correo y muestra un mensaje de éxito.
+     */
     public function index() {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
         $this->form_validation->set_message('required', 'El campo %s está vacío');
@@ -38,6 +41,11 @@ class RestablecerContrasenha extends CI_Controller {
         }
     }
 
+    /**
+     * Comprueba si el nombre de un usuario está guardado en la base de datos
+     * @param String $username Nombre del usuario
+     * @return boolean
+     */
     public function ExisteUsuario_check($username) {
         if ($this->Mdl_usuarios->getCount_NombreUsuario($username) > 0) {
             return TRUE;
@@ -46,30 +54,14 @@ class RestablecerContrasenha extends CI_Controller {
         }
     }
 
+    /**
+     * Envia un correo para que restablezca la contraseña con los datos especificados
+     * @param Array $datos Datos del usuario
+     */
     private function EnviaCorreo($datos) {
-        // Utilizando sendmail
-//        $config['protocol'] = 'sendmail';
-//        $config['smtp_host'] = 'mail.iessansebastian.com';
-//        $config['smtp_user'] = 'aula4@iessansebastian.com';
-//        $config['smtp_pass'] = 'daw2alumno';
-        
-        /*$config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-        $config['smtp_port'] = 465;
-        $config['smtp_user'] = 'camisetasdefutbol.2daw@gmail.com';
-        $config['smtp_pass'] = 'camisetasdefutbol';
-        $config['smtp_timeout'] = '7';
-        $config['charset'] = 'utf-8';
-        $config['newline'] = "\r\n";
-        $config['mailtype'] = 'text'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not*/
-
-        //$this->email->initialize($config);
 
         $this->email->from('aula4@iessansebastian.com', 'Camisetas de Fútbol');
         $this->email->to($datos['correo']);
-        //$this->email->cc('another@another-example.com'); 
-        //$this->email->bcc('them@their-example.com'); 
 
         $this->email->subject('Restablece la contraseña en Camisetas de Fútbol');
 
@@ -84,10 +76,22 @@ class RestablecerContrasenha extends CI_Controller {
         //echo $this->email->print_debugger();
     }
 
+    /**
+     * Devuelve un string encriptado formado por los datos de un usuario
+     * @param Int $id ID del usuario
+     * @param String $dni DNI del usuario
+     * @param String $nombre Nombre del usuario
+     * @return String Token generado
+     */
     private function getTonken($id, $dni, $nombre) {
         return sha1($id . $dni . $nombre);
     }
 
+    /**
+     * Permite a un usuario restablecer su contraseña de usuario con el correo. Se manda una url con el id y un token, si ese id y token son corectos se le permite modificar la contraseña sino no.
+     * @param Int $id ID del usuario
+     * @param String $token Token generado
+     */
     public function Restablece($id, $token) {
         if ($this->Mdl_restablecerCont->getDatosFromId($id) != -1) {
             $datos = $this->Mdl_restablecerCont->getDatosFromId($id);
@@ -104,6 +108,10 @@ class RestablecerContrasenha extends CI_Controller {
         }
     }
 
+    /**
+     * Muestra el formulario para cambiar la contraseña desde el correo
+     * @param String $username Nombre del usuario
+     */
     public function PideClaveRestablecer($username) {
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
@@ -124,6 +132,10 @@ class RestablecerContrasenha extends CI_Controller {
         }
     }
 
+    /**
+     * Comprueba si dos contraseñas introducidas son correctas
+     * @return boolean
+     */
     public function ClavesIguales_check() {
         if (claves_check($this->input->post('clave'), $this->input->post('clave_rep')))
             return TRUE;

@@ -45,7 +45,7 @@ class Carrito extends CI_Controller {
                         );
                         $this->myCarrito->actualizar($articulo);
                     } else if ($stock < $_POST["cantidad"][$items['id']]) {//sino mostramos mensaje de error
-                        $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b>Stock máximo superado</div>';
+                        $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b>Stock máximo superado</div>';
 
                         $articulo = array(
                             "id" => $items['id'],

@@ -16,7 +16,7 @@ function MuestraMonedas() {
     }
 
     $html= '<li class = "dropdown">';
-    $html.= '<div class = "footer-about-us">';
+    $html.= '<div class = "footer-about-us" style="float: rigth;">';
     $html.= '<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown" title = "Cambiar moneda"><span class = "glyphicon glyphicon-euro"></span> <b class = "caret"></b></a>';
     $html.= '<ul class = "dropdown-menu">';
     
