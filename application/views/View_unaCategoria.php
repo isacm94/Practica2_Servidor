@@ -34,14 +34,8 @@ if (count($camisetas) > 0):
                         </div>
                         <h2><?= anchor('Camiseta/ver/' . $camiseta['idCamiseta'], '<img src="' . base_url() . 'assets/img/imagesAPP/' . $camiseta['imagen'] . '"" style="width: 647px; heigth; 500px;">' . $camiseta['descripcion']) ?></h2>
                         <div class="product-carousel-price">
-                            <?php if ($camiseta['descuento'] != '0.00') : ?>
-                                <ins><?= $camiseta['precio'] * (1 - ($camiseta['descuento'] / 100)) ?> €</ins>
-                                <del><?= $camiseta['precio'] ?> €</del>
-                            <?php endif; ?>
-
-                            <?php if ($camiseta['descuento'] == '0.00') : ?>
-                                <ins><?= $camiseta['precio'] ?> €</ins>
-                            <?php endif; ?>
+                            
+                                <?php MostrarDescuento($camiseta['precio'], $camiseta['descuento']) ?>
                         </div>
 
                         <div class="product-option-shop">

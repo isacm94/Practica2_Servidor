@@ -11,11 +11,25 @@
  * @param float $descuento
  */
 function MostrarDescuento($precio, $descuento) {
+    $CI = get_instance();
+    if ($CI->session->userdata('rate')){
+        $rate = $CI->session->userdata('rate');
+        $currency = $CI->session->userdata('currency');
+    }
+    else
+    {
+        $rate = 1;
+        $currency = 'EUR';
+    }
+    
     if ($descuento != '0.00') {
-        echo "<ins>". $precio *(1 - ($descuento/100)) ." €</ins>";
-        echo "<del>$precio €</del>";
+        echo "<ins>". round($precio *(1 - ($descuento/100)) * $rate, 2);
+        
+        echo " ".$currency;
+        echo "</ins>";
+        echo "<del>".round($precio * $rate, 2) ." $currency</del>";
     } else { //No tiene descuento, solo se meustra el precio
-        echo "<ins>$precio €</ins>";
+        echo "<ins>".round($precio * $rate, 2) ." $currency</ins>";
     }
 }
 
@@ -26,5 +40,6 @@ function MostrarDescuento($precio, $descuento) {
  * @return float Precio final calculado.
  */
 function getPrecioFinal($precio, $descuento){
-    return $precio *(1 - ($descuento/100));
+    $CI = get_instance();
+    return round($precio *(1 - ($descuento/100)) * $CI->session->userdata('rate'), 2);
 }
