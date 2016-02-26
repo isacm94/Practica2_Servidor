@@ -43,7 +43,7 @@ if ($this->myCarrito->articulos_total() > 0):
                                                 </td>
 
                                                 <td class="product-price">
-                                                    <span class="amount"> <?= $items['precio'].' '.$this->session->userdata('currency')?></span>
+                                                    <span class="amount"> <?= round($items['precio']*$this->session->userdata('rate'), 2).' '.$this->session->userdata('currency')?></span>
                                                 </td>
 
                                                 <td class="product-quantity">
@@ -66,13 +66,13 @@ if ($this->myCarrito->articulos_total() > 0):
                                                 </td>
 
                                                 <td class="product-subtotal">
-                                                    <span class="amount"><?= $items['total'].' '.$this->session->userdata('currency')?></span>
+                                                    <span class="amount"><?= round($items['total']*$this->session->userdata('rate'), 2).' '.$this->session->userdata('currency')?></span>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
                                         <tr class="product-name">
                                             <td class="actions" colspan="3">
-                                                <strong>Importe Total:</strong>  <?= $this->myCarrito->precio_total().' '.$this->session->userdata('currency')?>
+                                                <strong>Importe Total:</strong>  <?= round($this->myCarrito->precio_total()*$this->session->userdata('rate'), 2).' '.$this->session->userdata('currency')?>
                                             </td>
 
                                             <td class="actions" colspan="3">

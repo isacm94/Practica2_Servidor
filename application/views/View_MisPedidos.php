@@ -39,7 +39,7 @@
                                 </td>
 
                                 <td class="product-price">
-                                    <?= $pedido['importe'] ?>&nbsp;<?=$this->session->userdata('currency')?>
+                                    <?= round($pedido['importe']*$this->session->userdata('rate'), 2) ?>&nbsp;<?=$this->session->userdata('currency')?>
                                 </td>
 
                                 <td class="product-quantity">

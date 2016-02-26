@@ -16,7 +16,7 @@
                         <tbody>
                             <tr class="cart-subtotal">
                                 <th style="width: 50%;">Importe Total</th>
-                                <td><?= $pedido['importe'] ?>&nbsp;€</td>
+                                <td><?= round($pedido['importe']*$this->session->userdata('rate'), 2) ?>&nbsp;<?=$this->session->userdata('currency')?></td>
                             </tr>
 
                             <tr class="shipping">
@@ -90,7 +90,7 @@
                                             </td>
 
                                             <td class="product-price">
-                                                <?= $linea['precio'] ?>&nbsp;€
+                                                <?= round($linea['precio']*$this->session->userdata('rate'), 2) ?>&nbsp;<?=$this->session->userdata('currency')?>
                                             </td>
 
                                             <td class="product-quantity">
@@ -102,7 +102,7 @@
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <?= $linea['importe'] ?>&nbsp;€
+                                                <?= round($linea['importe']*$this->session->userdata('rate'), 2) ?>&nbsp;<?=$this->session->userdata('currency')?>
                                             </td>
 
                                         </tr>

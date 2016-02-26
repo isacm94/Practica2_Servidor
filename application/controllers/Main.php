@@ -40,9 +40,8 @@ class Main extends CI_Controller {
         //Configuración de Paginación
         $config['base_url'] = site_url('/Main/index');
         $config['total_rows'] = $this->Mdl_seleccionadas->getNumTotalCamisetasSeleccionadas();       
-        $config['per_page'] = 12;
+        $config['per_page'] = $this->config->item('per_page_seleccionadas');
         $config['uri_segment'] = 3;
-
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';
         $config['num_tag_open'] = '<li>';

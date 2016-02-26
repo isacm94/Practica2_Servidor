@@ -51,7 +51,7 @@ class Categorias extends CI_Controller {
         $config['base_url'] = site_url('/Categorias/ver/' . $idCat . '/');
         $config['total_rows'] = $this->Mdl_categorias->getNumTotalCamisetasFromCategoria($idCat);
         //$config['num_links'] = 1;
-        $config['per_page'] = 6;
+        $config['per_page'] = $this->config->item('per_page_categorias');
         $config['uri_segment'] = 4;
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';

@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CONTROLADOR 
+ * CONTROLADOR que gestiona la exportación y la importación en XML
  */
 class XML extends CI_Controller {
 
@@ -13,6 +13,9 @@ class XML extends CI_Controller {
         $this->load->model('Mdl_xml');
     }
 
+    /**
+     * Crea y descarga un fichero XML con las categorías y las camisetas guardadas en la Base de Datos 
+     */
     public function exportar() {
 
         $categorias = $this->Mdl_xml->getCategorias();
@@ -37,6 +40,11 @@ class XML extends CI_Controller {
         print($xml->asXML());
     }
 
+    /**
+     * Crea la parte de las camisetas en XML
+     * @param XML $xml_cat XML de la categoría correspondiente
+     * @param Int $idCat ID de la categoría correspondiente
+     */
     protected function XMLAddCamisetas($xml_cat, $idCat) {
         $lista_camisetas = $this->Mdl_xml->getCamisetas($idCat);
 
@@ -51,11 +59,17 @@ class XML extends CI_Controller {
         }
     }
 
+    /**
+     * Muestra el formulario donde tenemos que seleccionar el archivo XML para importar. 
+     */
     public function importar() {
         $cuerpo = $this->load->view('View_importarXML', Array('' => ''), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Importación en XML'));
     }
 
+    /**
+     * Importa los datos del archivo XML seleccionado. Este archivo debe tener el formato válido para importarlo
+     */
     public function ProcesaArchivo() {
 
         $archivo = $_FILES['archivo'];
@@ -72,8 +86,11 @@ class XML extends CI_Controller {
             exit('Error abriendo el archivo XML');
         }
     }
-
-    //Función que crea un array con los datos que lee desde el xml para insertarlos
+   
+    /**
+     * Crea un array con los datos que lee desde el XML para insertarlos en la Base de datos
+     * @param XML $xml XML que estamos leyendo
+     */
     function InsertFromXML($xml) {
 
         foreach ($xml as $categoria) {

@@ -89,7 +89,7 @@
                     <div class="col-sm-6">
                         <div class="shopping-item">
                             <a href="<?= base_url() . 'index.php/Carrito' ?>">Carrito - 
-                                <span class="cart-amunt"><?= $this->myCarrito->precio_total() ?> €</span> <i class="fa fa-shopping-cart"></i>
+                                <span class="cart-amunt"><?= round($this->myCarrito->precio_total()*$this->session->userdata('rate'), 2).' '.$this->session->userdata('currency') ?></span> <i class="fa fa-shopping-cart"></i>
                                 <span class="product-count"><?= $this->myCarrito->articulos_total() ?></span>
                             </a>
 

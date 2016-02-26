@@ -71,10 +71,10 @@ class PDF extends FPDF {
         $fill = true; //Para que empiece en gris la fila
         foreach ($data as $row) {
             $this->Cell($w[0], 6, utf8_decode($row['nombre_cam']), 'LR', 0, 'L', $fill);
-            $this->Cell($w[1], 6, utf8_decode($row['precio']) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+            $this->Cell($w[1], 6, utf8_decode(round($row['precio']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
             $this->Cell($w[2], 6, utf8_decode($row['iva']) . "%", 'LR', 0, 'L', $fill);
             $this->Cell($w[3], 6, utf8_decode($row['cantidad']), 'LR', 0, 'L', $fill);
-            $this->Cell($w[4], 6, utf8_decode($row['importe']) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+            $this->Cell($w[4], 6, utf8_decode(round($row['importe']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
             $this->Ln();
             if ($this->GetY() > 264) {
                 $this->AddPage();
@@ -123,7 +123,7 @@ class PDF extends FPDF {
 
         $fill = true; //Para que salga en gris la fila              
 
-        $this->Cell($w[0], 6, utf8_decode($data['importe']) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+        $this->Cell($w[0], 6, utf8_decode(round($data['importe']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
         $this->Cell($w[1], 6, utf8_decode($data['cantidad_total'] . " camisetas"), 'LR', 0, 'L', $fill);
         $this->Cell($w[2], 6, utf8_decode($data['estado']), 'LR', 0, 'L', $fill);
         $this->Cell($w[3], 6, utf8_decode(cambiaFormatoFecha($data['fecha_pedido'])), 'LR', 0, 'L', $fill);

@@ -46,8 +46,5 @@ function MostrarDescuento($precio, $descuento) {
  * @return float Precio final calculado.
  */
 function getPrecioFinal($precio, $descuento){
-    $CI = get_instance();
-    $rate = $CI->session->userdata('rate');
-    
-    return round(($precio *(1 - ($descuento/100))) * $rate, 2);
+    return ($precio *(1 - ($descuento/100)));
 }
