@@ -11,16 +11,6 @@ class Monedas extends CI_Controller {
         parent::__construct();
         $this->load->library('Carro', 0, 'myCarrito');
     }
-
-    public function index($rate, $currency) {
-        $datos = array(
-            'rate' => $rate,
-            'currency' => $currency
-        );
-        $this->session->set_userdata($datos);
-        
-        redirect('', 'location', 301);   
-    }
     public function Cambio($rate, $currency) {
         $datos = array(
             'rate' => $rate,
@@ -28,6 +18,7 @@ class Monedas extends CI_Controller {
         );
         $this->session->set_userdata($datos);
         
-        redirect('', 'location', 301);   
+        $url = $this->session->userdata('URL');
+        redirect($url, 'location', 301); 
     }
 }

@@ -2,9 +2,6 @@
 /*
  * VISTA 
  */
-//echo '<pre>';
-//print_r($pedidos);
-//echo '</pre>';
 ?>
 <!--CUERPO -->
 <div class="single-product-area">
@@ -42,7 +39,7 @@
                                 </td>
 
                                 <td class="product-price">
-                                    <?= $pedido['importe'] ?>&nbsp;€
+                                    <?= $pedido['importe'] ?>&nbsp;<?=$this->session->userdata('currency')?>
                                 </td>
 
                                 <td class="product-quantity">

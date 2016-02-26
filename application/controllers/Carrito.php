@@ -10,7 +10,6 @@ class Carrito extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('descuentos_helper');
         $this->load->model('Mdl_carrito');
         $this->load->library('Carro', 0, 'myCarrito');
     }
@@ -64,7 +63,6 @@ class Carrito extends CI_Controller {
         }
         $cuerpo = $this->load->view('View_carrito', Array('msg_error' => $msg_error), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Carrito', 'carritoactive' => 'active'));
-
     }
 
     /**
@@ -80,7 +78,7 @@ class Carrito extends CI_Controller {
             }
         }
 
-        redirect('Carrito', 'location', 301);        
+        redirect('Carrito', 'location', 301);
     }
 
     /**
@@ -89,13 +87,18 @@ class Carrito extends CI_Controller {
      */
     public function comprar($id) {
         
-        $camiseta = $this->Mdl_carrito->getDataCamiseta($id);
-        $stock = $this->Mdl_carrito->getStock($id)[0]['stock']; //Guardamos su stock
 
-        //Guarda la cantidad que tiene comprada de una camiseta
-        foreach ($this->myCarrito->get_content() as $items) {
-            if ($items['id'] == $id) {
-                $cantidad = $items['cantidad'];
+        $camiseta = $this->Mdl_carrito->getDataCamiseta($id);
+        
+        $stock = $this->Mdl_carrito->getStock($id)[0]['stock']; //Guardamos su stock
+        $cantidad = 0;
+        
+        if ($this->myCarrito->articulos_total() > 0) {
+            //Guarda la cantidad que tiene comprada de una camiseta
+            foreach ($this->myCarrito->get_content() as $items) {
+                if ($items['id'] == $id) {
+                    $cantidad = $items['cantidad'];
+                }
             }
         }
 
@@ -106,6 +109,7 @@ class Carrito extends CI_Controller {
         }
 
         if ($stock >= ($cantidad + $cantidadIntroducida)) {//Si no supera el stock la cantidad elegida
+           
             $articulo = array(
                 "id" => $camiseta[0]['idCamiseta'],
                 "cantidad" => $cantidadIntroducida,
@@ -113,11 +117,9 @@ class Carrito extends CI_Controller {
                 "nombre" => $camiseta[0]['descripcion'],
                 "opciones" => array('imagen' => $camiseta[0]['imagen'], 'error' => '')
             );
-
             $this->myCarrito->add($articulo);
             redirect('Carrito', 'location', 301);
         } else if ($stock < ($cantidad + $cantidadIntroducida)) {//Si supera el stock, muestra error
-
             $articulo = array(
                 "id" => $camiseta[0]['idCamiseta'],
                 "cantidad" => $cantidad,
@@ -139,7 +141,6 @@ class Carrito extends CI_Controller {
 //        }
     }
 
-    
     /**
      * Borra todo el carrito
      */

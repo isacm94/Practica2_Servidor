@@ -27,7 +27,7 @@
 
     </head>
     <body>
-
+        <?php $this->session->set_userdata(array('URL' =>  current_url()));?>
         <div class="header-area">
             <div class="container">
                 <div class="row">

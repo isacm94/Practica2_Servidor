@@ -1,6 +1,7 @@
 <?php
 
 function MuestraMonedas() {
+    
     $fecha = date('d-m-Y');
 
     $nombreFichero = "././assets/monedas/" . $fecha . "monedas.xml";
