@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA que muestra un mensaje si se ha realizado correctamente la importación
+ * VISTA que muestra un mensaje si se ha realizado correctamente la importación en XML.
  */
 ?>
 <!-- CUERPO -->

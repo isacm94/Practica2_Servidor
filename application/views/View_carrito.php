@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA que muestra información sobre las camisetas compradas. 
+ * VISTA que muestra información sobre las camisetas compradas.
  * Si el carrito está vacío muestra una imagen.
  */
 

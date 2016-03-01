@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA 
+ * VISTA que muestra el formulario para seleccionar el archivo Excel para su importación.
  */
 ?>
 <!-- CUERPO -->

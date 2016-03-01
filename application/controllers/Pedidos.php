@@ -51,6 +51,8 @@ class Pedidos extends CI_Controller {
 
                 $this->Mdl_pedidos->insertLineaPedido($linea_pedido);
                 $lineas_pedidos[] = $linea_pedido;
+                
+                $this->Mdl_pedidos->CambiaStock($items['id'], $items['cantidad']);
             }
 
             $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));

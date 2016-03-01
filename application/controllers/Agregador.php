@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 // Incluimos definición de clase padre
 require_once(APPPATH.'/libraries/JSON_WebServer_Controller.php');
 

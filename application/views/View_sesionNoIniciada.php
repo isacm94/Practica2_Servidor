@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA que informa desde que no se ha iniciado sesión.
+ * VISTA que informa que no se ha iniciado sesión.
  */
 ?>
 <!-- CUERPO -->

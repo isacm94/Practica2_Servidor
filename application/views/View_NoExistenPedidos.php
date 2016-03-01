@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA 
+ * VISTA que muestra un mensaje si el usuario no tiene pedidos guardados.
  */
 ?>
 <!-- CUERPO -->

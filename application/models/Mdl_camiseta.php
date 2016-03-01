@@ -8,7 +8,12 @@ class Mdl_camiseta extends CI_Model {
     public function __construct() {
         $this->load->database();
     }
-      
+
+    /**
+     * Devuelve los datos de un camiseta
+     * @param Int $idCamiseta ID de la camiseta
+     * @return Array 
+     */
     public function getCamiseta($idCamiseta) {
 
         $query = $this->db->query("SELECT idCamiseta, idCategoria, cod_camiseta, nombre_cam, descripcion, imagen, precio, descuento "
@@ -21,6 +26,11 @@ class Mdl_camiseta extends CI_Model {
         return $query->row_array();
     }
 
+    /**
+     * Devuelve la información de una categoría
+     * @param Int $idCategoria ID de la categoría
+     * @return Array
+     */
     public function getInfoCategoriaFromCamiseta($idCategoria) {
 
         $query = $this->db->query("SELECT idCategoria, cod_categoria, nombre_cat, descripcion "
@@ -31,6 +41,11 @@ class Mdl_camiseta extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * Función que dice si una camiseta se debe mostrar
+     * @param Int $idCamiseta ID de la camiseta
+     * @return boolean
+     */
     public function SiSeDebeMostarCamiseta($idCamiseta) {
 
         $query = $this->db->query("SELECT count(*) as cont "
@@ -46,7 +61,7 @@ class Mdl_camiseta extends CI_Model {
                     . "WHERE idCamiseta = $idCamiseta ");
 
             $datos = $query2->result_array();
-            
+
             if ($datos[0]['mostrarcat'] == 1 && $datos[0]['mostrarcam'] == 1)//Se debe mostrar la camiseta
                 return true;
             else {
@@ -56,7 +71,12 @@ class Mdl_camiseta extends CI_Model {
             return false;
     }
 
-    //Devuelve camisetas relacinadas de una camiseta 
+    /**
+     * Devuelve camisetas relacionadas de una camiseta, es decir, las camisetas que tienen su misma categoría 
+     * @param Int $idCategoria ID de la categoría
+     * @param Int $idCamiseta ID de la camiseta
+     * @return Array
+     */
     public function getCamisetasRelacionadasFromCategoria($idCategoria, $idCamiseta) {
 
         $query = $this->db->query("SELECT idCamiseta, descripcion, imagen, precio, descuento "

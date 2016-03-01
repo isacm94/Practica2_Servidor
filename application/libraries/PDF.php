@@ -3,12 +3,17 @@
 if (!defined('BASEPATH'))
     exit('No se permite el acceso directo al script');
 
+/**
+ * Clase que extiende de FPDF, librería que permite crear documentos PDF
+ */
 class PDF extends FPDF {
 
     protected $col = 0; // Columna actual
     protected $y0;      // Ordenada de comienzo de la columna
 
-    // Cabecera de página
+    /**
+     * Cabecera de página
+     */
 
     function Header() {
         // Logo
@@ -23,7 +28,9 @@ class PDF extends FPDF {
         $this->Ln(20);
     }
 
-    // Pie de página
+    /**
+     * Pie de página
+     */
     function Footer() {
         // Posición: a 1,5 cm del final
         $this->SetY(-15);
@@ -33,16 +40,10 @@ class PDF extends FPDF {
         $this->Cell(0, 10, utf8_decode('Página ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 
-    // Cargar los datos
-    function LoadData($file) {
-        // Leer las líneas del fichero
-        $lines = file($file);
-        $data = array();
-        foreach ($lines as $line)
-            $data[] = explode(';', trim($line));
-        return $data;
-    }
-
+    /**
+     * Crea la tabla con los datos detallados de cada producto comprado
+     * @param Array $data Datos de los productos
+     */
     function CreaTablaLineaPedidos($data) {
         $CI = get_instance();
         $this->Ln(10);
@@ -71,10 +72,10 @@ class PDF extends FPDF {
         $fill = true; //Para que empiece en gris la fila
         foreach ($data as $row) {
             $this->Cell($w[0], 6, utf8_decode($row['nombre_cam']), 'LR', 0, 'L', $fill);
-            $this->Cell($w[1], 6, utf8_decode(round($row['precio']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+            $this->Cell($w[1], 6, utf8_decode(round($row['precio'] * $CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
             $this->Cell($w[2], 6, utf8_decode($row['iva']) . "%", 'LR', 0, 'L', $fill);
             $this->Cell($w[3], 6, utf8_decode($row['cantidad']), 'LR', 0, 'L', $fill);
-            $this->Cell($w[4], 6, utf8_decode(round($row['importe']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+            $this->Cell($w[4], 6, utf8_decode(round($row['importe'] * $CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
             $this->Ln();
             if ($this->GetY() > 264) {
                 $this->AddPage();
@@ -91,6 +92,10 @@ class PDF extends FPDF {
         }
     }
 
+    /**
+     * Crea la tabla de los datos generales del pedido
+     * @param Array $data Datos del pedido
+     */
     function CreaTablaPedido($data) {
         $CI = get_instance();
         //CABECERA tabla
@@ -123,7 +128,7 @@ class PDF extends FPDF {
 
         $fill = true; //Para que salga en gris la fila              
 
-        $this->Cell($w[0], 6, utf8_decode(round($data['importe']*$CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
+        $this->Cell($w[0], 6, utf8_decode(round($data['importe'] * $CI->session->userdata('rate'), 2)) . " " . $CI->session->userdata('currency'), 'LR', 0, 'L', $fill);
         $this->Cell($w[1], 6, utf8_decode($data['cantidad_total'] . " camisetas"), 'LR', 0, 'L', $fill);
         $this->Cell($w[2], 6, utf8_decode($data['estado']), 'LR', 0, 'L', $fill);
         $this->Cell($w[3], 6, utf8_decode(cambiaFormatoFecha($data['fecha_pedido'])), 'LR', 0, 'L', $fill);
@@ -139,55 +144,6 @@ class PDF extends FPDF {
         $x = 10 + $col * 65;
         $this->SetLeftMargin($x);
         $this->SetX($x);
-    }
-
-    function AcceptPageBreak() {
-        // Método que acepta o no el salto automático de página
-        if ($this->col < 2) {
-            // Ir a la siguiente columna
-            $this->SetCol($this->col + 1);
-            // Establecer la ordenada al principio
-            $this->SetY($this->y0);
-            // Seguir en esta página
-            return false;
-        } else {
-            // Volver a la primera columna
-            $this->SetCol(0);
-            // Salto de página
-            return true;
-        }
-    }
-
-    function ChapterTitle($num, $label) {
-        // Título
-        $this->SetFont('Arial', '', 12);
-        $this->SetFillColor(200, 220, 255);
-        $this->Cell(0, 6, "Capítulo $num : $label", 0, 1, 'L', true);
-        $this->Ln(4);
-        // Guardar ordenada
-        $this->y0 = $this->GetY();
-    }
-
-    function ChapterBody($file) {
-        // Abrir fichero de texto
-        $txt = file_get_contents($file);
-        // Fuente
-        $this->SetFont('Times', '', 12);
-        // Imprimir texto en una columna de 6 cm de ancho
-        $this->MultiCell(60, 5, $txt);
-        $this->Ln();
-        // Cita en itálica
-        $this->SetFont('', 'I');
-        $this->Cell(0, 5, '(fin del extracto)');
-        // Volver a la primera columna
-        $this->SetCol(0);
-    }
-
-    function PrintChapter($num, $title, $file) {
-        // Añadir capítulo
-        $this->AddPage();
-        $this->ChapterTitle($num, $title);
-        $this->ChapterBody($file);
     }
 
 }

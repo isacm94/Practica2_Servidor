@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MODELO que recuperar las camisetas que estén seleccionadas en la tabla camisetas.
+ * MODELO que gestiona el acceso a los datos para el agregador de tiendas.
  */
 class Mdl_Agregador extends CI_Model {
 
@@ -10,6 +10,12 @@ class Mdl_Agregador extends CI_Model {
         $this->load->model('Mdl_seleccionadas');
     }
 
+    /**
+     * Devuelve las camisetas seleccionadas
+     * @param Int $limit
+     * @param Int $start
+     * @return Array Camisetas Seleccionadas
+     */
     public function Lista($limit, $start) {
         $lista = $this->Mdl_seleccionadas->getSeleccionadas($start, $limit);
         $listaProductos = array();
@@ -27,6 +33,10 @@ class Mdl_Agregador extends CI_Model {
         return $listaProductos;
     }
 
+    /**
+     * Número total de camisetas seleccionadas
+     * @return Int Nº Camisetas
+     */
     public function Total() {
         $query = $this->db->query("SELECT cam.idCamiseta "
                 . "FROM camiseta cam "

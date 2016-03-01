@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA 
+ * VISTA que muestra todos los pedidos de un usuario.
  */
 ?>
 <!--CUERPO -->

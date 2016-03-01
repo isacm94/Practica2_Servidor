@@ -39,7 +39,7 @@ class EliminarUsuario extends CI_Controller {
         }
 
         $this->Mdl_usuarios->setBajaUsuario($this->session->userdata('username')); //Damos de baja al usuario
-        redirect(site_url() . "Login/logout", 'Location', 301); //Cerramos su sesión
+        redirect(site_url() . "/Login/logout", 'Location', 301); //Cerramos su sesión
     }
 
 }

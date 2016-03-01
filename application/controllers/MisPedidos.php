@@ -20,20 +20,20 @@ class MisPedidos extends CI_Controller {
      * Muestras todos los pedidos del usuario loagueado en forma de tabla
      */
     public function ver() {
-                
+
         $pedidos = $this->Mdl_MisPedidos->getPedidos($this->session->userdata('userid'));
         $numPedidos = $this->Mdl_MisPedidos->getCountPedidos($this->session->userdata('userid'));
-        
+
         if ($numPedidos == 0) {
             $cuerpo = $this->load->view('View_NoExistenPedidos', Array(), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
-        
+
             return;
         } else if (!$pedidos) {
             redirect("Error404", "Location", 301);
             return;
         }
-            
+
         $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
@@ -55,6 +55,9 @@ class MisPedidos extends CI_Controller {
 
         if ($estado == 'Pendiente') {
             $this->Mdl_MisPedidos->setAnulado($idPedido);
+            $this->SubeStock($idPedido);
+            redirect('/MisPedidos/ver', 301, 'Location');
+            return;
         } else if ($estado == 'Anulado') {
             $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b> El pedido ya está anulado</div>';
         } else if ($estado == 'Procesado') {
@@ -68,12 +71,24 @@ class MisPedidos extends CI_Controller {
         $cuerpo = $this->load->view('View_MisPedidos', Array('pedidos' => $pedidos, 'msg_error' => $msg_error), true);
         $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Mis Pedidos', 'homeactive' => 'active'));
     }
-    
+
+    /**
+     * Sube la cantidad de stock de las camisetas de un pedido después de anularlo
+     * @param type $idPedido
+     */
+    public function SubeStock($idPedido) {
+        $lineaPedidos = $this->Mdl_MisPedidos->getCantidad($idPedido);
+
+        foreach ($lineaPedidos as $key => $value) {
+            $this->Mdl_MisPedidos->CambiaStock($value['idCamiseta'], $value['cantidad']);
+        }
+    }
+
     /**
      * Establece y devuelve la configuración de la paginación
      * @return Array Configuración
      */
-    public function getConfigPag(){
+    public function getConfigPag() {
         //Configuración de Paginación
         $config['base_url'] = site_url('/MisPedidos/ver');
         $config['total_rows'] = $this->Mdl_MisPedidos->getCountPedidos($this->session->userdata('userid'));
@@ -99,7 +114,8 @@ class MisPedidos extends CI_Controller {
         $config['first_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li title="Final">';
         $config['last_tag_close'] = '</li>';
-    
+
         return $config;
     }
+
 }

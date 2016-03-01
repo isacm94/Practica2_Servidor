@@ -1,5 +1,7 @@
-<?php 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 /**
  * <p>Clase base para los controladores que deseen realizar de servidores
  * de la clase JSON_WebClient</p>
@@ -33,41 +35,41 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  * </ul>
  * <p>Ejemplo de uso</p>
  * <pre>
-        require_once(APPPATH.'/libraries/JSON_WebServer_Controller.php');
+  require_once(APPPATH.'/libraries/JSON_WebServer_Controller.php');
 
-        class Operaciones extends JSON_WebServer_Controller {
+  class Operaciones extends JSON_WebServer_Controller {
 
-            public function __construct()
-            {
-                parent::__construct();
+  public function __construct()
+  {
+  parent::__construct();
 
-                // Activamos o no depuración
-                $this->Debug(self::DEBUG);
+  // Activamos o no depuración
+  $this->Debug(self::DEBUG);
 
-                // Registramos funciones disponibles
-                $this->RegisterFunction('Suma(op1, op2)', 'Devuelve la suma de los dos números');
-                $this->RegisterFunction('Cuadrado(num)', 'Devuelve el cuadrado de un número');
+  // Registramos funciones disponibles
+  $this->RegisterFunction('Suma(op1, op2)', 'Devuelve la suma de los dos números');
+  $this->RegisterFunction('Cuadrado(num)', 'Devuelve el cuadrado de un número');
 
-            }
+  }
 
-            // NOTA: No sobreescribir el método Index() pues esta ya está implementado
-            // en la clase base y es el que se encarga de realizar toda la funcionalidad
+  // NOTA: No sobreescribir el método Index() pues esta ya está implementado
+  // en la clase base y es el que se encarga de realizar toda la funcionalidad
 
-            // Devuelve la suma de dos números
-            // La función no puede ser privada o tendremos un error
-            protected function Suma($op1, $op2)
-            {
-                return $op1+$op2;
-            }
+  // Devuelve la suma de dos números
+  // La función no puede ser privada o tendremos un error
+  protected function Suma($op1, $op2)
+  {
+  return $op1+$op2;
+  }
 
 
-            // Devuelve el cuadrado de un número
-            // La función no puede ser privada o tendremos un error
-            protected function Cuadrado($num)
-            {
-                return $num*$num;
-            }
-        } 
+  // Devuelve el cuadrado de un número
+  // La función no puede ser privada o tendremos un error
+  protected function Cuadrado($num)
+  {
+  return $num*$num;
+  }
+  }
  * </pre>
  * 
  *
@@ -79,9 +81,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  * @link		
  * @version             0.0.1
  */
-abstract class JSON_WebServer_Controller extends CI_Controller
-{
-       
+abstract class JSON_WebServer_Controller extends CI_Controller {
+
     /**
      * Array que contiene la documentación de las funciones que proporcionara
      * el servicio y que automáticamente se publicará si se accede al 
@@ -93,19 +94,19 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * 
      * @var array 
      */
-    protected $documentacionFunciones=array();
+    protected $documentacionFunciones = array();
 
     /**
      * Indica si está activa la depuración
      * @var boolean
      */
-    protected $debug=FALSE;
+    protected $debug = FALSE;
 
     /**
      * Si estamos depurando se registran los parámetros de entrada recibidos
      * @var string
      */
-    protected $debug_input_params='';
+    protected $debug_input_params = '';
 
     /*
      * Array que se devolvera en todas las invocaciones a métodos que se
@@ -118,10 +119,10 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      *
      * @see http://www.programacionweb.net/articulos/articulo/sencillo-servicio-web-json-con-php/
      */
-    public function Index()
-    {
-        $method =$_SERVER['REQUEST_METHOD'];
-        
+
+    public function Index() {
+        $method = $_SERVER['REQUEST_METHOD'];
+
         // Dependiendo del método de la petición ejecutaremos la acción correspondiente.
         switch ($method) {
             case 'POST':
@@ -141,69 +142,57 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * En el cuerpo del mensaje se espera recibir el nombre del método a 
      * invocar y los parámetros que recibirá.
      */
-    private function ProcessCall()
-    {
+    private function ProcessCall() {
         // Obtenemos los parametros de entrada
-        $input_params=$this->ProcesaParametrosJSON();
+        $input_params = $this->ProcesaParametrosJSON();
 
         //
         // Realizamos comprobaciones con método y parámetros
         // 
         // Comprobamos si han indicado el método
-        if ( ! isset($input_params['method']) )
-        {
+        if (!isset($input_params['method'])) {
             $this->ReturnError(
-               'No se ha indicado el método que se debe invocar. Envíe en ' .
-               'el POST, JSON con el formato ("method":XXX, "arguments":XXX)');
+                    'No se ha indicado el método que se debe invocar. Envíe en ' .
+                    'el POST, JSON con el formato ("method":XXX, "arguments":XXX)');
         }
-        $method_name=$input_params['method'];
-        if (! method_exists($this, $method_name))
-        {
+        $method_name = $input_params['method'];
+        if (!method_exists($this, $method_name)) {
             $this->ReturnError(
-               'No está declarado el método <'.$method_name.'> en el servicio');
+                    'No está declarado el método <' . $method_name . '> en el servicio');
         }
 
         // Han indicado los argumentos de la función
-        if ( ! isset($input_params['arguments']) )
-        {
+        if (!isset($input_params['arguments'])) {
             $this->ReturnError(
-               'No se ha indicado los argumentos del método. Envíe en ' .
-               'el POST, JSON con el formato ("method":XXX, "arguments":XXX)');
-        }
-        else if (! is_array($input_params['arguments']))
-        {
+                    'No se ha indicado los argumentos del método. Envíe en ' .
+                    'el POST, JSON con el formato ("method":XXX, "arguments":XXX)');
+        } else if (!is_array($input_params['arguments'])) {
             // Los argumentos no son un array, pero deseamos que lo sea
-            $aguments=array($input_params['arguments']);
-        }
-        else
-        {   // Los argumentos son un array
-            $arguments=$input_params['arguments'];
+            $aguments = array($input_params['arguments']);
+        } else {   // Los argumentos son un array
+            $arguments = $input_params['arguments'];
         }
 
         //
         // Llamamos al metodo seleccionado
         // Evitamos mostrar cualquier mensaje de error que se produzca. Si
         // no se indican los parámetros apropiados se sustituirán por NULL
-        $return_value=
-                call_user_func_array(array($this, $method_name), $arguments);
+        $return_value = call_user_func_array(array($this, $method_name), $arguments);
 
-        if ($return_value===NULL)
-        {
+        if ($return_value === NULL) {
             // Ha habido error en la llamada
-            $str_args='';
-            foreach($arguments as $arg)
-            {
-                $str_args.=($str_args!==''?', ':'').$arg;
+            $str_args = '';
+            foreach ($arguments as $arg) {
+                $str_args.=($str_args !== '' ? ', ' : '') . $arg;
             }
             $this->ReturnError(
-                    "Error en la llamada al metodo [$method_name] ".
+                    "Error en la llamada al metodo [$method_name] " .
                     "con los parámetros [$str_args]");
         }
 
         // Todo correcto devolvemos el valor
         $this->ReturnValues($return_value);
     }
-
 
     /**
      * Documenta las funciones disponibles. Se utilizará para mostrar
@@ -212,10 +201,8 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * @param string $signature 
      * @param string $help
      */
-    protected function RegisterFunction($signature, $help)
-    {
-        $this->documentacionFunciones[]=
-                array('signature'=>$signature, 'help'=>$help);
+    protected function RegisterFunction($signature, $help) {
+        $this->documentacionFunciones[] = array('signature' => $signature, 'help' => $help);
     }
 
     /**
@@ -224,9 +211,8 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * Debug(false) -> Desactiva
      * @param type $estado
      */
-    protected function Debug($estado=TRUE)
-    {
-        $this->debug=$estado;
+    protected function Debug($estado = TRUE) {
+        $this->debug = $estado;
     }
 
     /**
@@ -235,8 +221,7 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * 
      * Los parámetros se enviarán en el cuerpo del mensaje
      */
-    private function ProcesaParametrosJSON()
-    {
+    private function ProcesaParametrosJSON() {
         /* Los parametros los recibiremos en formato JSON mediante POST
          * Dichos parametros se recogerán de la variable 
          * $HTTP_RAW_POST_DATA que contiene los datos de los parametros 
@@ -252,7 +237,7 @@ abstract class JSON_WebServer_Controller extends CI_Controller
          *  http://stackoverflow.com/questions/12194751/what-is-the-raw-post-data
          *  http://stackoverflow.com/questions/3173547/whats-the-difference-between-post-and-raw-post-in-php-at-all
          *  	
-         **/
+         * */
 
         //
         // Obtenemos la información que viene en el POST sin procesar
@@ -261,16 +246,14 @@ abstract class JSON_WebServer_Controller extends CI_Controller
         //
         $HTTP_RAW_POST_DATA = file_get_contents('php://input');
 
-        if ($this->debug)
-        {
-            $this->debug_input_params=$HTTP_RAW_POST_DATA;
+        if ($this->debug) {
+            $this->debug_input_params = $HTTP_RAW_POST_DATA;
         }
 
         //
         // Comprobamos que hayan enviado parámetros
         //
-        if (! isset($HTTP_RAW_POST_DATA))
-        {
+        if (!isset($HTTP_RAW_POST_DATA)) {
             // Error fin del script
             $this->RetornaError('No se han enviado datos JSON para operar');
 
@@ -280,9 +263,7 @@ abstract class JSON_WebServer_Controller extends CI_Controller
              * 
              * $rawPost=file_get_contents('php://input');
              */
-        }		
-        else 
-        {
+        } else {
             // Devolvemos los parametros como array
             return json_decode($HTTP_RAW_POST_DATA, TRUE);
         }
@@ -294,22 +275,20 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * 
      * @param string $descripcion
      */
-    protected function ReturnError($descripcion)
-    {
+    protected function ReturnError($descripcion) {
         $this->RetornaJSON(array(
-            'error'=>TRUE, 
-            'return'=>$descripcion));
+            'error' => TRUE,
+            'return' => $descripcion));
     }
 
     /**
      * Devuelve el resultado de la función
      * @param mixed $value Valor devuelto, cualquier tipo convertible en JSON
      */
-    protected function ReturnValues($value)
-    {
+    protected function ReturnValues($value) {
         $this->RetornaJSON(array(
-            'error'=>FALSE,
-            'return'=>$value
+            'error' => FALSE,
+            'return' => $value
         ));
     }
 
@@ -317,16 +296,14 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * Devuelve en formato JSON la respuesta e incluye la información de 
      * depuración si está activada
      */
-    private function RetornaJSON($respuesta)
-    {
+    private function RetornaJSON($respuesta) {
         // RFC4627-compliant header
         header('Content-type: application/json');
 
         // Información de depuración
-        if ($this->debug)
-        {
-            $respuesta['debug']=$this->debug_input_params;
-        }	
+        if ($this->debug) {
+            $respuesta['debug'] = $this->debug_input_params;
+        }
         echo json_encode($respuesta);
 
         // Finalizamos el script
@@ -337,31 +314,30 @@ abstract class JSON_WebServer_Controller extends CI_Controller
      * Muestra la ayuda sobre los métodos que se han publicado para el
      * controlador
      */
-    protected function ShowHelp()
-    {
-    ?>		
-<html>
-    <head>
-        <title>JSON WebServer</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>Servicio WEB</h1>
-            <p>Están registradas las siguientes funciones:</p>
-            <table border="1">
-                <tr><td>Método</td><td>Descripción</td></tr>
-                <?php foreach($this->documentacionFunciones as $doc) : ?>
-                <tr>
-                    <td><pre><?=$doc['signature']?></pre></td>
-                    <td><?=$doc['help']?></td>
-                </tr>
-                <?php endforeach; ?>
-            </table>
-            <p>Enviar parametros en formato JSON mediante POST utilizando libreria JSON_WebClient</p>    
-    </body>
-</html>		
-    <?php 
-    }        
-}
+    protected function ShowHelp() {
+        ?>		
+        <html>
+            <head>
+                <title>JSON WebServer</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+                <h1>Servicio WEB</h1>
+                <p>Están registradas las siguientes funciones:</p>
+                <table border="1">
+                    <tr><td>Método</td><td>Descripción</td></tr>
+        <?php foreach ($this->documentacionFunciones as $doc) : ?>
+                        <tr>
+                            <td><pre><?= $doc['signature'] ?></pre></td>
+                            <td><?= $doc['help'] ?></td>
+                        </tr>
+        <?php endforeach; ?>
+                </table>
+                <p>Enviar parametros en formato JSON mediante POST utilizando libreria JSON_WebClient</p>    
+            </body>
+        </html>		
+        <?php
+    }
 
+}

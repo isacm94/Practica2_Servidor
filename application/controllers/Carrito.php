@@ -32,7 +32,7 @@ class Carrito extends CI_Controller {
             if ($this->myCarrito->articulos_total() > 0) {
 
                 foreach ($this->myCarrito->get_content() as $items) :
-                    $stock = $this->Mdl_carrito->getStock($items['id'])[0]['stock']; //Guardamos su stock
+                    $stock = $this->Mdl_carrito->getStock($items['id']); //Guardamos su stock
 
                     if ($stock >= $_POST["cantidad"][$items['id']]) {//Si existe stock disponible para la venta, se actualiza el carrito
                         $articulo = array(
@@ -111,28 +111,28 @@ class Carrito extends CI_Controller {
         if ($stock >= ($cantidad + $cantidadIntroducida)) {//Si no supera el stock la cantidad elegida
            
             $articulo = array(
-                "id" => $camiseta[0]['idCamiseta'],
+                "id" => $camiseta['idCamiseta'],
                 "cantidad" => $cantidadIntroducida,
-                "precio" => getPrecioFinal($camiseta[0]['precio'], $camiseta[0]['descuento']),
-                "nombre" => $camiseta[0]['descripcion'],
-                "opciones" => array('imagen' => $camiseta[0]['imagen'], 'error' => '')
+                "precio" => getPrecioFinal($camiseta['precio'], $camiseta['descuento']),
+                "nombre" => $camiseta['descripcion'],
+                "opciones" => array('imagen' => $camiseta['imagen'], 'error' => '')
             );
             $this->myCarrito->add($articulo);
             redirect('Carrito', 'location', 301);
         } else if ($stock < ($cantidad + $cantidadIntroducida)) {//Si supera el stock, muestra error
             $articulo = array(
-                "id" => $camiseta[0]['idCamiseta'],
+                "id" => $camiseta['idCamiseta'],
                 "cantidad" => $cantidad,
-                "precio" => getPrecioFinal($camiseta[0]['precio'], $camiseta[0]['descuento']),
-                "nombre" => $camiseta[0]['descripcion'],
-                'opciones' => array('imagen' => $camiseta[0]['imagen'],
+                "precio" => getPrecioFinal($camiseta['precio'], $camiseta['descuento']),
+                "nombre" => $camiseta['descripcion'],
+                'opciones' => array('imagen' => $camiseta['imagen'],
                     'error' => '<div class="iconoerror"><span class="glyphicon glyphicon-warning-sign"></span></div>')
             );
 
 
             $this->myCarrito->actualizar($articulo);
 
-            $msg_error = '<div class="alert alert-danger msgerror"> <b> ¡Error! </b>Stock máximo superado</div>';
+            $msg_error = '<div class="alert msgerror"> <b> ¡Error! </b>Stock máximo superado</div>';
             $cuerpo = $this->load->view('View_carrito', Array('msg_error' => $msg_error), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'titulo' => 'Carrito', 'carritoactive' => 'active'));
         }

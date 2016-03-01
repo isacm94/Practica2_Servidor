@@ -12,7 +12,7 @@
 
         <div class="col-md-10">
 
-            <form action="<?= base_url() . "index.php/ModUsuario/Modificar" ?>" class="checkout" method="post">
+            <form action="<?= base_url() . "index.php/ModificarUsuario/Modificar" ?>" class="checkout" method="post">
                 <div id="customer_details" class="col2-set">
 
                     <div class="woocommerce-billing-fields">

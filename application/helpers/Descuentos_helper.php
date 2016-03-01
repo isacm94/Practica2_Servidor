@@ -12,6 +12,7 @@
  */
 function MostrarDescuento($precio, $descuento) {
     $CI = get_instance();
+    
     if ($CI->session->userdata('rate')){
         $rate = $CI->session->userdata('rate');
         $currency = $CI->session->userdata('currency');

@@ -1,6 +1,6 @@
 <?php
 /*
- * VISTA 
+ * VISTA que muestra el formulario para seleccionar el archivo XML para su importación.
  */
 ?>
 <!-- CUERPO -->

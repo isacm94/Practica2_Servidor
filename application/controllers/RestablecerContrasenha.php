@@ -2,7 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 /**
  * CONTROLADOR en el que se lleva a cabo el proceso de cambiar la contraseña de usuario a tráves del correo.
  */
@@ -14,7 +13,6 @@ class RestablecerContrasenha extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('Mdl_usuarios');
         $this->load->model('Mdl_restablecerCont');
-        $this->load->model('Mdl_mail');
         $this->load->library('email');
         $this->load->helper('claves');
     }
@@ -23,7 +21,7 @@ class RestablecerContrasenha extends CI_Controller {
      * Muestra el formulario que pide el nombre de usuario para enviar el correo, si el usuario no existe muestra un mensaje de error y si existe se envia el correo y muestra un mensaje de éxito.
      */
     public function index() {
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="alert msgerror"><b>¡Error! </b>', '</div>');
         $this->form_validation->set_message('required', 'El campo %s está vacío');
         $this->form_validation->set_message('ExisteUsuario_check', 'No existe el usuario introducido');
         $this->form_validation->set_rules('username', 'nombre de usuario', 'required|callback_ExisteUsuario_check');
@@ -32,12 +30,8 @@ class RestablecerContrasenha extends CI_Controller {
             $cuerpo = $this->load->view('View_RestablecerCont', Array('' => ''), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Reestablecer Contraseña'));
         } else {
-
-            $datos = $this->Mdl_mail->getDatosFromUsername($this->input->post('username'));
+            $datos = $this->Mdl_restablecerCont->getDatosFromUsername($this->input->post('username'));
             $this->EnviaCorreo($datos);
-
-            $cuerpo = $this->load->view('View_mailCorrecto', Array('correo' => $datos['correo']), true);
-            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Mail correcto'));
         }
     }
 
@@ -69,11 +63,13 @@ class RestablecerContrasenha extends CI_Controller {
         $mensaje.= site_url() . "/RestablecerContrasenha/Restablece/" . $datos['id'] . "/" . $this->getTonken($datos['id'], $datos['dni'], $datos['nombre']);
         $this->email->message($mensaje);
 
-        if (!$this->email->send())
-            echo "<pre>\n\nError enviado mail\n</pre>";
-
-
-        //echo $this->email->print_debugger();
+        if (!$this->email->send()) {
+            $cuerpo = $this->load->view('View_mailIncorrecto', '', true);
+            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Mail incorrecto'));
+        } else {
+            $cuerpo = $this->load->view('View_mailCorrecto', '', true);
+            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Mail correcto'));
+        }
     }
 
     /**
@@ -93,15 +89,17 @@ class RestablecerContrasenha extends CI_Controller {
      * @param String $token Token generado
      */
     public function Restablece($id, $token) {
-        if ($this->Mdl_restablecerCont->getDatosFromId($id) != -1) {
-            $datos = $this->Mdl_restablecerCont->getDatosFromId($id);
-
-            if ($this->getTonken($datos['id'], $datos['dni'], $datos['nombre']) == $token) {
-                $this->PideClaveRestablecer($datos['username']);
-            } else {
-                $cuerpo = $this->load->view('View_error404', Array('' => ''), true);
-                $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Error'));
-            }
+        $datos = $this->Mdl_restablecerCont->getDatosFromId($id);
+        
+        if (!$datos) {
+            $cuerpo = $this->load->view('View_error404', Array('' => ''), true);
+            $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Error'));
+            
+            return;
+        }
+        
+        if ($this->getTonken($datos['id'], $datos['dni'], $datos['nombre']) == $token) {
+            $this->PideClaveRestablecer($datos['username']);
         } else {
             $cuerpo = $this->load->view('View_error404', Array('' => ''), true);
             $this->load->view('View_plantilla', Array('cuerpo' => $cuerpo, 'homeactive' => 'active', 'titulo' => 'Error'));
@@ -114,7 +112,7 @@ class RestablecerContrasenha extends CI_Controller {
      */
     public function PideClaveRestablecer($username) {
 
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger msgerror"><b>¡Error! </b>', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="alert msgerror"><b>¡Error! </b>', '</div>');
         $this->form_validation->set_message('required', 'El campo %s está vacío');
         $this->form_validation->set_message('ClavesIguales_check', 'Las contraseñas deben ser iguales');
         $this->form_validation->set_rules('clave', 'contraseña', 'required');
