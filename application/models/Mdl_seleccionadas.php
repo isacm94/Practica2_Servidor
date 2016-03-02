@@ -25,6 +25,7 @@ class Mdl_seleccionadas extends CI_Model {
                 . "AND cam.mostrar = 1 "
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
+                . "AND stock > 0 "
                 . "LIMIT $start, $limit; ");
 
 
@@ -43,7 +44,8 @@ class Mdl_seleccionadas extends CI_Model {
                 . "AND cam.seleccionada = 1 "
                 . "AND cam.mostrar = 1 "
                 . "AND curdate() >= fecha_inicio "
-                . "AND curdate() <= fecha_fin ");
+                . "AND curdate() <= fecha_fin "
+                . "AND stock > 0 ");
 
         return $query->num_rows();
     }

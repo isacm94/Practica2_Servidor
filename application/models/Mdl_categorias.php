@@ -53,6 +53,7 @@ class Mdl_categorias extends CI_Model {
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
                 . "AND idCategoria = $idCategoria "
+                . "AND stock > 0 "
                 . "LIMIT $start, $limit; ");
 
         return $query->result_array();
@@ -69,7 +70,8 @@ class Mdl_categorias extends CI_Model {
                 . "WHERE mostrar = 1 "
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
-                . "AND idCategoria = $idCategoria ");
+                . "AND idCategoria = $idCategoria "
+                . "AND stock > 0 ");
 
         return $query->num_rows();
     }

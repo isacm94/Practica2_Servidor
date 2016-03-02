@@ -21,7 +21,8 @@ class Mdl_camiseta extends CI_Model {
                 . "WHERE mostrar = 1 "
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
-                . "AND idCamiseta = $idCamiseta; ");
+                . "AND idCamiseta = $idCamiseta "
+                . "AND stock > 0 ");
 
         return $query->row_array();
     }
@@ -52,17 +53,17 @@ class Mdl_camiseta extends CI_Model {
                 . "FROM camiseta "
                 . "WHERE idCamiseta = $idCamiseta ");
 
-        $cont = $query->result_array()[0]['cont'];
+        $cont = $query->row_array()['cont'];
 
         if ($cont > 0) {//Existe el idcamiseta
-            $query2 = $this->db->query("SELECT cat.mostrar 'mostrarcat', cam.mostrar 'mostrarcam' "
+            $query2 = $this->db->query("SELECT cat.mostrar 'mostrarcat', cam.mostrar 'mostrarcam', stock "
                     . "FROM camiseta cam "
                     . "INNER JOIN categoria cat on cam.idCategoria = cat.idCategoria "
                     . "WHERE idCamiseta = $idCamiseta ");
 
-            $datos = $query2->result_array();
+            $datos = $query2->row_array();
 
-            if ($datos[0]['mostrarcat'] == 1 && $datos[0]['mostrarcam'] == 1)//Se debe mostrar la camiseta
+            if ($datos['mostrarcat'] == 1 && $datos['mostrarcam'] == 1 && $datos['stock'] > 0)//Se debe mostrar la camiseta
                 return true;
             else {
                 return false;
@@ -85,7 +86,8 @@ class Mdl_camiseta extends CI_Model {
                 . "AND curdate() >= fecha_inicio "
                 . "AND curdate() <= fecha_fin "
                 . "AND idCategoria = $idCategoria "
-                . "AND idCamiseta != $idCamiseta; ");
+                . "AND idCamiseta != $idCamiseta "
+                . "AND stock > 0 ");
 
         return $query->result_array();
     }

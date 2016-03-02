@@ -11,7 +11,6 @@ class Pedidos extends CI_Controller {
         parent::__construct();
         $this->load->model('Mdl_pedidos');
         $this->load->model('Mdl_provincias');
-        $this->load->model('Mdl_mail');
         $this->load->library('Carro', 0, 'myCarrito');
         $this->load->library('email');
         $this->load->helper('fechas_helper');
@@ -55,7 +54,7 @@ class Pedidos extends CI_Controller {
                 $this->Mdl_pedidos->CambiaStock($items['id'], $items['cantidad']);
             }
 
-            $datos = $this->Mdl_mail->getDatosFromUsername($this->session->userdata('username'));
+            $datos = $this->Mdl_pedidos->getDatosFromUsername($this->session->userdata('username'));
 
             $this->EnviaCorreo($datos['correo'], $idPedido);
 

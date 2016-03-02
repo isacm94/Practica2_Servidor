@@ -128,5 +128,19 @@ class Mdl_pedidos extends CI_Model {
         $this->db->where('idCamiseta', $idCamiseta);
         $this->db->update('camiseta', $data);
     }
+    
+    /**
+     * Consulta los datos de un nombre de usuario
+     * @param String $username Nombre de usuario
+     * @return Array
+     */
+    public function getDatosFromUserName($username) {
+
+        $query = $this->db->query("SELECT idUsuario 'id', dni, nombre_persona 'nombre', correo "
+                . "FROM usuario "
+                . "WHERE nombre_usu LIKE '$username'; ");
+
+        return $query->row_array();
+    }
 
 }

@@ -86,11 +86,11 @@ class Carrito extends CI_Controller {
      * @param Int $id ID de la camiseta
      */
     public function comprar($id) {
-        
 
         $camiseta = $this->Mdl_carrito->getDataCamiseta($id);
         
-        $stock = $this->Mdl_carrito->getStock($id)[0]['stock']; //Guardamos su stock
+        $stock = $this->Mdl_carrito->getStock($id); //Guardamos su stock
+        
         $cantidad = 0;
         
         if ($this->myCarrito->articulos_total() > 0) {
