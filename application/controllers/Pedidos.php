@@ -102,7 +102,7 @@ class Pedidos extends CI_Controller {
         //DATOS que ponemos al principio de la factura
         $datos = $this->Mdl_pedidos->getDatosParaPDF($this->session->userdata('userid'));
 
-        $this->myPDF->Cell(0, 7, utf8_decode($datos['nombre_persona'] . ', ' . $datos['apellidos_persona']), 0, 1);
+        $this->myPDF->Cell(0, 7, utf8_decode($datos['nombre_persona'] . ' ' . $datos['apellidos_persona']), 0, 1);
         $this->myPDF->Cell(0, 7, utf8_decode("DNI: " . $datos['dni']), 0, 1);
         $this->myPDF->Cell(0, 7, utf8_decode($datos['direccion'] . ', ' . $datos['cp'] . ' (' . $datos['provincia'] . ')'), 0, 1);
 

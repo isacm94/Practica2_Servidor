@@ -91,7 +91,7 @@ class Carrito extends CI_Controller {
         
         $stock = $this->Mdl_carrito->getStock($id); //Guardamos su stock
         
-        $cantidad = 0;
+        $cantidad = 1;
         
         if ($this->myCarrito->articulos_total() > 0) {
             //Guarda la cantidad que tiene comprada de una camiseta
