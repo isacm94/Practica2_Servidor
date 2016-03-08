@@ -26,7 +26,7 @@ class Mdl_Agregador extends CI_Model {
                 'descripcion' => $value['descripcion'],
                 'precio' => $value['precio'],
                 'img' => base_url() . 'assets/img/imagesAPP/' . $value['imagen'],
-                'url' => site_url('Carrito/comprar/' . $value['idCamiseta'])
+                'url' => site_url('Camiseta/ver/' . $value['idCamiseta'])               
             );
         }
         
